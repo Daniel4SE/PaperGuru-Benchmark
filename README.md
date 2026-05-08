@@ -51,7 +51,6 @@
 - [Track Record](#-track-record)
 - [What is in this repository](#-what-is-in-this-repository)
 - [Reproducing the figures](#-reproducing-the-figures)
-- [Citation](#-citation)
 - [License](#-license)
 
 ---
@@ -233,7 +232,6 @@ PaperGuru-Benchmark/
 ├── README.md                          ← you are here
 ├── README.zh-CN.md                    ← 中文版
 ├── LICENSE                            ← MIT
-├── CITATION.bib                       ← BibTeX entry
 │
 ├── paper/
 │   └── PaperGuru-CCM.pdf              ← the full paper (NeurIPS 2026 submission)
@@ -290,22 +288,6 @@ python3 build_trophy_wall.py    # rebuilds the trophy_wall.png composite
 ```
 
 The raw numbers — every cell in every results table — are in [`assets/figures/data.json`](assets/figures/data.json). If you use these numbers, please cite the paper.
-
----
-
-## 📝 Citation
-
-```bibtex
-@inproceedings{paperguru2026,
-  title     = {PaperGuru: Lifecycle-Aware Memory for Long-Horizon LLM Agents},
-  author    = {{PaperGuru Team}},
-  booktitle = {Proceedings of the 39th Conference on Neural Information Processing Systems},
-  year      = {2026},
-  url       = {https://github.com/AutoTrust-AI/PaperGuru}
-}
-```
-
-The full paper PDF is in [`paper/PaperGuru-CCM.pdf`](paper/PaperGuru-CCM.pdf).
 
 ---
 

@@ -51,7 +51,6 @@
 - [真实战绩](#-真实战绩)
 - [仓库内容](#-仓库内容)
 - [复现图表](#-复现图表)
-- [引用](#-引用)
 - [许可证](#-许可证)
 
 ---
@@ -233,7 +232,6 @@ PaperGuru-Benchmark/
 ├── README.md                          ← 英文版
 ├── README.zh-CN.md                    ← 你正在看
 ├── LICENSE                            ← MIT
-├── CITATION.bib                       ← BibTeX 条目
 │
 ├── paper/
 │   └── PaperGuru-CCM.pdf              ← 完整论文（NeurIPS 2026 投稿稿）
@@ -290,22 +288,6 @@ python3 build_trophy_wall.py    # 重建 trophy_wall.png 拼接图
 ```
 
 所有原始数字 —— 论文中每张表的每个单元格 —— 都在 [`assets/figures/data.json`](assets/figures/data.json)。如果你使用了这些数据，请引用论文。
-
----
-
-## 📝 引用
-
-```bibtex
-@inproceedings{paperguru2026,
-  title     = {PaperGuru: Lifecycle-Aware Memory for Long-Horizon LLM Agents},
-  author    = {{PaperGuru Team}},
-  booktitle = {Proceedings of the 39th Conference on Neural Information Processing Systems},
-  year      = {2026},
-  url       = {https://github.com/AutoTrust-AI/PaperGuru}
-}
-```
-
-完整论文 PDF 在 [`paper/PaperGuru-CCM.pdf`](paper/PaperGuru-CCM.pdf)。
 
 ---
 
