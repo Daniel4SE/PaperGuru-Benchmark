@@ -1,0 +1,38 @@
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+.pytest_cache/
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.bak
+*.bak[0-9]
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS junk
+Thumbs.db
+desktop.ini

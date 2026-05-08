@@ -1,0 +1,171 @@
+{
+  "paperbench_per_paper": [
+    {
+      "slug": "adaptive-pruning",
+      "paperguru": 50.59,
+      "best_baseline": 33.26
+    },
+    {
+      "slug": "all-in-one",
+      "paperguru": 53.96,
+      "best_baseline": 49.47
+    },
+    {
+      "slug": "bam",
+      "paperguru": 84.72,
+      "best_baseline": 61.11
+    },
+    {
+      "slug": "bbox",
+      "paperguru": 40.34,
+      "best_baseline": 33.79
+    },
+    {
+      "slug": "bridging-data-gaps",
+      "paperguru": 57.14,
+      "best_baseline": 26.46
+    },
+    {
+      "slug": "fre",
+      "paperguru": 61.51,
+      "best_baseline": 35.21
+    },
+    {
+      "slug": "ftrl",
+      "paperguru": 62.66,
+      "best_baseline": 10.11
+    },
+    {
+      "slug": "lbcs",
+      "paperguru": 85.74,
+      "best_baseline": 30.1
+    },
+    {
+      "slug": "lca-on-the-line",
+      "paperguru": 63.16,
+      "best_baseline": 30.23
+    },
+    {
+      "slug": "mechanistic-understanding",
+      "paperguru": 70.19,
+      "best_baseline": 40.55
+    },
+    {
+      "slug": "pinn",
+      "paperguru": 54.29,
+      "best_baseline": 58.76
+    },
+    {
+      "slug": "rice",
+      "paperguru": 57.65,
+      "best_baseline": 10.87
+    },
+    {
+      "slug": "robust-clip",
+      "paperguru": 52.55,
+      "best_baseline": 28.66
+    },
+    {
+      "slug": "sample-specific-masks",
+      "paperguru": 86.52,
+      "best_baseline": 44.13
+    },
+    {
+      "slug": "sapg",
+      "paperguru": 46.49,
+      "best_baseline": 31.69
+    },
+    {
+      "slug": "sequential-neural-score-estimation",
+      "paperguru": 89.32,
+      "best_baseline": 64.94
+    },
+    {
+      "slug": "stay-on-topic-with-classifier-free-guidance",
+      "paperguru": 88.16,
+      "best_baseline": 20.13
+    },
+    {
+      "slug": "stochastic-interpolants",
+      "paperguru": 82.99,
+      "best_baseline": 42.1
+    },
+    {
+      "slug": "test-time-model-adaptation",
+      "paperguru": 70.06,
+      "best_baseline": 32.45
+    },
+    {
+      "slug": "what-will-my-model-forget",
+      "paperguru": 60.98,
+      "best_baseline": 30.82
+    },
+    {
+      "slug": "semantic-self-consistency",
+      "paperguru": 95.45,
+      "best_baseline": null
+    },
+    {
+      "slug": "self-composing-policies",
+      "paperguru": 65.03,
+      "best_baseline": null
+    },
+    {
+      "slug": "self-expansion",
+      "paperguru": 39.77,
+      "best_baseline": null
+    }
+  ],
+  "paperbench_baselines": {
+    "AiScientist + Gemini-3-Flash": 30.52,
+    "PaperBench original baseline": 21.3,
+    "IterativeAgent (best ext.)": 35.74,
+    "Human Expert (48h ML-PhD)": 41.0,
+    "PaperGuru (ours)": 66.05
+  },
+  "surveybench": {
+    "Coverage": {
+      "PaperGuru": 94.0,
+      "AutoSurvey": 61.0,
+      "LLMxMR-v2": 70.0,
+      "SurveyForge": 60.0,
+      "ASur": 59.0
+    },
+    "Coherence": {
+      "PaperGuru": 87.4,
+      "AutoSurvey": 80.0,
+      "LLMxMR-v2": 78.0,
+      "SurveyForge": 79.0,
+      "ASur": 76.0
+    },
+    "Depth": {
+      "PaperGuru": 92.0,
+      "AutoSurvey": 75.0,
+      "LLMxMR-v2": 75.0,
+      "SurveyForge": 72.0,
+      "ASur": 60.0
+    },
+    "Focus": {
+      "PaperGuru": 100.0,
+      "AutoSurvey": 99.0,
+      "LLMxMR-v2": 94.0,
+      "SurveyForge": 86.0,
+      "ASur": 76.0
+    },
+    "Fluency": {
+      "PaperGuru": 100.0,
+      "AutoSurvey": 88.0,
+      "LLMxMR-v2": 80.0,
+      "SurveyForge": 80.0,
+      "ASur": 80.0
+    }
+  },
+  "surveybench_richness": {
+    "ASur": 0.0,
+    "SurveyForge": 0.0,
+    "AutoSurvey": 6.24,
+    "LLMxMR-v2": 20.36,
+    "PaperGuru": 43.76
+  },
+  "human_reference": 41.0
+}

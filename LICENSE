@@ -1,0 +1,31 @@
+MIT License
+
+Copyright (c) 2026 PaperGuru Team
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+NOTE ON BUNDLED ARTIFACTS:
+- The 23 reproduction submissions in PaperBench/submissions/ are derivative
+  works of their respective original papers. Each submission inherits the
+  license of its source paper. Consult the README inside each submission
+  before redistributing.
+- The 20 generated surveys in SurveyBench/ may be cited and quoted with
+  attribution to "PaperGuru, 2026".
+- The paper PDF in paper/PaperGuru-CCM.pdf is (c) the PaperGuru Team and is
+  distributed under CC BY 4.0 for non-commercial academic use.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

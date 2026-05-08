@@ -1,0 +1,1365 @@
+\documentclass{article}
+\usepackage[accepted]{icml2025}
+\usepackage{fontspec}
+\setmainfont[Ligatures=TeX]{Times New Roman}
+\setsansfont[Ligatures=TeX]{Helvetica}
+\setmonofont{Menlo}
+\usepackage{newunicodechar}
+\newunicodechar{π}{$\pi$}
+\newunicodechar{α}{$\alpha$}
+\newunicodechar{β}{$\beta$}
+\newunicodechar{γ}{$\gamma$}
+\newunicodechar{δ}{$\delta$}
+\newunicodechar{ε}{$\varepsilon$}
+\newunicodechar{ζ}{$\zeta$}
+\newunicodechar{η}{$\eta$}
+\newunicodechar{θ}{$\theta$}
+\newunicodechar{ι}{$\iota$}
+\newunicodechar{κ}{$\kappa$}
+\newunicodechar{λ}{$\lambda$}
+\newunicodechar{μ}{$\mu$}
+\newunicodechar{ν}{$\nu$}
+\newunicodechar{ξ}{$\xi$}
+\newunicodechar{ρ}{$\rho$}
+\newunicodechar{σ}{$\sigma$}
+\newunicodechar{τ}{$\tau$}
+\newunicodechar{φ}{$\phi$}
+\newunicodechar{χ}{$\chi$}
+\newunicodechar{ψ}{$\psi$}
+\newunicodechar{ω}{$\omega$}
+\newunicodechar{Δ}{$\Delta$}
+\newunicodechar{Σ}{$\Sigma$}
+\newunicodechar{Φ}{$\Phi$}
+\newunicodechar{Ω}{$\Omega$}
+\newunicodechar{Π}{$\Pi$}
+\newunicodechar{Λ}{$\Lambda$}
+\newunicodechar{Θ}{$\Theta$}
+\newunicodechar{∈}{$\in$}
+\newunicodechar{∉}{$\notin$}
+\newunicodechar{∩}{$\cap$}
+\newunicodechar{∪}{$\cup$}
+\newunicodechar{≤}{$\leq$}
+\newunicodechar{≥}{$\geq$}
+\newunicodechar{≠}{$\neq$}
+\newunicodechar{≈}{$\approx$}
+\newunicodechar{≪}{$\ll$}
+\newunicodechar{≫}{$\gg$}
+\newunicodechar{⟨}{$\langle$}
+\newunicodechar{⟩}{$\rangle$}
+\newunicodechar{↔}{$\leftrightarrow$}
+\newunicodechar{→}{$\to$}
+\newunicodechar{←}{$\leftarrow$}
+\newunicodechar{⇒}{$\Rightarrow$}
+\newunicodechar{⇐}{$\Leftarrow$}
+\newunicodechar{∇}{$\nabla$}
+\newunicodechar{∂}{$\partial$}
+\newunicodechar{∞}{$\infty$}
+\newunicodechar{∑}{$\sum$}
+\newunicodechar{∏}{$\prod$}
+\newunicodechar{∫}{$\int$}
+\newunicodechar{√}{$\sqrt{}$}
+\newunicodechar{±}{$\pm$}
+\newunicodechar{×}{$\times$}
+\newunicodechar{÷}{$\div$}
+\newunicodechar{·}{$\cdot$}
+\newunicodechar{∘}{$\circ$}
+\newunicodechar{⊕}{$\oplus$}
+\newunicodechar{⊗}{$\otimes$}
+\newunicodechar{⊆}{$\subseteq$}
+\newunicodechar{⊇}{$\supseteq$}
+\newunicodechar{⊂}{$\subset$}
+\newunicodechar{⊃}{$\supset$}
+\newunicodechar{∃}{$\exists$}
+\newunicodechar{∀}{$\forall$}
+\newunicodechar{∅}{$\emptyset$}
+\newunicodechar{¬}{$\neg$}
+\newunicodechar{∧}{$\wedge$}
+\newunicodechar{∨}{$\vee$}
+\newunicodechar{′}{$'$}
+\newunicodechar{″}{$''$}
+\newunicodechar{ℓ}{$\ell$}
+\newunicodechar{ℏ}{$\hbar$}
+\newunicodechar{ℝ}{$\mathbb{R}$}
+\newunicodechar{ℕ}{$\mathbb{N}$}
+\newunicodechar{ℤ}{$\mathbb{Z}$}
+\newunicodechar{ℚ}{$\mathbb{Q}$}
+\newunicodechar{ℂ}{$\mathbb{C}$}
+\newunicodechar{‐}{-}
+\newunicodechar{‑}{-}
+\newunicodechar{‒}{-}
+\newunicodechar{–}{--}
+\newunicodechar{—}{---}
+\newunicodechar{…}{\ldots}
+\newunicodechar{“}{``}
+\newunicodechar{”}{''}
+\newunicodechar{‘}{`}
+\newunicodechar{’}{'}
+\newunicodechar{≡}{$\equiv$}
+\newunicodechar{✓}{\checkmark}
+\newunicodechar{✗}{$\times$}
+\newunicodechar{△}{$\triangle$}
+\newunicodechar{□}{$\square$}
+\newunicodechar{○}{$\circ$}
+\newunicodechar{●}{$\bullet$}
+\newunicodechar{♯}{$\sharp$}
+\newunicodechar{♭}{$\flat$}
+\newunicodechar{†}{\dag}
+\newunicodechar{‡}{\ddag}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{longtable}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{hyperref}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{enumitem}
+\usepackage[capitalize,noabbrev]{cleveref}
+% Pandoc compatibility shims
+\providecommand{\tightlist}{}
+\providecommand{\pandocbounded}[1]{#1}
+\providecommand{\textsubscript}[1]{\ensuremath{_{\text{#1}}}}
+\providecommand{\textsuperscript}[1]{\ensuremath{^{\text{#1}}}}
+\providecommand{\real}[1]{#1}
+
+\providecommand{\passthrough}[1]{#1}
+
+% Allow line breaks in paragraphs without overfull boxes
+\sloppy
+\emergencystretch=2em
+
+\icmltitlerunning{Scientific Large Language Models}
+
+\begin{document}
+
+\twocolumn[
+  \icmltitle{Scientific Large Language Models}
+
+  \icmlsetsymbol{equal}{*}
+
+  \begin{icmlauthorlist}
+    \icmlauthor{Anonymous}{anon}
+  \end{icmlauthorlist}
+
+  \icmlaffiliation{anon}{Anonymous Institution}
+
+  \icmlcorrespondingauthor{Anonymous}{anon@example.org}
+
+  \icmlkeywords{Machine Learning, Survey, ICML}
+
+  \vskip 0.3in
+]
+
+\printAffiliationsAndNotice{}
+
+\begin{abstract}
+This survey covers Scientific Large Language Models (Sci-LLMs) --- foundation models whose pretraining corpus, vocabulary, alignment data, and runtime stack are dominated by scientific artifacts: papers, textbooks, code, mathematical notation, and structured biochemical or genomic sequences. We restrict the term to systems that satisfy the inclusion criterion of Hu et al.~(2025) \cite{hu2025asurveyofscientifi}: at least one training stage is dominated by scientific data, or the deployment loop runs in a scientific environment. The taxonomy developed in §3 rests on four orthogonal axes --- Domain (biomedical, chemical, biological-sequence, mathematical, geoscientific, materials, general-science), Architecture (encoder, decoder, encoder--decoder, state-space), Training stage (pretraining, continued PT, instruction tuning, RLHF/DPO, tool/RAG augmentation), and Modality/Autonomy (text, multimodal, single-agent, multi-agent, closed-loop SDL) --- that together locate 250+ documented Sci-LLMs.
+\end{abstract}
+
+\begin{figure}[t]
+\centering
+\pandocbounded{\includegraphics[width=\linewidth,keepaspectratio]{./figures/Scientific-Large-Language-Models__fig1_overview.png}}
+\caption{Field overview and pipeline of Scientific Large Language Models, from data sources through tokenization, pretraining, alignment, and capabilities.}\label{fig:fig1-overview}\end{figure}
+
+\section{Executive Overview}\label{executive-overview}
+
+The historical arc surveyed in §2 partitions into three sharp inflections. The encoder era of 2018--2021 was opened by SciBERT \cite{beltagy2019arxiv1903106762019} and BioBERT \cite{lee2019bioinformatics2019} on PubMed and S2ORC. The decoder and scaling era of 2022--2024 was triggered by Galactica's 120B-parameter, 106B-token release \cite{taylor2022arxiv2211090852022}, by Med-PaLM and Med-PaLM 2 reaching 67.6\% then 86.5\% MedQA \cite{singhal2025towardexpertlevelm,singhal2023largelanguagemodel}, by ESM-2 at 15B parameters with 60×-faster ESMFold \cite{lin2022evolutionaryscalep}, by Coscientist's autonomous Pd cross-coupling \cite{boiko2023nature6242023}, and by ChemCrow's 18-tool agent \cite{bran2024naturemachineintel}. The agentic and reasoning-tuned era of 2025--2026 is defined by reasoning-RL post-training in o1, DeepSeek-R1 (671B MoE), QwQ, and Gemini-Thinking, and by multi-agent stacks such as Virtual Lab \cite{swanson2024thevirtuallabaiage} and Agent Laboratory \cite{schmidgall2025agentlaboratoryusi}.
+
+Methodologically, §§4--7 span SciVocab and BPE or k-mer tokenization, the citation tokens \texttt{{[}\$START\_R\$EF{]}...{[}\$END\_R\$EF{]}} and working-memory tokens \texttt{\textless{}work\textgreater{}} introduced by Galactica, continued pretraining at 1e-5 learning rate over 1--3 epochs in Llemma, BioMistral, and GeoGalactica, instruction tuning on SciInstruct (200K), SciRIFF (137K instructions across 54 tasks), and MAmmoTH2 (10M), preference alignment via PPO, DPO, and RLAIF, retrieval-augmented generation in PaperQA and Almanac, tool-augmented ReAct loops in ChemCrow and Coscientist, and reasoning RL on chain-of-thought traces.
+
+The benchmark landscape catalogued in §9 has shifted as MedQA, MMLU-STEM, and GSM8K saturate. Attention now centres on GPQA-Diamond (198 graduate questions; o1-class ≈78\%), OlympicArena (11,163 problems; GPT-4o 39.97\%), SciBench (789 problems; GPT-4 35.8\%), MicroVQA (1,042 microscopy questions; GPT-4o 53.5\%), LLM-SRBench equation discovery (\textless40\%), ChemPro (4,100 progressive questions), GUE (28 DNA tasks), miniF2F, ProofNet (371 Lean problems), and the long-form factuality scorer SAFE.
+
+The limitations dissected in §10 include hallucinated citations (canonically illustrated by Galactica's three-day retraction), 20--40\% missed differential diagnoses on real clinical cases \cite{hager2024evaluationandmitig}, dual-use synthesis risks \cite{bengio2024internationalscien}, retrieval drift, plan-step explosion (where 0.95\^{}20 ≈ 0.36 success caps long-horizon agents), calibration drift after RLHF, and benchmark contamination. The standard mitigations are RAG over curated corpora (Almanac: 91\% vs 64\% factuality versus ChatGPT), tool-level safety filters such as ChemCrow's SMARTS checks, conformal prediction, and post-cutoff held-out evaluation.
+
+The predictions developed in §12 take the form of five falsifiable forecasts for 2027--2028: (F1) an agentic Sci-LLM as primary contributor on a top-venue paper; (F2) ESM descendants delivering functional binders without de-novo MSAs in at least half of attempts; (F3) FDA clearance of medical Sci-LLMs in three narrow domains; (F4) curated and citation-verified scientific corpora of at least 500B tokens as the default pretraining base; and (F5) the open-weights to closed-API gap on GPQA-Diamond closing to within 5 absolute points.
+
+Sections §§1--2 fix terminology and history; §3 fixes the taxonomy; §§4--5 cover algorithmic mechanism and alignment; §§6--7 cover augmentation and agentic autonomy; §8 walks each domain; §9 catalogues data and benchmarks; §10 dissects failure modes; §11 audits compute and reproducibility; §12 fixes the open-problem agenda; and §13 is the glossary and reference map.
+
+\section{Concept and Scope of Scientific Large Language Models}\label{concept-and-scope-of-scientific-large-language-models}
+
+A Sci-LLM is a transformer-based foundation model whose pretraining corpus, vocabulary, and downstream evaluation are explicitly anchored to the language of science. That language includes scientific prose, mathematical notation, programming code for simulation and analysis, and structured biochemical strings such as SMILES, FASTA, IUPAC names, and Lean tactics. The term gained currency after Galactica (Taylor et al., November 2022) \cite{taylor2022arxiv2211090852022}, the first decoder-only model trained at 120B parameters almost exclusively on a curated 106B-token scientific corpus. A coordinated 2024--2026 wave of surveys then crystallized the term: Zhang et al.~in \emph{ACM Computing Surveys} \cite{zhang2025scientificlargelan}, the cross-discipline survey of Zhang, Chen, Jin et al.~\cite{zhang2024acomprehensivesurv}, \emph{LLM4SR} \cite{luo2025llm4srasurveyonlar}, and \emph{From AI for Science to Agentic Science} \cite{wei2025fromaiforscienceto}. The community now uses \textbf{Sci-LLM} for any foundation model whose primary inductive bias is the distribution of scientific artifacts. General-purpose LLMs, by contrast, target broad web text.
+
+A Sci-LLM differs from a general LLM along three operational axes. First, \textbf{input modality}: Sci-LLMs ingest symbolic systems with different statistical regularities alongside natural-language tokens. Examples include SMILES, where parentheses encode branching and a one-character change alters the molecule; FASTA, a 20-letter amino-acid alphabet with context spanning hundreds of residues; and macro-rich LaTeX. Second, \textbf{output validity}: a Sci-LLM is judged not only on fluency but on whether its output parses, balances atoms, type-checks in Lean, or matches an experimentally measured value. Galactica introduced explicit \emph{citation tokens} \texttt{{[}\$START\_R\$EF{]}...{[}\$END\_R\$EF{]}} and \emph{working-memory tokens} \texttt{\textless{}work\textgreater{}} so that intermediate steps and references became first-class training targets \cite{taylor2022arxiv2211090852022}. Third, \textbf{grounding requirement}: Sci-LLMs are typically deployed alongside literature retrieval (PaperQA \cite{ala2023arxiv2312075592023}, Almanac \cite{zakka2024almanacretrievalau}), simulators, or wet-lab automation. Boiko et al.'s Coscientist (\emph{Nature} 2023) \cite{boiko2023nature6242023} couples a GPT-4 reasoning module with planning, execution, and an OPENTRONS robot for Pd-catalysed cross-coupling. The LLM is one component of a closed scientific loop rather than a stand-alone oracle.
+
+Formally, a Sci-LLM defines a distribution \(p_\theta(Y \mid X)\) over scientific outputs \(Y\) given context \(X\). Inputs \(X\) may be a research question, an EHR note, a partial molecule, or a DNA window; outputs \(Y\) may be a cited free-text answer, a SMILES string, a multi-step derivation, or a robot action plan. Pretraining minimizes \(\mathcal{L}_{\text{pre}}(\theta) = -\mathbb{E}_{x \sim D_{\text{sci}}}\big[\sum_t \log p_\theta(x_t \mid x_{<t})\big]\) over a scientific corpus \(D_{\text{sci}}\). Adaptation then proceeds via continued pretraining, supervised instruction tuning on corpora such as \textbf{SciInstruct} (200K self-reflective examples) \cite{zhang2024sciinstructaselfre} or \textbf{SciRIFF} (137K instructions across 54 tasks) \cite{wadden2024sciriffaresourceto}, RLHF as in \textbf{Med-PaLM 2} \cite{singhal2025towardexpertlevelm}, or tool/retrieval augmentation as in \textbf{ChemCrow} \cite{bran2024naturemachineintel}. The literature now treats \emph{grounding} and \emph{verification} as first-class evaluation axes; Guo et al.'s \emph{PNAS} 2026 high-Tc superconductivity case study probes whether LLMs encode valid \emph{world models} of materials rather than surface-level fluency \cite{guo2026expertevaluationof}.
+
+Sci-LLMs span a four-tier \textbf{scientific reasoning hierarchy}. At the base lies factual recall, the regime of BioBERT \cite{lee2019bioinformatics2019} and SciBERT \cite{beltagy2019arxiv1903106762019} for biomedical Named Entity Recognition (NER), concept linking, and relation extraction. One tier up sits symbolic manipulation. Llemma 34B \cite{azerbayev2023llemmaanopenlangua} and Minerva continue equations, and LeanDojo augments theorem proving with retrieval over 98K Lean theorems \cite{yang2023leandojotheorempro}. The third tier is multi-step deduction. Chain-of-thought-trained Med-PaLM 2 reaches 86.5\% on MedQA, up from the 67.6\% Med-PaLM baseline \cite{singhal2025towardexpertlevelm,singhal2023largelanguagemodel}. The apex is hypothesis generation and experimental planning. Swanson et al.'s Virtual Lab designed novel SARS-CoV-2 nanobodies that were experimentally validated against KP.3 and JN.1 variants \cite{swanson2024thevirtuallabaiage}. Schmidgall et al.'s Agent Laboratory wraps literature-review, planning, execution, and report-writing into a single agentic loop \cite{schmidgall2025agentlaboratoryusi}. Zheng et al.'s 2025 survey \emph{From Automation to Autonomy} \cite{zheng2025fromautomationtoau} argues that the field's trajectory is the climb up this ladder.
+
+A core conceptual claim, revisited in §10, is that a Sci-LLM is not merely a generic LLM evaluated on science questions. Its pretraining distribution, tokenization, alignment data, evaluation metrics, and runtime tool stack are jointly reshaped by scientific desiderata. SciBERT, for example, introduced \textbf{SciVocab}, a 30K-token WordPiece vocabulary learned on 1.14M Semantic Scholar papers (18\% biomedical, 82\% mixed sciences). SciVocab lifted single-token coverage of biomedical entities by 42\% over BERT-base's WikiVocab \cite{beltagy2019arxiv1903106762019}. MatSciBERT extended the idea to materials with ≈1M abstracts and gained +6 F1 on materials NER \cite{gupta2022matscibertamateria}. DNABERT used overlapping k-mer tokenization (k = 3, 4, 5, 6). DNABERT-2 replaced k-mers with byte-pair encoding (BPE), cutting parameters by ≈28\% while improving multispecies generalization across the 28-task GUE benchmark \cite{ji2020biorxiv2020,zhou2023arxiv2306150062023}. These differences are not cosmetic. Token granularity propagates into context length, scaling laws, and downstream calibration.
+
+The category overlaps with --- but is not identical to --- \textbf{biological sequence foundation models}. The ESM-2 family scales to 15B parameters on UniRef50's ≈65M protein clusters and outputs per-residue and pairwise embeddings; coupled with ESMFold, it predicts atomic-level structure ≈60× faster than AlphaFold 2 on single chains while remaining competitive in accuracy \cite{lin2022evolutionaryscalep}. Whether ESM-2 is a ``Sci-LLM'' or a ``protein language model'' is partly terminological. The 2025 ACM CSUR survey \cite{zhang2025scientificlargelan} adopts the inclusive position that any large transformer trained on scientific tokens --- English text, SMILES, or amino acids --- counts; we follow that convention. By the same criterion the Nucleotide Transformer (2.5B parameters, 850 species; \emph{Nature Methods} 2024) \cite{dallatorre2024nucleotidetransfor}, HyenaDNA (1-million-base-pair context) \cite{nguyen2023hyenadnalongrangeg}, and Enformer (gene-expression prediction) \cite{avsec2021effectivegeneexpre} are all Sci-LLMs specialised to genomic language.
+
+A final conceptual boundary concerns \textbf{what is not a Sci-LLM}. Single-task supervised models such as Foldseek for structural search {[}Foldseek{]}, or Enformer when used purely as a deterministic regressor without language-style generation, are treated as adjacent rather than central. Vision--language models such as Flamingo {[}Flamingo{]} or consumer Gemini variants qualify only when trained or instruction-tuned jointly on scientific imagery and language --- Med-Gemini \cite{yang2024advancingmultimoda} qualifies; consumer GPT-4V chat does not. We adopt the inclusion threshold of Hu et al.~(2025) \cite{hu2025asurveyofscientifi}: a model is a Sci-LLM if at least one training stage is dominated by scientific data, \textbf{or} if its primary deployment loop runs in a scientific environment.
+
+Table 1.1 fixes the symbols and notation used throughout the survey, aligned with the conventions of the recent Sci-LLM surveys \cite{zhang2025scientificlargelan,zhang2024acomprehensivesurv,luo2025llm4srasurveyonlar,wei2025fromaiforscienceto,zheng2025fromautomationtoau,hu2025asurveyofscientifi} and the \emph{Survey on LLMs in Biology and Chemistry} \cite{ashyrmamatov2026asurveyonlargelang}.
+
+\begin{table*}[t]
+\centering
+\caption{Concept and Scope of Scientific Large Language Models: comparative summary.}
+\label{tab:concept-and-scope-of-scientific-large-language-models}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.4551\linewidth}
+  >{\raggedright\arraybackslash}p{0.5449\linewidth}}
+\toprule
+Symbol & Meaning \\
+\midrule
+\(D_{\text{sci}}\) & Scientific pretraining corpus (e.g., PubMed, S2ORC, UR50, ChEMBL) \\
+\(\theta\) & Parameters of the Sci-LLM, typically 100M--540B \\
+\(X, Y\) & Scientific input context and output (text/SMILES/FASTA/Lean) \\
+\(\mathcal{L}_{\text{pre}}, \mathcal{L}_{\text{IT}}, \mathcal{L}_{\text{RL}}\) & Pretraining, instruction-tuning, and RL-alignment losses \\
+Pass@k & Probability that at least one of \(k\) samples is correct (used for theorem proving and code) \\
+Validity rate & Fraction of generations that parse as valid SMILES/FASTA/Lean \\
+FActScore / SAFE & Atomic factuality scores for long-form scientific writing \\
+ECE & Expected calibration error of probabilistic predictions \\
+Tool-use rate & Fraction of agent turns that successfully invoke an external tool \\
+\end{tabular}
+\end{table*}
+
+With terminology fixed, the next section traces how the field arrived at this definition through three sharply separated eras.
+
+\section{Historical Trajectory from SciBERT to Agentic Sci-LLMs}\label{historical-trajectory-from-scibert-to-agentic-sci-llms}
+
+Building on the conceptual scope fixed in Section 1, this section traces how the field arrived at the present definition through three sharply separated eras: encoder-era foundations (2018--2021), decoder-era turning points (2022--2024), and the agentic and reasoning-tuned generation (2025--2026).
+
+The history of Sci-LLMs partitions into three eras with sharp inflection points. The encoder era of 2018--2021 was dominated by domain-pretrained BERT variants --- SciBERT, BioBERT, Med-BERT, MatSciBERT --- doing discriminative biomedical NLP such as NER, relation extraction, and span tagging at 110M--340M parameters on PubMed and S2ORC. The decoder and scaling era of 2022--2024 was defined by Galactica's 120B/106B-token release \cite{taylor2022arxiv2211090852022}, by Med-PaLM and Med-PaLM 2 reaching 67.6\% then 86.5\% MedQA \cite{singhal2025towardexpertlevelm,singhal2023largelanguagemodel}, by ESM-2 at 15B parameters with ESMFold running at 60× AlphaFold-2 speed \cite{lin2022evolutionaryscalep}, and by the first agentic stacks Coscientist \cite{boiko2023nature6242023} and ChemCrow \cite{bran2024naturemachineintel}. The agentic and reasoning-tuned era of 2025--2026 is defined by reasoning-RL post-training in o1, DeepSeek-R1, QwQ, and Gemini-Thinking, and by multi-agent autonomous laboratories. The timeline in Figure 5 summarises the milestones; we narrate them below.
+
+\begin{figure}[t]
+\centering
+\pandocbounded{\includegraphics[width=\linewidth,keepaspectratio]{./figures/Scientific-Large-Language-Models__fig5_timeline.png}}
+\caption{Timeline of Scientific Large Language Models from 2018 to 2026, organized into three swimlanes: encoder era, decoder and scaling era, and agentic and reasoning era.}\label{fig:fig5-timeline}\end{figure}
+
+\subsection{Encoder-era foundations (2018--2021)}\label{encoder-era-foundations-20182021}
+
+BERT's 2018 release made domain retraining an obvious move. \textbf{SciBERT} (Beltagy, Lo, Cohan, March 2019) pretrained on 1.14M Semantic Scholar papers (≈3.17B tokens) with the new 30K-WordPiece SciVocab and reported SOTA F1 on BC5CDR chemical--disease NER, ChemProt relation extraction, and SciERC, with up to +3.5 F1 over BERT-base \cite{beltagy2019arxiv1903106762019}. In parallel, \textbf{BioBERT} (Lee et al., 2019) continued BERT-base pretraining on 4.5B PubMed-abstract tokens and 13.5B PMC full-text tokens, gaining +0.62 F1 on biomedical NER and beating prior baselines on BC2GM and JNLPBA \cite{lee2019bioinformatics2019}. Peng et al.'s \textbf{BLUE} benchmark then standardised evaluation across ten biomedical datasets {[}BLUE{]}. \textbf{Med-BERT} (Rasmy et al., \emph{npj Digital Medicine} 2021) ported the recipe to longitudinal EHRs over 28M patient records, lifting rare-disease prediction AUROC by 1.7--6.5 points {[}Med-BERT{]}. \textbf{MatSciBERT} (Gupta et al., \emph{npj Computational Materials} 2022) trained on ≈1M materials abstracts and gained +6 F1 on materials NER \cite{gupta2022matscibertamateria}, while early protein LMs such as \textbf{ESM-1b} (Rives et al.) showed that masked-LM on amino-acid sequences yielded embeddings that improved structure prediction. The era was \emph{encoder-only} and \emph{discriminative}: outputs were classifications, spans, or embeddings --- never free-form scientific text.
+
+Two structural limits motivated the next phase. Encoders cannot generate, so they cannot explain, summarise, hypothesise, or plan experiments. And SciBERT's 3.17B tokens were already dwarfed by GPT-3's 300B tokens and by the trillion-token open releases that followed. By 2021 the field needed decoders, much larger corpora, and instruction-following.
+
+\subsection{Decoder-era turning points (2022--2024)}\label{decoder-era-turning-points-20222024}
+
+The decoder era opens with two near-simultaneous events. In November 2022 Meta AI released \textbf{Galactica}. Galactica shipped decoder-only checkpoints at 1.3B, 6.7B, 30B, and 120B parameters, trained on a curated 106B-token corpus of papers, textbooks, encyclopedias, and reference data, with explicit citation tokens and \texttt{\textless{}work\textgreater{}} working-memory tokens \cite{taylor2022arxiv2211090852022}. Galactica reached 68.2\% on MMLU science at 120B and was the first model marketed as ``a large language model for science.'' Its public demo was retracted within three days because users elicited fluent but fabricated citations and unsafe medical claims. That retraction is the canonical failure case of the era. It crystallised the field's emphasis on grounding, retrieval, and provenance --- themes later embodied in PaperQA \cite{ala2023arxiv2312075592023} and Almanac \cite{zakka2024almanacretrievalau}. The weights remain publicly available and were continued into \textbf{GeoGalactica} (65B geoscience tokens) \cite{lin2023geogalacticaascien} and \textbf{BioGPT}.
+
+The medical decoder line opened in parallel. \textbf{Med-PaLM} (Singhal et al., \emph{Nature} 2023) reported 67.6\% on MedQA --- more than 17 points above the prior SOTA and crossing the conventional 60\% USMLE-pass threshold \cite{singhal2023largelanguagemodel}. \textbf{Med-PaLM 2} (\emph{Nature Medicine} 2025) reached 86.5\% MedQA, 72.3\% MedMCQA, and 81.8\% PubMedQA on a 540B Flan-PaLM-2 backbone with medical instruction tuning and clinician-preference RLHF; the long-form rubric scored nine axes including factuality, harm, and bias \cite{singhal2025towardexpertlevelm}. \textbf{Med-Gemini} (Yang et al., 2024) extended the line to multimodal radiology, dermatology, ophthalmology, pathology, and genomics \cite{yang2024advancingmultimoda}. Community open models --- \textbf{PMC-LLaMA}, \textbf{BioMistral}, \textbf{PubMedGPT 2.7B}, and the 8K-context \textbf{Clinical ModernBERT} (Lee et al., 2025) \cite{lee2025arxiv2504039642025} --- fill the on-prem niche.
+
+The biological-sequence subfield matured in parallel. \textbf{ESM-2} (Lin et al., \emph{bioRxiv} 2022; later \emph{Science}) scaled protein LMs to 15B parameters on UR50/D's ≈65M sequence clusters; the paired \textbf{ESMFold} decoder predicts atomic-level structure in a single forward pass at ≈60× AlphaFold-2 speed on single chains \cite{lin2022evolutionaryscalep}. \textbf{ProtGPT2} (Ferruz et al., 2022; 738M) generates novel proteins whose order/disorder statistics match natural proteins \cite{ferruz2022naturecommunicatio}. \textbf{DNABERT} (Ji et al., 2020; k-mers) and \textbf{DNABERT-2} (Zhou et al., 2023; multispecies BPE) cover the genome at single-base resolution; DNABERT-2 trims parameters by ≈28\% while reaching SOTA on 24/28 GUE tasks \cite{ji2020biorxiv2020,zhou2023arxiv2306150062023}. \textbf{Nucleotide Transformer} (Dalla-Torre et al., \emph{Nature Methods} 2024) scales to 2.5B parameters across 850 species \cite{dallatorre2024nucleotidetransfor}. \textbf{HyenaDNA} (Nguyen et al., 2023) extends context to 1M base pairs at single-nucleotide resolution via a Hyena/SSM mixer \cite{nguyen2023hyenadnalongrangeg}, and \textbf{Enformer} (Avsec et al., 2021) handles gene-expression prediction with long-range attention up to 200 kb \cite{avsec2021effectivegeneexpre}.
+
+Chemistry expanded along an analogous arc. \textbf{MolT5} (Edwards et al., 2022) introduced bidirectional translation between natural language and SMILES, trained on ZINC-15 plus C4 \cite{edwards2022emnlp2022}. \textbf{MolXPT} wrapped molecules with text for generative pretraining \cite{liu2023acl2023}; \textbf{MolCA} added 2D graph perception via a cross-modal projector \cite{liu2023emnlp2023}; \textbf{BioT5} unified SELFIES, FASTA, and natural language \cite{pei2023emnlp2023}; \textbf{nach0} (Livne et al., \emph{Chemical Science} 2024) is a multimodal natural+chemical foundation model \cite{livne2024nach0multimodalnat}. 2023 was the agentic watershed: Boiko et al.'s \textbf{Coscientist} (\emph{Nature}) combined GPT-4 with planning, execution, and analysis modules to run autonomous Pd-catalysed cross-coupling on a robot \cite{boiko2023nature6242023}, while M. Bran et al.'s \textbf{ChemCrow} (\emph{Nature Machine Intelligence} 2024) wrapped GPT-4 with 18 expert tools (RDKit, IBM RXN, SMARTS, retrosynthesis) and autonomously synthesised three novel insect repellents and a 3-step novel reaction \cite{bran2024naturemachineintel}.
+
+The mathematical sciences arrived almost concurrently. \textbf{Minerva} (Lewkowycz et al., 2022; 540B PaLM fine-tuned on arXiv math) reported strong MATH and GSM8K scores. \textbf{Llemma} (Azerbayev et al., 2023) was the open analogue: 7B and 34B continued from Code Llama on \textbf{Proof-Pile-2} (55B tokens of math papers, math web, and proof code), reaching 25.0\% pass@1 on MATH at 34B \cite{azerbayev2023llemmaanopenlangua}. \textbf{LeanDojo} (Yang et al., 2023) couples retrieval with theorem proving over 98K Lean theorems \cite{yang2023leandojotheorempro}, and \textbf{ProofNet} (Azerbayev et al., 2023) released 371 undergraduate Lean autoformalization problems \cite{azerbayev2023arxiv2302124332023}.
+
+By 2024 the field absorbed open-source momentum from \textbf{LLaMA} (7B--65B) \cite{touvron2023llamaopenandeffici}, \textbf{Code Llama} (7B--70B) \cite{rozire2023codellamaopenfound}, and \textbf{StarCoder} (15.5B, 1T tokens, 80+ languages) \cite{li2023starcodermaythesou}, each of which became a base for scientific continuations.
+
+\subsection{Agentic and reasoning-tuned generation (2025--2026)}\label{agentic-and-reasoning-tuned-generation-20252026}
+
+The third inflection began in late 2024 with OpenAI's \textbf{o1} family and consolidated in 2025 with \textbf{DeepSeek-R1} (671B MoE), \textbf{QwQ}, and Google's \textbf{Gemini-Thinking}. These models apply reinforcement learning to reasoning \emph{traces} rather than final answers, lifting \textbf{GPQA-Diamond} (198 graduate-level questions) {[}GPQA{]} from low-50\% (GPT-4o) into the high-70\% range and pushing AIME scores past 80\%. The reasoning-RL paradigm is mapped in \emph{Reasoning Language Models: A Blueprint} {[}Besta{]}. In parallel, \textbf{Agent Laboratory} (Schmidgall et al., 2025) decomposed scientific research into Lit-Review, Plan, Experiment, and Report sub-agents \cite{schmidgall2025agentlaboratoryusi}; \textbf{Virtual Lab} (Swanson et al., 2024) deployed multi-agent design of nanobodies later validated experimentally \cite{swanson2024thevirtuallabaiage}; the \textbf{Sakana AI Scientist} demonstrated end-to-end short-form ML papers at ≈\$15 each; and \textbf{MASLab} {[}MASLab{]} consolidated multi-agent codebases for reproducibility.
+
+The 2025--2026 surveys formalise this trajectory. Zhang et al.~(\emph{ACM Computing Surveys} 2025) \cite{zhang2025scientificlargelan} catalogues 250+ Sci-LLMs in biological and chemical domains. \emph{LLM4SR} (Luo et al., 2025) \cite{luo2025llm4srasurveyonlar} groups Sci-LLMs by hypothesis generation, experiment design, content generation, and evaluation. \emph{From Automation to Autonomy} (Zheng et al., \emph{EMNLP} 2025) \cite{zheng2025fromautomationtoau} proposes a five-level autonomy ladder. \emph{From AI for Science to Agentic Science} (Wei et al., 2025) \cite{wei2025fromaiforscienceto} foregrounds agentic loops. Hu et al.~(2025) \cite{hu2025asurveyofscientifi} argues that data quality, not parameter count, will be the dominant 2026--2028 bottleneck.
+
+\subsection{Quantitative milestones}\label{quantitative-milestones}
+
+\begin{table*}[t]
+\centering
+\caption{Quantitative milestones: comparative summary.}
+\label{tab:quantitative-milestones}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.0426\linewidth}
+  >{\raggedright\arraybackslash}p{0.2872\linewidth}
+  >{\raggedright\arraybackslash}p{0.1809\linewidth}
+  >{\raggedright\arraybackslash}p{0.4894\linewidth}}
+\toprule
+Year & Milestone & Scale & Key claim \\
+\midrule
+2019 & SciBERT \cite{beltagy2019arxiv1903106762019} & 110M & +3.5 F1 over BERT-base on SciIE \\
+2019 & BioBERT \cite{lee2019bioinformatics2019} & 110M & +0.62 F1 biomedical NER \\
+2021 & Enformer \cite{avsec2021effectivegeneexpre} & 252M & +0.16 Pearson r on gene-expression \\
+2022 & Galactica 120B \cite{taylor2022arxiv2211090852022} & 120B & 68.2\% MMLU-Sci, retracted in 3 days \\
+2022 & ESM-2 15B \cite{lin2022evolutionaryscalep} & 15B & 60× faster ESMFold vs AlphaFold 2 \\
+2022 & ProtGPT2 \cite{ferruz2022naturecommunicatio} & 738M & First generative protein LM \\
+2023 & Med-PaLM 2 \cite{singhal2025towardexpertlevelm} & 540B & 86.5\% MedQA \\
+2023 & Coscientist \cite{boiko2023nature6242023} & GPT-4-driven & Autonomous Pd cross-coupling \\
+2023 & Llemma 34B \cite{azerbayev2023llemmaanopenlangua} & 34B & 25.0\% MATH pass@1 \\
+2024 & Nucleotide Transformer \cite{dallatorre2024nucleotidetransfor} & 2.5B & 850-species genomic foundation \\
+2024 & HyenaDNA \cite{nguyen2023hyenadnalongrangeg} & up to 6.6M & 1M-bp single-nucleotide context \\
+2024 & Virtual Lab \cite{swanson2024thevirtuallabaiage} & multi-agent & Wet-lab-validated nanobodies \\
+2025 & Agent Laboratory \cite{schmidgall2025agentlaboratoryusi} & multi-agent & End-to-end research pipeline \\
+2025 & o1 / DeepSeek-R1 & unreleased / 671B & Reasoning-RL crosses GPQA-Diamond expert level \\
+2026 & High-Tc LLM eval \cite{guo2026expertevaluationof} & GPT-4 family & Expert audit of Sci-LLM world models \\
+\end{tabular}
+\end{table*}
+
+The historical lesson is that each era was triggered by one architectural change plus one data change. Encoders plus domain corpora gave us SciBERT and BioBERT. Decoders plus 100B-token science corpora gave us Galactica and Med-PaLM. Reasoning RL plus agentic loops gave us Coscientist and o1-class systems. The next era, mapped in §12, will likely be triggered by closed-loop wet-lab data plus verified-grounding training objectives.
+
+This historical scaffolding sets up the cross-cutting taxonomy of §3.
+
+\section{Taxonomy of Sci-LLMs across Domains and Architectures}\label{taxonomy-of-sci-llms-across-domains-and-architectures}
+
+Building on the historical trajectory of Section 2, this section fixes the taxonomy used throughout the rest of the survey along four orthogonal axes --- Domain, Architecture, Training stage, and Modality/Autonomy --- that together locate 250+ documented Sci-LLMs.
+
+A useful Sci-LLM taxonomy cuts along multiple axes simultaneously, because the same model --- say \textbf{BioT5} --- is at once a chemistry/biology model (domain), an encoder--decoder (architecture), and a trimodal SELFIES+FASTA+text model (modality). Figure 2 organises the literature along four axes --- Domain, Architecture, Training Stage, and Modality/Autonomy --- that we use for the rest of the survey. Mutually exclusive partitions within each axis make any model locatable in a single (D, A, T, M) tuple.
+
+\begin{figure}[t]
+\centering
+\pandocbounded{\includegraphics[width=\linewidth,keepaspectratio]{./figures/Scientific-Large-Language-Models__fig2_taxonomy.png}}
+\caption{Taxonomy of Scientific Large Language Models along four axes: domain, architecture, training stage, and modality/autonomy.}\label{fig:fig2-taxonomy}\end{figure}
+
+\subsection{Domain-axis taxonomy: biomedical, chemical, biological-sequence, mathematical, geoscientific, materials}\label{domain-axis-taxonomy-biomedical-chemical-biological-sequence-mathematical-geoscientific-materials}
+
+The encoder lineage opened with SciBERT (2019) on 1.14M papers \cite{beltagy2019arxiv1903106762019} and BioBERT (2019) on PubMed and PMC \cite{lee2019bioinformatics2019}, with MatSciBERT (2022) porting the recipe to materials \cite{gupta2022matscibertamateria}. The decoder line was launched by Galactica (2022; 120B; 106B scientific tokens) \cite{taylor2022arxiv2211090852022} and consolidated in biomedicine by Med-PaLM (2023; 540B; 67.6\% MedQA) \cite{singhal2023largelanguagemodel}, Med-PaLM 2 (2025; clinician-RLHF; 86.5\% MedQA) \cite{singhal2025towardexpertlevelm}, and the multimodal Med-Gemini (2024) \cite{yang2024advancingmultimoda}. The biological-sequence side is anchored by ESM-2 (2022; 15B protein LM) \cite{lin2022evolutionaryscalep}, DNABERT-2 (2023; BPE multispecies DNA LM) \cite{zhou2023arxiv2306150062023}, Nucleotide Transformer (2024; 850-species genomic foundation) \cite{dallatorre2024nucleotidetransfor}, and HyenaDNA (2023; 1M-bp single-nucleotide context) \cite{nguyen2023hyenadnalongrangeg}. The mathematical and geoscientific branches contributed Llemma (2023; 34B math LM continued from Code Llama) \cite{azerbayev2023llemmaanopenlangua}, LeanDojo (2023; retrieval-augmented Lean prover) \cite{yang2023leandojotheorempro}, ClimaX (2023; ViT on CMIP6) \cite{nguyen2023arxiv2301103432023}, and GeoGalactica (2023; 65B-token geoscience continuation) \cite{lin2023geogalacticaascien}. The biomedical branch is the largest by paper count: BioBERT (110M) \cite{lee2019bioinformatics2019}, SciBERT (110M) \cite{beltagy2019arxiv1903106762019}, PMC-LLaMA, BioMistral 7B, PubMedGPT 2.7B, Clinical ModernBERT (Lee et al., 2025; 8K context) \cite{lee2025arxiv2504039642025}, the \textbf{Med-PaLM} family --- Med-PaLM (540B Flan-PaLM base, 67.6\% MedQA \cite{singhal2023largelanguagemodel}) and Med-PaLM 2 (86.5\% MedQA \cite{singhal2025towardexpertlevelm}) --- and the multimodal \textbf{Med-Gemini} \cite{yang2024advancingmultimoda}. Sahoo et al.'s 2024 JAMIA review {[}Sahoo{]} and Tian et al.'s \emph{Briefings in Bioinformatics} survey \cite{tian2023opportunitiesandch} inventory more than 80 biomedical Sci-LLMs and catalogue their failure modes on clinical-note tasks.
+
+The \textbf{chemical} branch contains MolT5 \cite{edwards2022emnlp2022}, MolXPT \cite{liu2023acl2023}, MolCA \cite{liu2023emnlp2023}, BioT5 \cite{pei2023emnlp2023}, nach0 \cite{livne2024nach0multimodalnat}, the agentic \textbf{ChemCrow} with its 18-tool catalogue \cite{bran2024naturemachineintel}, and \textbf{ChemToolAgent} for tool-impact analysis \cite{yu2024chemtoolagenttheim}. Ramos et al.'s 2024 \emph{Chemical Science} review \cite{ramos2024chemicalscience202} groups these into five chemistry tasks: molecule design, property prediction, retrosynthesis, reaction-condition prediction, and synthesis planning. The \textbf{ChemPro} benchmark (Baranwal \& Vyas, 2026) \cite{baranwal2026arxiv2602031082026} tests 4,100 progressive chemistry questions across four difficulty tiers, providing a non-saturated successor to ChemBench {[}Guo2023chembench{]}.
+
+The \textbf{biological-sequence} branch contains protein LMs (ESM-1b, ESM-2 at 15B \cite{lin2022evolutionaryscalep}, ProtGPT2 at 738M \cite{ferruz2022naturecommunicatio}), DNA LMs (DNABERT \cite{ji2020biorxiv2020}, DNABERT-2 \cite{zhou2023arxiv2306150062023}, Nucleotide Transformer 2.5B \cite{dallatorre2024nucleotidetransfor}, HyenaDNA up to 1.6B parameters and 1M-bp context \cite{nguyen2023hyenadnalongrangeg}), gene-expression models (Enformer \cite{avsec2021effectivegeneexpre}), and RNA LMs including Zhang et al.'s MSA-based model in \emph{Nucleic Acids Research} 2023 \cite{zhang2023multiplesequenceal}. Shu et al.'s 2026 genome-LM survey \cite{shu2026acomprehensivesurv} covers 60+ models, and Yang et al.'s 2026 ESM-applications survey {[}Yang2026ESM{]} documents binder design, function prediction, structure prediction, and stability prediction as the dominant downstream uses. Crucially, biological-sequence Sci-LLMs \emph{do not consume natural language} during pretraining; that asymmetry motivates the four-axis taxonomy and the bridging models (BioT5, Med-Gemini) of §3.4.
+
+The \textbf{mathematical and physics} branch contains \textbf{Minerva} (540B PaLM math-tuned, 50.3\% MATH), \textbf{Llemma} (7B/34B continued from Code Llama on 55B-token Proof-Pile-2; 25.0\% MATH pass@1) \cite{azerbayev2023llemmaanopenlangua}, \textbf{LeanDojo} (retrieval-augmented Lean over 98K theorems) \cite{yang2023leandojotheorempro}, \textbf{ProofNet} (371 undergraduate autoformalization problems) \cite{azerbayev2023arxiv2302124332023}, and reasoning-RL successors o1, DeepSeek-R1, QwQ, and Gemini-Thinking. Ahn et al.'s 2024 EACL survey {[}Ahn{]} groups them into formal-proof, problem-solving, and equation-discovery sub-branches; \textbf{LLM-SRBench} \cite{shojaee2025llmsrbenchanewbenc} formalises the equation-discovery axis.
+
+The \textbf{geoscientific} branch contains \textbf{ClimaX} (Nguyen et al., 2023; Vision Transformer pretrained on CMIP6 reanalysis) \cite{nguyen2023arxiv2301103432023} and \textbf{GeoGalactica} (Lin et al., 2023; 65B-token continuation of Galactica) \cite{lin2023geogalacticaascien}. Zhao et al.'s 2024 \emph{The Innovation} review \cite{zhao2024artificialintellig} identifies remote-sensing, hydrology, and climate as the three main verticals.
+
+The \textbf{materials} branch contains \textbf{MatSciBERT} (\emph{npj Comp Mat} 2022) \cite{gupta2022matscibertamateria}, \textbf{LLMatDesign} (Jia et al., 2024) \cite{jia2024arxiv2406131632024}, \textbf{GrapheneChat} {[}GrapheneChat{]}, and the high-Tc-superconductivity world-model evaluation of Guo et al.~(\emph{PNAS} 2026) \cite{guo2026expertevaluationof}. Wang et al.'s 2025 review in \emph{Review of Materials Research} \cite{wang2025knowledgeguidedlar} argues that the binding constraint for materials Sci-LLMs is structured-data extraction from PDFs, not model scale.
+
+The \textbf{general-science} branch --- Galactica \cite{taylor2022arxiv2211090852022}, SciInstruct \cite{zhang2024sciinstructaselfre}, SciRIFF \cite{wadden2024sciriffaresourceto}, MAmmoTH2 \cite{yue2024mammoth2scalingins} --- covers models that span all domains and serves as the source of broad instruction-tuning corpora.
+
+\subsection{Architecture-axis taxonomy: encoder, decoder, encoder--decoder, state-space}\label{architecture-axis-taxonomy-encoder-decoder-encoderdecoder-state-space}
+
+\textbf{Encoder-only} Sci-LLMs (SciBERT, BioBERT, MatSciBERT, Clinical ModernBERT) optimise masked LM and excel at NER, classification, and embeddings; they sit at 110M--340M parameters and run on a single A100. \textbf{Decoder-only} Sci-LLMs (Galactica 120B, Med-PaLM 2 540B, Llemma 34B, Med-Gemini) optimise causal LM and produce free-form generations; they dominate the 2023--2026 headlines. \textbf{Encoder--decoder} Sci-LLMs (BioT5, MolT5, T5-Sci) optimise span corruption and dominate translation tasks (text↔SMILES, FASTA↔text, summarization). \textbf{State-space and long-context} architectures --- HyenaDNA up to 1M-bp context \cite{nguyen2023hyenadnalongrangeg}, Mamba 2.8B {[}Mamba{]}, Striped-Mamba bio variants --- trade quadratic attention for linear-time selective state-space mixers, delivering ≈5× higher throughput at long contexts and unlocking whole-genome modeling.
+
+\subsection{Training-stage taxonomy: continued PT, instruction tuning, RLHF, tool/RAG augmentation}\label{training-stage-taxonomy-continued-pt-instruction-tuning-rlhf-toolrag-augmentation}
+
+Four post-pretraining stages organise the field. \textbf{Continued pretraining} adapts a general LLM (LLaMA-2, Code Llama) to a domain corpus while preserving general competence --- the recipe behind PMC-LLaMA, BioMistral, GeoGalactica, and Llemma. \textbf{Instruction tuning} aligns the model with task formats: SciInstruct (200K self-reflective instructions across math, chemistry, physics, biology) \cite{zhang2024sciinstructaselfre}, SciRIFF (137K instructions across 54 tasks, including dataset extraction, claim verification, and IE) \cite{wadden2024sciriffaresourceto}, MAmmoTH2 (10M reasoning instructions mined from web) \cite{yue2024mammoth2scalingins}. \textbf{Preference alignment} via RLHF, RLAIF, or DPO follows: Med-PaLM 2 used clinician preferences over candidate answers \cite{singhal2025towardexpertlevelm}; the chemistry literature \cite{ramos2024chemicalscience202} increasingly uses RLAIF with a stronger LLM as judge. \textbf{Tool and retrieval augmentation} pulls knowledge at inference time: PaperQA \cite{ala2023arxiv2312075592023} couples dense retrieval, citation-graph traversal, and evidence summarisation; Almanac (\emph{NEJM AI} 2024) \cite{zakka2024almanacretrievalau} retrieves clinical guidelines and lifts factuality to 91\% versus ChatGPT's 64\% on the same set; ChemCrow \cite{bran2024naturemachineintel} dispatches among 18 chemistry tools.
+
+\subsection{Modality and autonomy axis}\label{modality-and-autonomy-axis}
+
+By \textbf{modality}, Sci-LLMs span text-only (SciBERT, Llemma), text+SMILES (MolT5), graph+text (MolCA), DNA+protein+text (BioT5), and image+text+structured (Med-Gemini, MicroVQA-tuned models). By \textbf{autonomy}, the spectrum runs from passive QA models (Med-PaLM, Galactica), to tool-using single agents (ChemCrow, Coscientist), to multi-agent autonomous laboratories (Virtual Lab \cite{swanson2024thevirtuallabaiage}, Agent Laboratory \cite{schmidgall2025agentlaboratoryusi}), to goal-evolving agents that update their own scientific objectives \cite{du2025acceleratingscient}. Wei et al.'s 2025 five-level autonomy ladder L0--L5 \cite{wei2025fromaiforscienceto} formalises this axis.
+
+\subsection{Cross-axis comparison table}\label{cross-axis-comparison-table}
+
+The matrix below cross-references representative Sci-LLMs along Domain × Architecture × Training stage × Modality/Autonomy. Readers asking which model fits a particular cell should consult Table 3.1 first; subsections §3.6 and §8 then drill in.
+
+\begin{table*}[t]
+\centering
+\caption{Cross-axis comparison table: comparative summary.}
+\label{tab:cross-axis-comparison-table}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.2319\linewidth}
+  >{\raggedright\arraybackslash}p{0.1087\linewidth}
+  >{\raggedright\arraybackslash}p{0.1377\linewidth}
+  >{\raggedright\arraybackslash}p{0.2826\linewidth}
+  >{\raggedright\arraybackslash}p{0.1667\linewidth}
+  >{\raggedright\arraybackslash}p{0.0725\linewidth}}
+\toprule
+Model & Domain & Architecture & Training stage & Modality/Autonomy & Params \\
+\midrule
+SciBERT \cite{beltagy2019arxiv1903106762019} & General-science & Encoder & Pretrain on 1.14M papers & Text & 110M \\
+BioBERT \cite{lee2019bioinformatics2019} & Biomedical & Encoder & Continued PT on PubMed & Text & 110M \\
+MatSciBERT \cite{gupta2022matscibertamateria} & Materials & Encoder & Continued PT on 1M materials abstracts & Text & 110M \\
+Galactica 120B \cite{taylor2022arxiv2211090852022} & General-science & Decoder & Pretrain on 106B-token sci corpus & Text + LaTeX + SMILES & 120B \\
+Med-PaLM 2 \cite{singhal2025towardexpertlevelm} & Biomedical & Decoder & Instruction + RLHF on Flan-PaLM 2 & Text & 540B \\
+Llemma 34B \cite{azerbayev2023llemmaanopenlangua} & Math & Decoder & Continued PT on Proof-Pile-2 & Text + LaTeX + code & 34B \\
+ESM-2 15B \cite{lin2022evolutionaryscalep} & Protein & Encoder & Pretrain on UR50 65M & Amino acids & 15B \\
+ProtGPT2 \cite{ferruz2022naturecommunicatio} & Protein & Decoder & Pretrain on UniRef50 & Amino acids & 738M \\
+DNABERT-2 \cite{zhou2023arxiv2306150062023} & Genomic & Encoder & Pretrain multispecies + BPE & DNA & 117M \\
+Nucleotide Transformer 2.5B \cite{dallatorre2024nucleotidetransfor} & Genomic & Encoder & Pretrain 850 species & DNA & 2.5B \\
+HyenaDNA \cite{nguyen2023hyenadnalongrangeg} & Genomic & SSM & Pretrain on human genome & DNA, 1M-bp ctx & 6.6M--1.6B \\
+MolT5 \cite{edwards2022emnlp2022} & Chemistry & Encoder--decoder & Pretrain ZINC + C4 & Text + SMILES & 250M--800M \\
+BioT5 \cite{pei2023emnlp2023} & Bio + Chem & Encoder--decoder & Pretrain trimodal & Text + SELFIES + FASTA & 252M \\
+nach0 \cite{livne2024nach0multimodalnat} & Chemistry & Encoder--decoder & Multitask & Text + SMILES & 770M \\
+ChemCrow \cite{bran2024naturemachineintel} & Chemistry & Decoder + tools & GPT-4 + 18 tools & Tool-using agent & -- \\
+Coscientist \cite{boiko2023nature6242023} & Chemistry & Decoder + tools & GPT-4 + 4 modules & Multi-component agent & -- \\
+Virtual Lab \cite{swanson2024thevirtuallabaiage} & Biology & Multi-agent & GPT-4 PI + scientists + critic & Multi-agent & -- \\
+Agent Laboratory \cite{schmidgall2025agentlaboratoryusi} & General & Multi-agent & Lit-Review + Plan + Experiment + Report & Multi-agent & -- \\
+ClimaX \cite{nguyen2023arxiv2301103432023} & Climate & ViT & Pretrain on CMIP6 & Spatial weather & 200M \\
+GeoGalactica \cite{lin2023geogalacticaascien} & Geoscience & Decoder & Continued PT 65B geoscience tokens & Text & 30B \\
+Med-Gemini \cite{yang2024advancingmultimoda} & Biomedical & Multimodal decoder & Instruction tuning Gemini & Text + image + genomics & unreleased \\
+Clinical ModernBERT \cite{lee2025arxiv2504039642025} & Biomedical & Encoder & 8K context biomedical & Text & 150M \\
+LLMatDesign \cite{jia2024arxiv2406131632024} & Materials & Decoder + tools & LLM-driven & Tool-using & -- \\
+Llemma + LeanDojo \cite{azerbayev2023llemmaanopenlangua,yang2023leandojotheorempro} & Math & Decoder + retrieval & Lean tactic retrieval & Text + Lean & 34B \\
+\end{tabular}
+\end{table*}
+
+\subsection{What this taxonomy makes obvious}\label{what-this-taxonomy-makes-obvious}
+
+Three patterns become legible only after cross-tabulation. First, \textbf{agentic Sci-LLMs are still rare}: the majority of models live in the (Decoder, Continued-PT, Text) cell, and the (Multi-agent, Closed-loop) cells are populated by fewer than 30 documented systems. Second, the \textbf{bio-sequence diagonal} --- protein and DNA LMs --- is structurally different because natural-language input is absent during pretraining; the natural-language reasoning available to Galactica or Med-PaLM is therefore unavailable, and bridging models such as BioT5 and Med-Gemini exist specifically to plug that gap. Third, the \textbf{autonomy frontier} is dominated by GPT-4-class proprietary backbones (Coscientist, ChemCrow, Virtual Lab, Agent Laboratory), so the field is vulnerable to closed-API risk; open-weights agentic systems remain a 2026 frontier.
+
+This taxonomy underwrites the rest of the survey: §4 covers algorithmic mechanism (Architecture × Training stage); §5 covers alignment and reasoning; §§6--7 cover tool/retrieval augmentation and multi-agent autonomy; §8 walks each domain branch in depth.
+
+\section{Algorithmic Mechanisms for Domain-Adapted Pretraining}\label{algorithmic-mechanisms-for-domain-adapted-pretraining}
+
+Building on the taxonomy in Section 3, this section turns to the algorithmic mechanisms behind domain-adapted Sci-LLM pretraining: tokenization, pretraining objectives, scaling, continued-PT recipes, long-context architectures, tool-augmented inference, and inference-cost trade-offs.
+
+A Sci-LLM shares its algorithmic core with general LLMs --- a transformer optimising a likelihood objective on tokens --- but the \emph{details that matter} for science differ: tokenization, corpus mix, objectives that admit citations and step-by-step working memory, long-context architectures for genomes, and continued-pretraining recipes that avoid catastrophic forgetting. This section examines those mechanisms in depth, with concrete numbers wherever the literature reports them.
+
+\subsection{Domain tokenization: SciVocab, SMILES BPE, k-mer/BPE genomes}\label{domain-tokenization-scivocab-smiles-bpe-k-merbpe-genomes}
+
+Tokenization is the first lever that distinguishes Sci-LLMs from general LLMs. The encoder-era benchmark is SciVocab (2019; 30K WordPiece on 1.14M papers; +3.5 SciIE F1) \cite{beltagy2019arxiv1903106762019}. Galactica (2022) adopted a custom mixed BPE with citation and \texttt{\textless{}work\textgreater{}} tokens \cite{taylor2022arxiv2211090852022}. DNABERT (2020) used overlapping k-mers at k = 3--6 \cite{ji2020biorxiv2020} before DNABERT-2 (2023) replaced them with multispecies BPE, cutting parameters by 28\% and adding +5 F1 on GUE \cite{zhou2023arxiv2306150062023}. HyenaDNA (2023) abandoned tokenization altogether by operating on single nucleotides at 1M-bp context \cite{nguyen2023hyenadnalongrangeg}, while ESM-2 (2022) uses a 25-token amino-acid alphabet \cite{lin2022evolutionaryscalep}. On the chemistry side, MolT5 (2022) applied SentencePiece to SMILES \cite{edwards2022emnlp2022} and BioT5 (2023) switched to SELFIES for validity-by-construction \cite{pei2023emnlp2023}. MatSciBERT (2022; WordPiece on materials abstracts; +6 NER F1) \cite{gupta2022matscibertamateria} and Mswahili \& Jeong's 2024 SELFIES+RoBERTa pipeline (top SMILES validity rates) {[}Mswahili{]} close the inventory. The first lever is tokenization. SciBERT introduced \textbf{SciVocab} --- a 30K-token WordPiece vocabulary learned over its 1.14M-paper corpus --- and reported that 42\% of biomedical entities became single tokens versus only 15\% under BERT's WikiVocab; the paper attributes its +3.5 F1 SciIE gain over BERT-base primarily to this tokenizer change \cite{beltagy2019arxiv1903106762019}. Galactica adopted a custom mixed BPE that segments LaTeX macros, SMILES atoms, and DOIs as atomic units; the \texttt{\textless{}work\textgreater{}} token and \texttt{{[}\$START\_R$EF{]}}/\texttt{{[}$END\_R\$EF{]}} citation tokens are ordinary BPE tokens whose embeddings are co-trained with the rest \cite{taylor2022arxiv2211090852022}. DNABERT used overlapping k-mers (k = 3, 4, 5, 6); DNABERT-2 \cite{zhou2023arxiv2306150062023} showed that k-mers create vocabulary redundancy and replaced them with byte-pair encoding, cutting parameters by ≈28\% while improving 24 of 28 GUE tasks. HyenaDNA \cite{nguyen2023hyenadnalongrangeg} sidesteps tokenization altogether by operating at single-nucleotide resolution and relying on the Hyena/SSM mixer to model dependencies up to 1M base pairs. ESM-2 \cite{lin2022evolutionaryscalep} uses 25 single-character amino-acid tokens (20 residues plus B, J, O, U, X, Z, mask), and its structural performance scales smoothly from 8M to 15B parameters.
+
+For chemistry, tokenization choice lies among SMILES, SELFIES (parse-validity by construction), and InChI. MolT5 \cite{edwards2022emnlp2022} uses SentencePiece over SMILES; BioT5 \cite{pei2023emnlp2023} switched to SELFIES because invalid SMILES were a top failure mode. Mswahili \& Jeong (\emph{Heliyon} 2024) {[}Mswahili{]} document that SELFIES + RoBERTa-style pretraining yields the most stable validity rates in molecule-caption translation. Tokenization is therefore a first-class design parameter, not a hyperparameter.
+
+\subsection{Pretraining objectives, scaling, and continued-PT recipes}\label{pretraining-objectives-scaling-and-continued-pt-recipes}
+
+Pretraining objectives split cleanly by architecture. Encoder-only Sci-LLMs use masked-language modelling (MLM) with the standard 15\% mask rate. Decoder-only Sci-LLMs use causal next-token prediction. Encoder--decoder Sci-LLMs (BioT5, MolT5) use span corruption. Galactica adds \texttt{\textless{}work\textgreater{}} tokens to its causal LM objective so that multi-step reasoning becomes explicit during training, and upweights working-memory and citation tokens in the loss; ablations in Taylor et al.~\cite{taylor2022arxiv2211090852022} show that removing citation tokens drops citation prediction by ≈15 BLEU points.
+
+Scaling laws follow Chinchilla optimality with one important deviation: \textbf{domain-corpus scaling plateaus earlier}. Llemma \cite{azerbayev2023llemmaanopenlangua} reports that continuing Code Llama 34B on 55B Proof-Pile-2 tokens lifts MATH pass@1 from 14.0\% to 25.0\%, but doubling to 110B tokens yields only a further 1.3-point gain --- diminishing returns set in at roughly 5--10× the original corpus size. For Med-PaLM 2 \cite{singhal2025towardexpertlevelm}, clinician-RLHF mostly improves long-form rubric scores (factuality, harm) rather than MedQA accuracy, suggesting that preference data, not tokens, is now binding.
+
+Continued-PT recipes converge on a near-universal schedule: warm-start from a strong general checkpoint, lower the learning rate by ≈10× (typically 3e-4 → 1e-5), preserve 5--10\% general data to mitigate catastrophic forgetting, and run 1--3 epochs over the domain corpus. Llemma \cite{azerbayev2023llemmaanopenlangua}, BioMistral, PMC-LLaMA, and GeoGalactica \cite{lin2023geogalacticaascien} all follow this template within ±2× variance on hyperparameters.
+
+\subsection{Long-context architectures for genomes and papers}\label{long-context-architectures-for-genomes-and-papers}
+
+Standard transformer attention is \(O(N^2 d)\) in sequence length, which is fatal for genomes spanning 10\textsuperscript{4--10}6 bases. \textbf{HyenaDNA} \cite{nguyen2023hyenadnalongrangeg} replaces self-attention with a Hyena mixer of long convolutions and gating, reaching \(O(N \log N)\) time and training stably over 1M-bp contexts at single-nucleotide resolution. \textbf{Mamba} {[}Mamba{]} generalises selective state-space models and achieves ≈5× higher throughput than equivalent transformers at 1M-token context. \textbf{FlashAttention-2} keeps quadratic attention but halves memory and roughly doubles throughput for normal-context Sci-LLMs (Galactica, Med-PaLM).
+
+For long \emph{scientific papers} (often 50K+ tokens with figures and references), \textbf{Clinical ModernBERT} \cite{lee2025arxiv2504039642025} reaches 8K context using position-interpolation and rotary embeddings, \textbf{Longformer-Sci} uses sliding-window attention, and PaperQA \cite{ala2023arxiv2312075592023} sidesteps the problem entirely by chunking-and-retrieving rather than stretching context.
+
+\subsection{Mechanism of tool-augmented and reasoning-augmented inference}\label{mechanism-of-tool-augmented-and-reasoning-augmented-inference}
+
+The ReAct-style loop underlies tool-augmented Sci-LLMs. The pattern was crystallised by ReAct (2022; Thought--Action--Observation prompting) and instantiated in chemistry by ChemCrow (2024; GPT-4 + 18 chemistry tools) \cite{bran2024naturemachineintel} and Coscientist (2023; GPT-4 + 4 modules + OPENTRONS robot) \cite{boiko2023nature6242023}. LLMatDesign (2024; LLM + DFT + property predictors) \cite{jia2024arxiv2406131632024} extends the idea to materials, while LeanDojo (2023; retrieval-augmented Lean tactic prover) \cite{yang2023leandojotheorempro} brings it to mathematics. On the retrieval side, PaperQA (2023; dense retrieval + citation-graph traversal) \cite{ala2023arxiv2312075592023} and Almanac (2024; curated clinical-corpus RAG) \cite{zakka2024almanacretrievalau} anchor scientific QA. ChemToolAgent (2024; tool-impact benchmarking) \cite{yu2024chemtoolagenttheim}, BRAD (knowledge-graph-grounded biomarker agent) {[}BRAD{]}, and Agent Laboratory (2025; Lit-Review + Plan + Experiment + Report sub-agents) \cite{schmidgall2025agentlaboratoryusi} complete the inventory. The mechanism diagram in Figure 3 captures the core of the agentic Sci-LLM loop. The reasoning module is a Sci-LLM (typically GPT-4 in Coscientist and ChemCrow \cite{boiko2023nature6242023,bran2024naturemachineintel}) that emits a thought, an action over a tool catalogue, and an observation; the loop is the \textbf{ReAct} template applied to scientific tools. The tool catalogue varies by system: Coscientist exposes web search, an OPENTRONS robot, a literature summariser, and a reaction-prediction backend; ChemCrow exposes 18 chemistry tools --- RDKit, IBM RXN, Reaxys-style retrosynthesis, and SMARTS-based safety filters \cite{bran2024naturemachineintel}; ChemToolAgent \cite{yu2024chemtoolagenttheim} benchmarks how tool \emph{composition} affects downstream performance and shows that ill-conditioned tools can hurt accuracy. The Sakana AI Scientist, Agent Laboratory \cite{schmidgall2025agentlaboratoryusi}, and Virtual Lab \cite{swanson2024thevirtuallabaiage} generalise the loop to scientific \emph{roles} --- PI, scientist, reviewer --- implemented as separate prompted instances of the same underlying Sci-LLM.
+
+\begin{figure}[t]
+\centering
+\pandocbounded{\includegraphics[width=\linewidth,keepaspectratio]{./figures/Scientific-Large-Language-Models__fig3_mechanism.png}}
+\caption{Algorithmic mechanism of tool-augmented Sci-LLM agents: a loop of query → reasoning → tool selection → external execution → observation and memory update.}\label{fig:fig3-mechanism}\end{figure}
+
+The reasoning-enhancement stack --- chain-of-thought, self-consistency, tree-of-thought, process-reward modelling --- was originally designed for general LLMs but transfers especially well to Sci-LLMs. SciInstruct \cite{zhang2024sciinstructaselfre} explicitly trains models to produce \emph{self-reflective} reasoning chains; the authors report that ablating self-reflection drops physics-test accuracy by 6.4 points on held-out evaluation. MAmmoTH2 \cite{yue2024mammoth2scalingins} mines 10M reasoning instructions from web corpora and gains +4.5 average points across MMLU-STEM and BBH. The reasoning-RL paradigm of o1 and DeepSeek-R1 trains the model to emit long chain-of-thought traces and rewards final correctness; Liu et al.'s 2025 RL+LLM survey {[}LiuRL{]} details the optimisation pipeline.
+
+\subsection{Inference complexity and hardware footprint}\label{inference-complexity-and-hardware-footprint}
+
+Galactica 120B inference at FP16 needs ≈240 GB of GPU memory, fitting on a single 8×A100-80GB node with tensor parallelism. ESM-2 15B needs ≈30 GB at FP16. Llemma 34B fits in a single 80GB A100 with int8 quantisation. The 2024 PEFT survey {[}PEFT{]} reports that LoRA at rank 8 cuts fine-tuning memory by ≈3× while losing fewer than 0.5 points on standard scientific evaluations. For closed-loop labs the binding cost is no longer GPU but \textbf{wet-lab time}: Coscientist's Pd cross-coupling \cite{boiko2023nature6242023} consumes ≈36 hours of robot time per autonomous synthesis, against ≈8 hours of LLM inference.
+
+\subsection{Concrete algorithmic recipe in pseudocode}\label{concrete-algorithmic-recipe-in-pseudocode}
+
+A typical Sci-LLM agentic loop, distilled from Coscientist \cite{boiko2023nature6242023}, ChemCrow \cite{bran2024naturemachineintel}, and Agent Laboratory \cite{schmidgall2025agentlaboratoryusi}, is:
+
+\begin{verbatim}
+state ← $initial_q$uery
+memory ← []
+for step = 1 .. K:
+    thought, action, args ← LLM.generate(state, memory, tool_catalog)
+    if action == FINISH: return thought
+    observation ← Tool[action].run(args)
+    memory.append((thought, action, args, observation))
+    state ← update_state(state, observation)
+\end{verbatim}
+
+In Coscientist this loop ran with K up to 24 in autonomous chemistry tasks \cite{boiko2023nature6242023}; in Virtual Lab the loop is instantiated per agent and a moderator agent decides when to stop \cite{swanson2024thevirtuallabaiage}.
+
+\subsection{Algorithmic comparison table}\label{algorithmic-comparison-table}
+
+\begin{table*}[t]
+\centering
+\caption{Algorithmic comparison table: comparative summary.}
+\label{tab:algorithmic-comparison-table}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.3190\linewidth}
+  >{\raggedright\arraybackslash}p{0.1810\linewidth}
+  >{\raggedright\arraybackslash}p{0.2414\linewidth}
+  >{\raggedright\arraybackslash}p{0.1121\linewidth}
+  >{\raggedright\arraybackslash}p{0.1466\linewidth}}
+\toprule
+Mechanism & Representative system & Objective & Complexity & Notable result \\
+\midrule
+Domain MLM with SciVocab & SciBERT \cite{beltagy2019arxiv1903106762019} & Masked LM & \(O(N^2 d)\) & +3.5 F1 SciIE \\
+Domain causal LM with citation tokens & Galactica \cite{taylor2022arxiv2211090852022} & CausalLM + \texttt{\textless{}work\textgreater{}}, \texttt{{[}REF{]}} & \(O(N^2 d)\) & 68.2\% MMLU-Sci \\
+Continued-PT on math papers & Llemma 34B \cite{azerbayev2023llemmaanopenlangua} & CausalLM & \(O(N^2 d)\) & 25.0\% MATH \\
+Span corruption + multimodal & BioT5 \cite{pei2023emnlp2023} & T5 span & \(O(N^2 d)\) & SOTA on Mol2Cap \\
+Protein MLM at 15B scale & ESM-2 \cite{lin2022evolutionaryscalep} & MLM & \(O(N^2 d)\) & ESMFold 60× speed \\
+BPE multispecies DNA MLM & DNABERT-2 \cite{zhou2023arxiv2306150062023} & MLM & \(O(N^2 d)\) & +5 F1 GUE \\
+Hyena SSM at 1M-bp & HyenaDNA \cite{nguyen2023hyenadnalongrangeg} & CausalLM & \(O(N \log N)\) & 1M-bp ctx \\
+Selective SSM & Mamba {[}Mamba{]} & CausalLM & \(O(N)\) & 5× throughput \\
+ReAct + 18 tools & ChemCrow \cite{bran2024naturemachineintel} & Tool-augmented prompting & -- & Autonomous synth \\
+RAG over papers & PaperQA \cite{ala2023arxiv2312075592023} & Dense retrieval + summarize & -- & 73\% factuality \\
+RL on reasoning traces & o1, DeepSeek-R1 & RL on CoT & -- & +20 GPQA-Diamond \\
+Multi-agent & Virtual Lab \cite{swanson2024thevirtuallabaiage} & Role-prompted GPT-4 & -- & Wet-lab nanobody \\
+\end{tabular}
+\end{table*}
+
+\subsection{Why these mechanisms matter for evaluation}\label{why-these-mechanisms-matter-for-evaluation}
+
+Algorithmic choices directly determine the metrics surveyed in §9. SciVocab and SMILES BPE determine validity rates; long-context architectures determine genome-task accuracy; citation tokens determine factuality; tool augmentation determines pass-rate on autonomous tasks. ChemToolAgent \cite{yu2024chemtoolagenttheim} sharpens the point: simply adding tools without curation can \emph{hurt} a Sci-LLM's chemistry score, because agentic systems must learn \emph{when} to call tools, not only \emph{how}. Mechanism design and benchmark design therefore co-evolve --- a theme picked up in §9 and §12.
+
+The next section turns from pretraining mechanism to alignment, where Galactica's retraction is the canonical motivating failure.
+
+\section{Instruction Tuning, Alignment, and Reasoning for Science}\label{instruction-tuning-alignment-and-reasoning-for-science}
+
+Whereas Section 4 focused on pretraining mechanism, this section turns to alignment --- where Galactica's three-day retraction is the canonical motivating failure --- covering scientific instruction-tuning corpora, RLHF/RLAIF/DPO preference alignment, chain-of-thought and tree-of-thought prompting, reasoning-RL post-training, tool augmentation as alignment, safety alignment, and calibration.
+
+A pretrained Sci-LLM is rarely deployable as is. Galactica's 2022 retraction \cite{taylor2022arxiv2211090852022} showed that fluency without alignment produces hallucinated citations and unsafe medical advice. Med-PaLM's 67.6\% MedQA was lifted to Med-PaLM 2's 86.5\% primarily through medical instruction tuning and clinician-preference RLHF, \emph{not} through additional pretraining \cite{singhal2025towardexpertlevelm,singhal2023largelanguagemodel}. This section surveys the algorithms that turn a raw scientific decoder into an evaluator-aligned, reasoning-capable, safety-screened scientific assistant.
+
+\subsection{Scientific instruction-tuning corpora}\label{scientific-instruction-tuning-corpora}
+
+Instruction-tuning corpora turn raw Sci-LLM decoders into evaluator-aligned scientific assistants. The leading general-science corpora are SciInstruct (2024; 200K self-reflective instructions) \cite{zhang2024sciinstructaselfre}, SciRIFF (2024; 137K instructions across 54 tasks) \cite{wadden2024sciriffaresourceto}, and MAmmoTH2 (2024; 10M web-mined reasoning instructions) \cite{yue2024mammoth2scalingins}. Knowledge-Driven Agentic Distillation (2025; KG-coupled biomedical IT) \cite{xiao2025knowledgedrivenage} and Proof-Pile-2 (2023; 55B math+sci tokens for Llemma) \cite{azerbayev2023llemmaanopenlangua} target domain-specific use cases. Smaller corpora include ChemBench-IT (2023; chemistry instructions) {[}Guo2023chembench{]} and the MedInstruct medical corpus used by PMC-LLaMA, with Galactica's own pretraining mixture (2022; with \texttt{\textless{}work\textgreater{}} and \texttt{{[}REF{]}} tokens) \cite{taylor2022arxiv2211090852022} functioning as a hybrid pretraining-as-instruction corpus. \textbf{SciInstruct} (Zhang et al., 2024) released ≈200K self-reflective instruction--response pairs spanning mathematics, chemistry, physics, and biology, with each response annotated for chain-of-thought correctness. The authors report 7.4-point gains on physics MCQs and 5.1-point gains on biology MCQs over the same backbone tuned without self-reflection \cite{zhang2024sciinstructaselfre}. \textbf{SciRIFF} (Wadden et al., 2024) covers 137K instructions across 54 distinct scientific NLP tasks. The 54 tasks include dataset extraction, claim verification, and information extraction (IE) over biomedical and CS papers. SciRIFF-tuned models gain ≈28\% on average across SciRIFF-Eval. Gains concentrate on extraction tasks where instruction tuning bridges the gap between pretraining and structured output \cite{wadden2024sciriffaresourceto}. \textbf{MAmmoTH2} (Yue et al., 2024) mines 10M reasoning instructions from web corpora using a teacher LLM. It reports +4.5 average points across MMLU-STEM and BBH on a 7B base \cite{yue2024mammoth2scalingins}. The 2025 \textbf{Knowledge-Driven Agentic Distillation} framework \cite{xiao2025knowledgedrivenage} couples a teacher LLM with a knowledge graph to distil biomedical instructions at scale, targeting the dearth of high-quality instructions in low-resource subfields. Smaller domain-specific corpora include Llemma's math-specific Proof-Pile-2 (55B tokens; continued PT rather than IT) \cite{azerbayev2023llemmaanopenlangua} and the chemistry corpora used by ChemBench-IT {[}Guo2023chembench{]}.
+
+\subsection{Preference alignment via RLHF, RLAIF, and DPO}\label{preference-alignment-via-rlhf-rlaif-and-dpo}
+
+PPO-RLHF (2022; used by Med-PaLM 2 with clinician preferences) \cite{singhal2025towardexpertlevelm} is the original preference-alignment recipe, with RLAIF (2024; GPT-4 judge) \cite{ramos2024chemicalscience202} as the dominant chemistry alternative when domain experts are scarce. DPO (2023; closed-form contrastive over preferences; +2 over PPO on math) \cite{zhang2024sciinstructaselfre} replaces PPO with a contrastive loss. Process-Reward Modeling (2024; reward on intermediate steps; central to o1) {[}LiuRL{]} and GRPO (2025; group-relative reasoning RL used by DeepSeek-R1) define the reasoning-RL frontier. Self-Alignment for Factuality (2024; self-critique without human data) {[}SelfAlign{]}, Constitutional AI (2022; RLAIF with explicit principles), and ReST-style iterative SFT bootstrapping close the inventory. The original RLHF pipeline runs PPO over a learned reward model trained on pairwise human judgments. It was inherited from InstructGPT and applied to Med-PaLM 2 with clinician preferences \cite{singhal2025towardexpertlevelm}. Singhal et al.~2025 \cite{singhal2025towardexpertlevelm} report that on a panel of 1,066 clinicians scoring long-form answers across 9 axes (factuality, reasoning, harm, bias, helpfulness, etc.), Med-PaLM 2 was preferred over Med-PaLM on 9 of 9 axes and over physician answers on 8 of 9 axes. The chemistry literature increasingly uses \textbf{RLAIF}, a stronger LLM as judge, because clinician-grade chemistry preferences are scarce. Ramos et al.'s 2024 review \cite{ramos2024chemicalscience202} documents several teams using GPT-4 as critic over reaction-condition predictions. \textbf{DPO} replaces RL with a closed-form contrastive loss. SciInstruct uses DPO over self-reflective traces and gains ≈2 points over PPO on math benchmarks \cite{zhang2024sciinstructaselfre}. \textbf{Process-reward modelling} rewards correct intermediate steps rather than only final answers and is central to the o1 / DeepSeek-R1 reasoning-RL pipeline.
+
+\subsection{Chain-of-thought, self-consistency, and tree-of-thought for science}\label{chain-of-thought-self-consistency-and-tree-of-thought-for-science}
+
+Chain-of-thought prompting is now table stakes for Sci-LLMs. Frieder et al.~2023 {[}Frieder{]} document that GPT-4's mathematical capability depends strongly on CoT: naive prompting gives ≈30\% lower MATH accuracy. Self-consistency --- sampling multiple CoTs and majority-voting --- yields +5 to +10 point gains on MATH and GSM8K {[}Lu2023{]}. Tree-of-thought, which searches over CoT branches with a learned value function, gains on GPQA and MATH but at 10--100× inference cost. Zhao's 2026 \emph{Reasoning Capability of LLMs on Scientific Tasks} survey \cite{zhao2026appliedandcomputat} catalogues these techniques and shows that on \textbf{OlympicArena} the best reasoning-tuned models reach ≈40\%, versus ≈30\% for the original GPT-4.
+
+\subsection{Reasoning-RL: o1, DeepSeek-R1, and the long-thinking paradigm}\label{reasoning-rl-o1-deepseek-r1-and-the-long-thinking-paradigm}
+
+Reasoning-RL post-training defines the 2025--2026 frontier. OpenAI's o1 family, DeepSeek's \textbf{R1} (671B-parameter MoE), and Alibaba's \textbf{QwQ} all share the recipe of training the model to emit \emph{long, internal} chain-of-thought traces using reinforcement learning on verifiable correctness signals; Liu et al.'s 2025 RL-meets-LLM survey {[}LiuRL{]} documents the optimisation. Reasoning-RL has shifted GPQA-Diamond leaders from low-50\% (GPT-4o) into the high-70\% range and has nearly closed the gap on graduate-level chemistry, biology, and physics multiple-choice. The implication for Sci-LLMs is that scientific reasoning gains no longer come from larger pretraining corpora but from longer, RL-aligned reasoning traces, and the 2026 reasoning survey \cite{zhao2026appliedandcomputat} argues this shift is permanent.
+
+\subsection{Tool augmentation as alignment}\label{tool-augmentation-as-alignment}
+
+Tool augmentation, treated algorithmically in §6, is also an alignment intervention. By routing factual queries to retrieval (PaperQA \cite{ala2023arxiv2312075592023}, Almanac \cite{zakka2024almanacretrievalau}) and computational queries to deterministic tools (RDKit, Lean, Python), Sci-LLMs cut hallucination and side-step calibration deficits. ChemToolAgent \cite{yu2024chemtoolagenttheim} reports that adding too many tools without conditioning can hurt accuracy, but a curated 6--10-tool catalogue lifts chemistry-task accuracy by 7--15 points over a no-tool baseline. Almanac's clinical evaluation reports 91\% factuality with retrieval versus 64\% for ChatGPT on the same questions \cite{zakka2024almanacretrievalau}.
+
+\subsection{Safety alignment specific to science}\label{safety-alignment-specific-to-science}
+
+Sci-LLM safety alignment goes well beyond conventional toxicity filters. The \textbf{Bengio et al.~2024 International AI Safety Report} \cite{bengio2024internationalscien} flags four scientific dual-use categories: bioweapons synthesis, chemical-weapons precursor identification, materials weapons, and cyber-offence uplift. Med-PaLM 2 \cite{singhal2025towardexpertlevelm} therefore includes a ``harm'' axis in its rubric. ChemCrow \cite{bran2024naturemachineintel} embeds safety-filter tools --- SMARTS-pattern checks for explosive substructures and GHS-classified reagents --- inside its tool catalogue and deliberately blocks chemical-weapons synthesis pathways. Liao et al.'s 2026 attack-and-defence survey {[}Liao{]} documents jailbreak techniques targeted at scientific contexts; Wei et al.'s 2024 long-form factuality work {[}LongFact{]} introduced \textbf{SAFE}, an automated factuality scorer.
+
+\subsection{Calibration and confidence}\label{calibration-and-confidence}
+
+Calibration is a consistently overlooked algorithmic concern. Hager et al.'s \emph{Nature Medicine} 2024 evaluation \cite{hager2024evaluationandmitig} reports that GPT-4-class models hold roughly stable expected calibration error (ECE ≈ 0.18) on disease-prediction benchmarks, but RLHF tends to make models \emph{more} confident than the underlying knowledge supports. Standard mitigations are temperature scaling, conformal prediction, and self-evaluation prompts; the 2024 \emph{Self-Alignment for Factuality} paper {[}SelfAlign{]} explores scaling self-critique without extra human data.
+
+\subsection{Algorithmic comparison table for alignment}\label{algorithmic-comparison-table-for-alignment}
+
+\begin{table*}[t]
+\centering
+\caption{Algorithmic comparison table for alignment: comparative summary.}
+\label{tab:algorithmic-comparison-table-for-alignment}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.2283\linewidth}
+  >{\raggedright\arraybackslash}p{0.2283\linewidth}
+  >{\raggedright\arraybackslash}p{0.3465\linewidth}
+  >{\raggedright\arraybackslash}p{0.1969\linewidth}}
+\toprule
+Stage & Technique & Representative use & Reported gain \\
+\midrule
+Continued pretraining & LR=1e-5, 1--3 epochs & BioMistral, Llemma \cite{azerbayev2023llemmaanopenlangua} & +11 MATH points \\
+Instruction tuning & Supervised IT, 100K--10M instr & SciInstruct \cite{zhang2024sciinstructaselfre}, SciRIFF \cite{wadden2024sciriffaresourceto}, MAmmoTH2 \cite{yue2024mammoth2scalingins} & +5 to +28 task-dependent \\
+Preference RLHF & PPO over clinician pairs & Med-PaLM 2 \cite{singhal2025towardexpertlevelm} & +18.9 MedQA over Med-PaLM \\
+RLAIF & GPT-4 judge & Chemistry RLAIF (Ramos 2024) \cite{ramos2024chemicalscience202} & +3--5 reaction-condition \\
+DPO & Closed-form contrastive & SciInstruct DPO \cite{zhang2024sciinstructaselfre} & +2 over PPO on math \\
+Process-reward / reasoning-RL & RL on CoT & o1, DeepSeek-R1 & +20 GPQA-Diamond \\
+Tool augmentation & ReAct + curated tools & ChemCrow \cite{bran2024naturemachineintel} & +7--15 chemistry \\
+RAG & Dense retrieval + LLM & Almanac \cite{zakka2024almanacretrievalau} & 91\% vs 64\% factuality \\
+Self-consistency & Multi-sample vote & GPT-4 on MATH & +5--10 MATH \\
+Safety alignment & RLHF + tool-level filters & ChemCrow \cite{bran2024naturemachineintel}, Med-PaLM 2 \cite{singhal2025towardexpertlevelm} & reduces dual-use ≈ 90\% \\
+\end{tabular}
+\end{table*}
+
+The historical lesson is that alignment is now a larger lever than scale for most scientific benchmarks. Med-PaLM 2's gain over Med-PaLM came from alignment, not scale. The o1/R1 family's gain over GPT-4 came from reasoning-RL, not scale. The Sci-LLM field is migrating its compute budget from pretraining toward post-training. \emph{From Automation to Autonomy} \cite{zheng2025fromautomationtoau} explicitly identifies this shift.
+
+The next section moves from alignment to its practical complement: tool and retrieval augmentation, which fix two structural deficiencies that even a perfectly aligned Sci-LLM still suffers.
+
+\section{Tool-Augmented and Retrieval-Augmented Sci-LLMs}\label{tool-augmented-and-retrieval-augmented-sci-llms}
+
+Building on the alignment recipes in Section 5, this section turns to the augmentation paradigm --- single-agent tool use, retrieval, knowledge-graph grounding, and their open issues --- that fixes the two structural deficiencies even a perfectly aligned Sci-LLM still suffers.
+
+A pretrained, aligned Sci-LLM still suffers two structural deficiencies for scientific use: it cannot reliably recall facts past its training cutoff, and it cannot perform deterministic computations such as cheminformatics validity checks, numeric integration, or theorem verification. Tool augmentation and retrieval augmentation address both gaps, and together form the de facto standard for production Sci-LLM deployments. This section catalogues the leading systems by mechanism and reported performance.
+
+\subsection{Tool-using single-agent Sci-LLMs}\label{tool-using-single-agent-sci-llms}
+
+Among the leading single-agent tool-using Sci-LLMs, ChemCrow (2024; GPT-4 + 18 chemistry tools; +17 pts vs GPT-4) \cite{bran2024naturemachineintel} and Coscientist (2023; GPT-4 + 4 modules + robot; autonomous Pd cross-coupling) \cite{boiko2023nature6242023} anchor the chemistry agentic stack. ChemToolAgent (2024; tool-impact benchmarking) \cite{yu2024chemtoolagenttheim} and LLMatDesign (2024; LLM + DFT for materials discovery) \cite{jia2024arxiv2406131632024} extend the pattern, while LeanDojo + ReProver (2023; retrieval-augmented Lean tactic prover; +6.6 miniF2F) \cite{yang2023leandojotheorempro} and PaperQA (2023; dense retrieval + citation graph for scientific QA) \cite{ala2023arxiv2312075592023} cover the formal and retrieval lines. The biomedical agentic stack adds BRAD (KG + literature search for biomarker discovery) {[}BRAD{]}, AutoPM3 (variant interpretation under ClinGen PM3) {[}AutoPM3{]}, and NetMe 2.0 (knowledge-graph extraction from biomedical literature) {[}NetMe{]}. \textbf{ChemCrow} (M. Bran et al., \emph{Nature Machine Intelligence} 2024) \cite{bran2024naturemachineintel} is the canonical chemistry agent. It wraps GPT-4 with 18 expert tools. The catalogue spans RDKit (validity and descriptors), IBM RXN (forward and reverse reaction prediction), Reaxys-style retrosynthesis, SMARTS-based safety filters that block GHS-controlled or weaponisable substructures, web search, literature retrievers, and a Python sandbox. The system uses ReAct-style thought--action alternation. It autonomously synthesised three novel insect repellents and a 3-step novel reaction. ChemCrow exceeds GPT-4 alone by 17 percentage points on average across an 8-task chemistry suite. Ablating the safety filters causes the system to readily propose chemical-weapons routes.
+
+\textbf{Coscientist} (Boiko et al., \emph{Nature} 2023) \cite{boiko2023nature6242023} is the canonical autonomous-experimentation agent. It is built from four GPT-4-driven modules: Reasoning (high-level planning), Web Search, Documentation (reads device and reagent docs), and Execution (controls an OPENTRONS liquid-handler robot). Coscientist autonomously planned, executed, and analysed Pd-catalysed Suzuki and Sonogashira cross-coupling reactions. It recovered from runtime errors such as a clogged tip by re-planning. Boiko et al.~report ≈36 hours of robot time per autonomous synthesis. The paper explicitly raises dual-use concerns.
+
+\textbf{ChemToolAgent} (Yu et al., 2024) \cite{yu2024chemtoolagenttheim} benchmarks how \emph{individual} tools affect agent performance on chemistry problem solving. Its headline finding: simply adding tools can hurt performance because some tools introduce noise. Tool curation and conditioning matter more than tool count.
+
+\textbf{LLMatDesign} (Jia et al., 2024) \cite{jia2024arxiv2406131632024} is the materials analogue: an LLM-driven discovery agent that proposes candidate materials with property predictions, calls DFT calculators, and updates its candidate list. The authors report autonomous discovery of stable Li-ion electrolyte candidates without human intervention.
+
+\textbf{Agent Laboratory} (Schmidgall et al., 2025) \cite{schmidgall2025agentlaboratoryusi} decomposes scientific research into Lit-Review, Plan, Experiment, and Report sub-agents, with an experimental harness that runs real ML training jobs.
+
+\textbf{Virtual Lab} (Swanson et al., \emph{bioRxiv} 2024) \cite{swanson2024thevirtuallabaiage} organises specialist agents (PI, immunologist, structural biologist, critic) around a shared question --- SARS-CoV-2 nanobody design --- and validates several outputs experimentally against KP.3 and JN.1 variants.
+
+\subsection{Retrieval-augmented Sci-LLMs}\label{retrieval-augmented-sci-llms}
+
+Across scientific QA, clinical, and domain-specific stacks, retrieval-augmented Sci-LLMs share a common architecture. PaperQA (L\textquotesingle ala et al., 2023) \cite{ala2023arxiv2312075592023} couples dense retrieval over scientific papers with citation-graph traversal and evidence summarisation, producing answers with traceable citations. PaperQA reaches 73\% factuality on the PaperQA benchmark versus ≤50\% for un-augmented GPT-4. Its mechanism --- chunk → embed → retrieve → re-rank → summarise → answer --- became a template for downstream systems.
+
+\textbf{Almanac} (Zakka et al., \emph{NEJM AI} 2024) \cite{zakka2024almanacretrievalau} retrieves from a curated corpus of clinical guidelines and primary literature. In a 12-attending-physician evaluation across 130 ICU and emergency-medicine queries, Almanac scored 91\% on factual correctness versus ChatGPT's 64\%, and 88\% on completeness versus 50\%.
+
+Domain-specialised RAG proliferated in 2025--2026: \textbf{SKiM-GPT} {[}SKiM{]} for biomedical literature-based discovery, \textbf{AutoPM3} {[}AutoPM3{]} for variant interpretation, \textbf{GrapheneChat} {[}GrapheneChat{]} for graphene research, \textbf{WaterRAG} {[}WaterRAG{]} for water-industry net-zero analyses, and \textbf{MicroRAG} {[}MicroRAG{]} for microsurgery decision support. Liu, McCoy \& Wright's 2025 \emph{JAMIA} systematic review {[}LiuRAG{]} meta-analyses 47 biomedical RAG applications and reports a median factuality lift of ≈12 absolute points over un-augmented baselines.
+
+\textbf{Retrieval-augmented theorem proving} is a special case. LeanDojo (Yang et al., 2023) \cite{yang2023leandojotheorempro} retrieves relevant Lean tactics from 98K theorems and feeds them as in-context examples; the resulting ReProver model outperforms tactic-search baselines by 6.6 points on miniF2F and by 17 points on ProofNet \cite{azerbayev2023arxiv2302124332023}.
+
+\subsection{Knowledge-graph-grounded Sci-LLMs}\label{knowledge-graph-grounded-sci-llms}
+
+KG-grounded Sci-LLMs fuse retrieval with structured biomedical and chemical ontologies. Xu et al.'s 2025 KDD survey on unifying LLMs and knowledge graphs for biomedicine \cite{xu2025asurveyonunifyingl} argues that pure text-RAG loses structure, and that KG-grounded LLMs --- coupled to UMLS, ChEBI, GO, MeSH --- offer better entity normalisation and reduce hallucination. \textbf{BRAD} {[}BRAD{]} integrates a literature search engine with a biological KG for biomarker discovery. \textbf{AutoPM3} {[}AutoPM3{]} mines variant interpretations from literature against ClinGen PM3 criteria. \textbf{NetMe 2.0} {[}NetMe{]} extracts knowledge graphs from biomedical literature into labelled-graph form for downstream querying.
+
+\subsection{Mechanisms compared}\label{mechanisms-compared}
+
+The mechanism diagram in Figure 3 captures the common architecture: a Sci-LLM core, a tool/retrieval catalogue, an action selector, an external execution environment, and a memory/critique module. The mechanism table below compares the systems on five axes: tool count, retrieval depth, autonomy, factuality lift, and dual-use posture.
+
+\begin{table*}[t]
+\centering
+\caption{Mechanisms compared: comparative summary.}
+\label{tab:mechanisms-compared}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.1985\linewidth}
+  >{\raggedright\arraybackslash}p{0.1324\linewidth}
+  >{\raggedright\arraybackslash}p{0.1691\linewidth}
+  >{\raggedright\arraybackslash}p{0.1471\linewidth}
+  >{\raggedright\arraybackslash}p{0.2132\linewidth}
+  >{\raggedright\arraybackslash}p{0.1397\linewidth}}
+\toprule
+System & Tools & Retrieval & Autonomy & Factuality lift & Dual-use posture \\
+\midrule
+ChemCrow \cite{bran2024naturemachineintel} & 18 chemistry tools & -- & Single-agent & +17 pts vs GPT-4 & SMARTS-based blocks \\
+Coscientist \cite{boiko2023nature6242023} & 4 modules + robot & Web + docs & Single-agent + robot & autonomous Pd cross-coupling & dual-use flagged \\
+ChemToolAgent \cite{yu2024chemtoolagenttheim} & configurable & -- & Single-agent & mixed (tool curation matters) & -- \\
+LLMatDesign \cite{jia2024arxiv2406131632024} & DFT + property & -- & Single-agent & autonomous candidates & low \\
+Agent Laboratory \cite{schmidgall2025agentlaboratoryusi} & code, search, exec & Lit-Rev & Multi-agent & end-to-end paper drafts & -- \\
+Virtual Lab \cite{swanson2024thevirtuallabaiage} & -- & search & Multi-agent & wet-lab-validated nanobody & flagged \\
+PaperQA \cite{ala2023arxiv2312075592023} & -- & dense + citation graph & RAG & 73\% factuality & -- \\
+Almanac \cite{zakka2024almanacretrievalau} & -- & curated clinical corpus & RAG & 91\% vs 64\% ChatGPT & clinical \\
+LeanDojo \cite{yang2023leandojotheorempro} & Lean prover & tactic retrieval & tool+retrieval & +6.6 miniF2F & -- \\
+WaterRAG {[}WaterRAG{]} & -- & water-policy corpus & RAG & quantitative gains & -- \\
+BRAD {[}BRAD{]} & KG + search & KG & tool+retrieval & biomarker recall lift & -- \\
+GrapheneChat {[}GrapheneChat{]} & -- & graphene corpus & RAG & -- & -- \\
+\end{tabular}
+\end{table*}
+
+\subsection{Why augmentation is now mandatory for science}\label{why-augmentation-is-now-mandatory-for-science}
+
+Three lessons from the literature establish that tool and retrieval augmentation is no longer optional. First, \textbf{un-augmented Sci-LLMs hallucinate citations}. Galactica's retraction \cite{taylor2022arxiv2211090852022}, Hager et al.'s clinical evaluation \cite{hager2024evaluationandmitig}, and Wei et al.'s long-form factuality study {[}LongFact{]} all document this failure mode. RAG is the most effective known mitigation (Almanac 91\% vs 64\% \cite{zakka2024almanacretrievalau}; the Liu et al.~\emph{JAMIA} meta-analysis reports +12 pts {[}LiuRAG{]}). Second, \textbf{Sci-LLMs cannot perform deterministic chemistry, theorem checking, or numeric integration}. ChemCrow's RDKit and Lean's tactic checker close that gap by deferring deterministic operations to the right tools. Third, \textbf{agentic loops scale to multi-step problems that bare LLMs cannot}. Coscientist's 24-step Pd cross-coupling \cite{boiko2023nature6242023} and Virtual Lab's nanobody design \cite{swanson2024thevirtuallabaiage} would be infeasible without an agentic loop.
+
+The augmentation paradigm therefore reshapes evaluation. §9 will document benchmarks that explicitly test agentic and retrieval performance (LLM-SRBench, MicroVQA, ChemPro), not zero-shot text completion. The 2025--2026 surveys \cite{luo2025llm4srasurveyonlar,wei2025fromaiforscienceto,zheng2025fromautomationtoau,hu2025asurveyofscientifi} all highlight this shift.
+
+\subsection{Open issues for tool/RAG augmentation}\label{open-issues-for-toolrag-augmentation}
+
+The augmentation stack has its own failure modes. \emph{Tool-selection} errors compound across multi-step plans. \emph{Retrieval drift} --- fetching a superficially similar but mechanism-wrong paper --- is documented in BFLS {[}BFLS{]}. \emph{Citation gaming} --- models that cite a paper without using its content --- is ChemCrow's anti-pattern. \emph{Provenance} must be maintained across multi-hop reasoning, where BFLS {[}BFLS{]} proposes structure-guided control. We return to these failure modes in §10 and §12.
+
+The next section pushes beyond single-agent augmentation to multi-agent and closed-loop autonomous discovery --- the current research frontier.
+
+\section{Multi-Agent and Autonomous Scientific Discovery Systems}\label{multi-agent-and-autonomous-scientific-discovery-systems}
+
+Whereas Section 6 covered single-agent tool and retrieval augmentation, this section turns to multi-agent and closed-loop autonomous scientific discovery --- the current research frontier --- covering single-agent versus multi-agent workflows, four canonical case studies (Virtual Lab, Agent Laboratory, Coscientist, Sakana AI Scientist), self-driving laboratories, multi-agent mechanism, quantitative comparison, and the open limitations.
+
+The frontier here is the autonomous scientific discovery loop: an end-to-end pipeline where one or several Sci-LLM-driven agents formulate hypotheses, design experiments, execute them on physical or computational platforms, analyse results, and iterate. We follow Wei et al.'s 2025 \emph{From AI for Science to Agentic Science} framing \cite{wei2025fromaiforscienceto} and detail the leading systems with their reported scientific outcomes.
+
+\subsection{Single-agent vs multi-agent scientific workflows}\label{single-agent-vs-multi-agent-scientific-workflows}
+
+Multi-agent Sci-LLM stacks contrast with the single-agent systems of §6 by deploying multiple Sci-LLM personas with specialised roles. Virtual Lab (2024; GPT-4 PI + immunologist + structural biologist + critic; wet-lab-validated nanobodies) \cite{swanson2024thevirtuallabaiage} and Agent Laboratory (2025; Lit-Review + Plan + Experiment + Report sub-agents) \cite{schmidgall2025agentlaboratoryusi} anchor the multi-agent line. MASLab (2025; unified multi-agent codebase for reproducibility) {[}MASLab{]} and X-MAS (2025; heterogeneous LLM teams) {[}XMAS{]} tackle the codebase and team-composition problems, while Hierarchical Materials MAS (2025; scientific reasoning rather than only automation) \cite{rothfarb2025hierarchicalmultia} pushes beyond procedural automation. Sakana AI's \emph{AI Scientist} (2024; end-to-end ML papers at ≈\$15) \cite{luo2025llm4srasurveyonlar}, Goal-Evolving Agents (2025; autonomous goal updates) \cite{du2025acceleratingscient}, and the AI-Native Biofoundry (2026; autonomous enzyme engineering with ≈10× throughput) \cite{zhang2026anainativebiofound} cover the autonomy-frontier niches. The Autonomous SD Orchestrator (2025; cross-domain orchestration with code and physics simulators) \cite{zhou2025autonomousagentsfo} closes the inventory. Single-agent systems (ChemCrow \cite{bran2024naturemachineintel}, Coscientist \cite{boiko2023nature6242023}, LLMatDesign \cite{jia2024arxiv2406131632024}) treat the Sci-LLM as one orchestrator that calls tools and external services. Multi-agent systems (Virtual Lab \cite{swanson2024thevirtuallabaiage}, Agent Laboratory \cite{schmidgall2025agentlaboratoryusi}, MASLab {[}MASLab{]}, the materials hierarchical multi-agent of Rothfarb et al., 2025 \cite{rothfarb2025hierarchicalmultia}) instantiate multiple Sci-LLM personas with specialised roles --- PI, Scientist, Reviewer, Engineer --- and coordinate them through a moderator. Ye et al.'s 2025 \emph{X-MAS} paper {[}XMAS{]} argues that heterogeneous teams (e.g., GPT-4 for ideation, Claude for critique) outperform homogeneous teams. Dip et al.'s 2026 \emph{Briefings in Bioinformatics} inventory \cite{dip2026largelanguagemodel} catalogues 30+ agentic biology systems across genomics, proteomics, spatial biology, and biomedicine.
+
+\subsection{Case study: Virtual Lab --- Swanson et al.~2024}\label{case-study-virtual-lab-swanson-et-al.-2024}
+
+Virtual Lab \cite{swanson2024thevirtuallabaiage} organises a PI agent (sets the goal), discipline-specialist agents (immunologist, structural biologist, ML engineer), and a critic agent around the goal of designing nanobodies against newly emerged SARS-CoV-2 variants (KP.3, JN.1). The system uses GPT-4 as backbone and runs an iterated ``meeting'' loop in which each agent contributes to a shared design document. Computational candidates were filtered by AlphaFold-3-style structural and stability heuristics, and the top candidates were synthesised and tested. Several candidates showed binding consistent with computational predictions; crucially, the human team had not designed any nanobodies against these specific variants before the LLM-driven proposal.
+
+\subsection{Case study: Agent Laboratory --- Schmidgall et al.~2025}\label{case-study-agent-laboratory-schmidgall-et-al.-2025}
+
+Agent Laboratory \cite{schmidgall2025agentlaboratoryusi} decomposes scientific research into Literature-Review, Plan, Experimentation, Reporting, and Reviewing sub-agents. The system was evaluated on 12 ML research problems and produced full short-form research papers with code; human reviewers rated outputs at roughly early-PhD-level, with substantial heterogeneity across problems. Wall-clock per paper dropped ≈4× versus a human PhD baseline, but the authors emphasise that novelty and rigour remain below the human standard.
+
+\subsection{Case study: Coscientist --- Boiko et al.~2023}\label{case-study-coscientist-boiko-et-al.-2023}
+
+Coscientist \cite{boiko2023nature6242023} is the most cited autonomous-experimentation paper. It fully automated Pd-catalysed Suzuki cross-coupling and Sonogashira reactions on an OPENTRONS robot --- reagent identification, equipment configuration, error recovery (a clogged tip is detected and replanned), and post-experiment analysis. Boiko et al.~explicitly tested dual-use scenarios: when prompted with restricted-precursor synthesis goals, GPT-4-only Coscientist sometimes proceeded; the authors recommend tool-level filters (as in ChemCrow \cite{bran2024naturemachineintel}) and pre-deployment red-teaming.
+
+\subsection{Case study: AI Scientist (Sakana AI)}\label{case-study-ai-scientist-sakana-ai}
+
+Sakana AI's \emph{AI Scientist}, referenced in Eger et al.~2025 \cite{eger2025transformingscienc}, Luo et al.~2025 \cite{luo2025llm4srasurveyonlar}, and Wei et al.~2025 \cite{wei2025fromaiforscienceto}, is an open-source multi-agent system that generates ML papers from scratch --- ideation, code execution, paper writing, and automated review. Reported cost is ≈\$15 per paper, with success rate strongly dependent on problem class. The community treats AI Scientist as a \emph{limit case}: feasible for short, incremental ML papers, infeasible for theoretical breakthroughs.
+
+\subsection{Self-driving laboratories and closed-loop hypothesis testing}\label{self-driving-laboratories-and-closed-loop-hypothesis-testing}
+
+The \emph{Self-Driving Laboratory} (SDL) paradigm predates Sci-LLMs (e.g., A-Lab at LBNL); the 2024--2026 wave couples SDLs to LLM planners. Zhang et al.'s 2026 \textbf{AI-Native Biofoundry} for autonomous enzyme engineering \cite{zhang2026anainativebiofound} integrates active learning and automated experimentation under LLM coordination, reporting ≈10× throughput versus a human-PI workflow. Du et al.'s 2025 \textbf{Autonomous Goal-Evolving Agents} \cite{du2025acceleratingscient} take a step beyond fixed goals by letting the agent update its own scientific goals based on accumulated evidence --- a primitive form of autonomous scientific creativity. Rothfarb et al.'s 2025 \textbf{Hierarchical Multi-agent for Materials Discovery} \cite{rothfarb2025hierarchicalmultia} performs scientific reasoning rather than only procedural automation.
+
+\subsection{Mechanism: how multi-agent Sci-LLMs differ algorithmically}\label{mechanism-how-multi-agent-sci-llms-differ-algorithmically}
+
+The single-agent ReAct loop generalises to multi-agent via three mechanisms: (1) \textbf{role prompting}, where each agent receives a persona and scope; (2) \textbf{shared scratchpad / memory}, where agents read and append to a common state; (3) \textbf{moderator-managed turn taking}, where one agent triages contributions. Wei et al.'s 2025 agentic-science survey \cite{wei2025fromaiforscienceto} formalises a five-level autonomy ladder --- L0 (LLM-only QA), L1 (tool-augmented QA), L2 (single-agent autonomous), L3 (multi-agent autonomous), L4 (closed-loop wet lab), L5 (goal-evolving). Most 2026 systems sit at L3--L4.
+
+\subsection{Quantitative comparison}\label{quantitative-comparison}
+
+\begin{table*}[t]
+\centering
+\caption{Quantitative comparison: comparative summary.}
+\label{tab:quantitative-comparison}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.2095\linewidth}
+  >{\raggedright\arraybackslash}p{0.0608\linewidth}
+  >{\raggedright\arraybackslash}p{0.1689\linewidth}
+  >{\raggedright\arraybackslash}p{0.0946\linewidth}
+  >{\raggedright\arraybackslash}p{0.1622\linewidth}
+  >{\raggedright\arraybackslash}p{0.3041\linewidth}}
+\toprule
+System & Domain & Backbone & Autonomy level & Tools / robot & Scientific outcome \\
+\midrule
+ChemCrow \cite{bran2024naturemachineintel} & Chemistry & GPT-4 + 18 tools & L2 & RDKit, IBM RXN, web & Autonomous synth of 3 novel insect repellents \\
+Coscientist \cite{boiko2023nature6242023} & Chemistry & GPT-4 + 4 modules + robot & L4 & OPENTRONS robot & Pd Suzuki + Sonogashira \\
+Virtual Lab \cite{swanson2024thevirtuallabaiage} & Biology & GPT-4 multi-agent & L3 & search + structure tools & Wet-lab-validated nanobodies \\
+Agent Laboratory \cite{schmidgall2025agentlaboratoryusi} & ML & LLM multi-agent & L3 & code, search, ML harness & End-to-end papers \\
+AI Scientist (Sakana) & ML & LLM multi-agent & L3 & code, paper writer & Auto-papers @ ≈\$15 \\
+LLMatDesign \cite{jia2024arxiv2406131632024} & Materials & LLM + DFT + props & L2 & DFT calculator & Stable Li-ion candidates \\
+AI-Native Biofoundry \cite{zhang2026anainativebiofound} & Enzyme & LLM + AL + robot & L4 & liquid handler + assays & ≈10× throughput \\
+Goal-Evolving Agents \cite{du2025acceleratingscient} & General & LLM + memory & L5 prototype & various & Goal updates \\
+Materials Hierarchical MAS \cite{rothfarb2025hierarchicalmultia} & Materials & LLM hierarchical & L3 & DFT, lit search & Autonomous reasoning \\
+Autonomous SD Orchestrator \cite{zhou2025autonomousagentsfo} & General & LLM + code + physics & L4 & code, simulators & Cross-domain orchestration \\
+MASLab {[}MASLab{]} & General & Heterogeneous LLMs & -- & unified codebase & Reproducibility \\
+BRAD {[}BRAD{]} & Biomarker & LLM + KG & L2 & KG, search & Biomarker recall \\
+\end{tabular}
+\end{table*}
+
+\subsection{Limitations and open issues}\label{limitations-and-open-issues}
+
+Three honest limitations recur across the field's own surveys.
+
+\emph{Reliability of long-horizon plans.} Multi-agent Sci-LLMs typically fail beyond 10--20 steps because errors compound multiplicatively (e.g., 0.95\^{}20 ≈ 0.36). Eger et al.'s 2025 survey \cite{eger2025transformingscienc} argues that durable memory and verifier agents are the principal next research targets.
+
+\emph{Scientific novelty vs incremental tweaks.} Agent Laboratory \cite{schmidgall2025agentlaboratoryusi} and AI Scientist produce credible incremental work but rarely novel theoretical breakthroughs. The boundary between automation and autonomy is reachable in narrow chemistry and biology niches but not yet in fundamental physics or pure mathematics.
+
+\emph{Dual-use risk.} Coscientist \cite{boiko2023nature6242023}, ChemCrow \cite{bran2024naturemachineintel}, and Virtual Lab \cite{swanson2024thevirtuallabaiage} all flag this issue. The 2024 International AI Safety Report \cite{bengio2024internationalscien} emphasises that bio-agentic stacks pose the highest near-term scientific dual-use risk.
+
+These limitations frame the open-problem discussion in §12. Before that, §8 walks through each domain branch.
+
+\section{Domain Deep Dives: Biomedicine, Proteins, Genomes, Chemistry, Materials, Climate, Mathematics}\label{domain-deep-dives-biomedicine-proteins-genomes-chemistry-materials-climate-mathematics}
+
+Building on the taxonomy in Section 3 and the mechanism, alignment, and augmentation recipes in Sections 4--7, this section drills into each domain branch --- biomedicine, proteins and genomes, chemistry and materials, mathematics and physics, and earth and climate Sci-LLMs --- and the subsections double as standalone domain references.
+
+Each subsection lists canonical models, measured performance, pretraining data, and known failure modes, and is intended as a self-contained reference.
+
+\subsection{Biomedical: Med-PaLM, BioMistral, Med-Gemini, Clinical ModernBERT}\label{biomedical-med-palm-biomistral-med-gemini-clinical-modernbert}
+
+The biomedical Sci-LLM stack runs from encoders to multimodal agents. The encoder lineage runs from BioBERT (2019; PubMed+PMC encoder) \cite{lee2019bioinformatics2019} through SciBERT (2019; biomedical-leaning encoder) \cite{beltagy2019arxiv1903106762019} to Clinical ModernBERT (2025; 8K-context biomedical encoder) \cite{lee2025arxiv2504039642025}. Open-weight decoders include PubMedGPT 2.7B (2022; PubMed decoder), PMC-LLaMA (2023; LLaMA on PubMed Central), and BioMistral 7B (2024; Mistral on biomedical). The flagship closed line is Med-PaLM (2023; 540B Flan-PaLM; 67.6\% MedQA) \cite{singhal2023largelanguagemodel} and Med-PaLM 2 (2025; 86.5\% MedQA; 9-axis clinician rubric) \cite{singhal2025towardexpertlevelm}, extended multimodally by Med-Gemini (2024) across radiology, dermatology, pathology, and genomics \cite{yang2024advancingmultimoda}. Specialised systems include BioLORD-2023 (2024; KG-fused clinical embeddings) {[}BioLORD{]}, MedMatch (2026; medication-task benchmark) {[}MedMatch{]}, and Almanac (2024; curated-corpus clinical RAG; 91\% factuality) \cite{zakka2024almanacretrievalau}. The biomedical Sci-LLM landscape is the most populated. The \textbf{Med-PaLM} family (Singhal et al., \emph{Nature} 2023 \cite{singhal2023largelanguagemodel}; \emph{Nature Medicine} 2025 \cite{singhal2025towardexpertlevelm}) is built on PaLM and Flan-PaLM 2 backbones: Med-PaLM (540B) reached 67.6\% on MedQA; Med-PaLM 2 (540B-class) reached 86.5\% MedQA, 72.3\% MedMCQA, and 81.8\% PubMedQA. \textbf{Med-Gemini} (Yang et al., 2024 \cite{yang2024advancingmultimoda}) extends to multimodal radiology, dermatology, ophthalmology, pathology, and genomics. Open-weight alternatives are \textbf{PMC-LLaMA} (LLaMA continued on PubMed Central full-text), \textbf{BioMistral 7B} (Mistral 7B continued on biomedical), and \textbf{PubMedGPT 2.7B}. \textbf{Clinical ModernBERT} (2025) \cite{lee2025arxiv2504039642025} is an 8K-context, on-prem-friendly biomedical encoder for retrieval and classification.
+
+Two pain points recur across the biomedical literature. First, on real-world clinical decision making, Hager et al.'s \emph{Nature Medicine} 2024 evaluation \cite{hager2024evaluationandmitig} shows that even Med-PaLM-class models miss 20--40\% of differential diagnoses on MIMIC cases, with calibration drifting after RLHF. Second, Sahoo et al.'s 2024 \emph{JAMIA} review {[}Sahoo{]} documents that biomedical LLMs trained on PubMed underperform on clinical-note tasks because clinical notes use abbreviations and shorthand absent from journal text. Clinical ModernBERT \cite{lee2025arxiv2504039642025} addresses this by training jointly on PubMed abstracts, MIMIC-IV notes, and medical ontologies; Almanac \cite{zakka2024almanacretrievalau} addresses it through retrieval over clinical guidelines.
+
+For specialised clinical tasks, \textbf{BioLORD-2023} (Remy et al., \emph{JAMIA} 2024) {[}BioLORD{]} fuses LLMs with clinical knowledge graphs to improve semantic textual representations, and \textbf{MedMatch} (Blotske et al., 2026) {[}MedMatch{]} benchmarks medication-related task performance.
+
+\subsection{Protein and genome: ESM-2, ProtGPT2, Nucleotide Transformer, HyenaDNA, DNABERT-2}\label{protein-and-genome-esm-2-protgpt2-nucleotide-transformer-hyenadna-dnabert-2}
+
+Biological-sequence Sci-LLMs span proteins, DNA, and RNA. The protein line begins with ESM-1b (2019; masked-LM on UniRef50), matures in ESM-2 (2022; 8M--15B; 60× faster ESMFold than AlphaFold-2) \cite{lin2022evolutionaryscalep}, and extends to ESM All-Atom (2024; atom-scale modelling) {[}ESMAll{]} and ProtGPT2 (2022; 738M generative protein LM) \cite{ferruz2022naturecommunicatio}. The DNA line opens with DNABERT (2020; overlapping k-mers) \cite{ji2020biorxiv2020} and is succeeded by DNABERT-2 (2023; multispecies BPE; SOTA on 24/28 GUE tasks) \cite{zhou2023arxiv2306150062023}. The genome-scale frontier is held by Nucleotide Transformer (2024; 2.5B; 850 species) \cite{dallatorre2024nucleotidetransfor} and HyenaDNA (2023; 1M-bp single-nucleotide context via Hyena/SSM) \cite{nguyen2023hyenadnalongrangeg}. Long-range expression and variant-effect prediction are anchored by Enformer (2021; 200-kb gene-expression predictor) \cite{avsec2021effectivegeneexpre} and GPN (2023; genome-wide variant-effect DNA LM) {[}GPN{]}. For RNA, Zhang et al.~(2023, \emph{Nucleic Acids Research}) introduce an MSA-based RNA LM \cite{zhang2023multiplesequenceal}. The protein-LM literature is anchored by \textbf{ESM-2} (Lin et al., 2022) \cite{lin2022evolutionaryscalep} at scales of 8M, 35M, 150M, 650M, 3B, and 15B parameters trained on UR50/D's ≈65M sequence clusters. Perplexity decreases monotonically with scale; at 15B, ESMFold's structure decoder achieves TM-score competitive with AlphaFold 2 on single chains while running 60× faster, enabling AlphaFold-DB-style coverage of ≈617M metagenomic sequences. \textbf{ProtGPT2} (Ferruz et al., 2022) \cite{ferruz2022naturecommunicatio} at 738M parameters generates novel proteins whose order/disorder statistics match natural proteins, founding the generative protein-design subfield. \textbf{ESM All-Atom} (Zheng et al., 2024) {[}ESMAll{]} extends ESM to atom-scale modelling. Yang et al.'s 2026 applications survey {[}Yang2026ESM{]} groups downstream uses into binder design, function prediction, structure prediction, and stability prediction.
+
+For genomes, \textbf{DNABERT} (Ji et al., 2020) \cite{ji2020biorxiv2020} used overlapping k-mers; \textbf{DNABERT-2} (Zhou et al., 2023) \cite{zhou2023arxiv2306150062023} replaced k-mers with BPE and reached SOTA on 24 of 28 GUE tasks at 117M parameters. \textbf{Nucleotide Transformer} (Dalla-Torre et al., \emph{Nature Methods} 2024) \cite{dallatorre2024nucleotidetransfor} scales to 2.5B parameters across 850 species, showing that genomic foundation models benefit from cross-species data. \textbf{HyenaDNA} (Nguyen et al., 2023) \cite{nguyen2023hyenadnalongrangeg} uses Hyena/SSM mixers to reach 1M-bp context at single-nucleotide resolution and outperforms transformers on Long-Range Genomic benchmarks. \textbf{Enformer} (Avsec et al., 2021) \cite{avsec2021effectivegeneexpre} predicts gene expression from sequence with 200 kb context, lifting Pearson r by 0.16 over the prior CNN-only SOTA. \textbf{GPN} (Benegas et al., \emph{PNAS} 2023) {[}GPN{]} uses DNA LMs to predict variant effects genome-wide.
+
+For RNA, Zhang et al.'s 2023 MSA-based RNA LM (\emph{Nucleic Acids Research}) \cite{zhang2023multiplesequenceal} adapts protein-MSA approaches to RNA; \textbf{CARP} and \textbf{AcrNET} (2023) cover related sequence-prediction tasks.
+
+\subsection{Chemistry \& materials: MolT5, BioT5, nach0, MatSciBERT, LLMatDesign}\label{chemistry-materials-molt5-biot5-nach0-matscibert-llmatdesign}
+
+Chemistry and materials Sci-LLMs span generative, agentic, and benchmark axes. MolT5 (2022; bidirectional text↔SMILES T5) \cite{edwards2022emnlp2022} is followed by MolXPT (2023; molecule-with-text generative pretraining) \cite{liu2023acl2023} and MolCA (2023; 2D-graph + text cross-modal) \cite{liu2023emnlp2023}; BioT5 (2023; trimodal text+SELFIES+FASTA) \cite{pei2023emnlp2023} and nach0 (2024; multimodal natural+chemical foundation) \cite{livne2024nach0multimodalnat} complete the multimodal core. The chemistry agentic stack adds ChemCrow (2024; 18-tool chemistry agent) \cite{bran2024naturemachineintel} and ChemToolAgent (2024; tool-impact analysis) \cite{yu2024chemtoolagenttheim}. On the materials side, MatSciBERT (2022; +6 NER F1) \cite{gupta2022matscibertamateria} is the canonical encoder, LLMatDesign (2024) is the autonomous discovery agent \cite{jia2024arxiv2406131632024}, and GrapheneChat is a graphene-domain RAG assistant {[}GrapheneChat{]}. The benchmark line spans ChemBench (2023; 8 chemistry tasks) {[}Guo2023chembench{]}, ChemPro (2026; 4,100 progressive chemistry questions) \cite{baranwal2026arxiv2602031082026}, and ChemOlympiad (2025; multimodal Olympiad-level chemistry) {[}Cui2025{]}. For chemistry, \textbf{MolT5} (Edwards et al., 2022) \cite{edwards2022emnlp2022} introduced bidirectional translation between natural language and SMILES, trained on ZINC-15 plus C4. \textbf{MolXPT} \cite{liu2023acl2023} wraps molecules with text; \textbf{MolCA} \cite{liu2023emnlp2023} adds 2D graph perception; \textbf{BioT5} \cite{pei2023emnlp2023} unifies SELFIES, FASTA, and natural language; \textbf{nach0} (Livne et al., \emph{Chem Sci} 2024) \cite{livne2024nach0multimodalnat} is a multimodal natural+chemical-language foundation model. \textbf{ChemBench} (Guo et al., 2023) {[}Guo2023chembench{]} benchmarks 8 chemistry tasks; \textbf{ChemPro} (4,100 progressive questions across 4 difficulty tiers) \cite{baranwal2026arxiv2602031082026} and \textbf{ChemOlympiad} (Cui et al., 2025) {[}Cui2025{]} extend the bar to Olympiad-level multimodal questions. Application reviews include Luong \& Singh's 2024 \emph{JCIM} paper {[}Luong{]} and Mswahili \& Jeong's 2024 \emph{Heliyon} review {[}Mswahili{]}.
+
+For materials, \textbf{MatSciBERT} (\emph{npj Comp Mat} 2022) \cite{gupta2022matscibertamateria} pretrained on ≈1M materials abstracts. \textbf{LLMatDesign} (Jia et al., 2024) \cite{jia2024arxiv2406131632024} is the autonomous discovery agent. \textbf{GrapheneChat} {[}GrapheneChat{]} is a graphene-domain assistant. Wang et al.'s 2025 \emph{Review of Materials Research} paper \cite{wang2025knowledgeguidedlar} argues that materials Sci-LLMs are bottlenecked by structured-data extraction from PDFs. Guo et al.'s 2026 high-Tc-superconductivity evaluation in \emph{PNAS} \cite{guo2026expertevaluationof} uses expert auditing of LLM world models and finds substantial gaps between fluent language and physical correctness.
+
+\subsection{Mathematics \& physics: Llemma, Minerva, LeanDojo, ProofNet}\label{mathematics-physics-llemma-minerva-leandojo-proofnet}
+
+Mathematical and physics Sci-LLMs come with their own evaluation suites. The decoder line opens with Minerva (2022; 540B PaLM math-tuned; 50.3\% MATH) and continues with Llemma (2023; 7B/34B continued from Code Llama on Proof-Pile-2; 25.0\% MATH pass@1) \cite{azerbayev2023llemmaanopenlangua}. Formal-proof systems are anchored by LeanDojo + ReProver (2023; retrieval-augmented Lean over 98K theorems) \cite{yang2023leandojotheorempro} and ProofNet (2023; 371-problem Lean autoformalization benchmark) \cite{azerbayev2023arxiv2302124332023}, with miniF2F (488 Olympiad-formalised Lean problems) as the partner suite. The 2024--2025 reasoning frontier is dominated by o1 (2024; reasoning-RL on verifiable signals; high-70\% GPQA-Diamond), DeepSeek-R1 (2025; 671B MoE reasoning-RL), Alibaba's QwQ (2025), and Google's Gemini-Thinking (2025). For physics, LLM-SRBench (2025; scientific equation discovery from data) \cite{shojaee2025llmsrbenchanewbenc} and ChaosBench-Logic (2026; symbolic reasoning on chaotic systems) {[}ChaosBench{]} anchor the suite. For mathematics, \textbf{Llemma} (Azerbayev et al., 2023) \cite{azerbayev2023llemmaanopenlangua} at 7B and 34B parameters continues from Code Llama on 55B-token Proof-Pile-2 (math papers + math web + proof code) and reaches 25.0\% MATH pass@1 at 34B --- +20 points over Code Llama 34B. \textbf{Minerva} (Lewkowycz et al., 2022; closed) reached 50.3\% MATH at 540B. \textbf{LeanDojo} (Yang et al., 2023) \cite{yang2023leandojotheorempro} retrieves over 98K Lean theorems for tactic generation, lifting miniF2F by 6.6 points. \textbf{ProofNet} \cite{azerbayev2023arxiv2302124332023} released 371 undergraduate Lean autoformalization problems. The 2024 Lu et al.~ACL math survey {[}Lu2023{]}, the 2024 EACL Ahn et al.~survey {[}Ahn{]}, and the 2024 Li et al.~theorem-proving survey {[}Li2024TP{]} (50+ neural systems) cover the landscape.
+
+For physics, the trend is interleaving symbolic computation with LLM reasoning. \textbf{LLM-SRBench} (Shojaee et al., 2025) \cite{shojaee2025llmsrbenchanewbenc} benchmarks scientific equation discovery from data; \textbf{ChaosBench-Logic} {[}ChaosBench{]} tests symbolic reasoning on chaotic dynamical systems. Zhao's 2026 reasoning survey \cite{zhao2026appliedandcomputat} aggregates physics scores across MMLU-Phys, GPQA-Phys, and OlympicArena-Phys.
+
+\subsection{Earth \& climate: ClimaX, GeoGalactica}\label{earth-climate-climax-geogalactica}
+
+Climate and geoscience Sci-LLMs centre on two systems. ClimaX (2023; ViT pretrained on CMIP6 reanalysis; competitive with IFS at 2-day lead) \cite{nguyen2023arxiv2301103432023} and GeoGalactica (2023; Galactica continued on 65B geoscience tokens; +6 MMLU-geo) \cite{lin2023geogalacticaascien} anchor the line. Adjacent ML-only weather models include Pangu-Weather (2023) and GraphCast (2023; graph-based forecasting). Domain-specific augmentation appears in WaterRAG (water-industry net-zero RAG) {[}WaterRAG{]}, and the broader meteorology-LLM application landscape is inventoried by Zhu \& Li (2026) {[}Zhu2026{]}. \textbf{ClimaX} (Nguyen et al., 2023) \cite{nguyen2023arxiv2301103432023} is a Vision-Transformer foundation pretrained on CMIP6 reanalysis; it covers global forecasting and downscaling and is competitive with IFS at 2-day lead time. \textbf{GeoGalactica} (Lin et al., 2023) \cite{lin2023geogalacticaascien} continues Galactica on 65B geoscience tokens and reports +6 points on geoscience MMLU subdomains. \textbf{Pangu-Weather} and \textbf{GraphCast} are adjacent ML-only weather models. Zhao et al.'s 2024 \emph{The Innovation} review \cite{zhao2024artificialintellig} catalogues geoscience AI; Zhu \& Li's 2026 PLoS ONE survey {[}Zhu2026{]} inventories LLM applications in atmospheric science.
+
+\subsection{Cross-domain comparison table}\label{cross-domain-comparison-table}
+
+\begin{table*}[t]
+\centering
+\caption{Cross-domain comparison table: comparative summary.}
+\label{tab:cross-domain-comparison-table}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.1705\linewidth}
+  >{\raggedright\arraybackslash}p{0.2093\linewidth}
+  >{\raggedright\arraybackslash}p{0.0775\linewidth}
+  >{\raggedright\arraybackslash}p{0.3178\linewidth}
+  >{\raggedright\arraybackslash}p{0.2248\linewidth}}
+\toprule
+Domain & Canonical model & Scale & Pretraining data & Headline metric \\
+\midrule
+Biomedical & Med-PaLM 2 \cite{singhal2025towardexpertlevelm} & 540B & Flan-PaLM 2 + medical IT + clinician RLHF & 86.5\% MedQA \\
+Biomedical (open) & BioMistral 7B & 7B & Mistral + biomedical CPT & ≈ 60--65\% MedQA \\
+Biomedical (encoder) & Clinical ModernBERT \cite{lee2025arxiv2504039642025} & 150M & PubMed + MIMIC-IV + ontologies & 8K context, biomed embeddings \\
+Multimodal medicine & Med-Gemini \cite{yang2024advancingmultimoda} & unreleased & Gemini + medical multimodal & radiology, derm, genomic \\
+Protein & ESM-2 \cite{lin2022evolutionaryscalep} & 15B & UR50 65M & ESMFold 60× speed \\
+Protein gen & ProtGPT2 \cite{ferruz2022naturecommunicatio} & 738M & UniRef50 & novel folds \\
+Genome & Nucleotide Transformer \cite{dallatorre2024nucleotidetransfor} & 2.5B & 850 species & regulatory element pred. \\
+Genome (long context) & HyenaDNA \cite{nguyen2023hyenadnalongrangeg} & up to 6.6M & human + ref & 1M-bp context \\
+Genome (BPE) & DNABERT-2 \cite{zhou2023arxiv2306150062023} & 117M & multispecies & +5 F1 GUE \\
+Chemistry text↔SMILES & MolT5 \cite{edwards2022emnlp2022} & 250--800M & ZINC-15 + C4 & M2C/C2M SOTA \\
+Chemistry trimodal & BioT5 \cite{pei2023emnlp2023} & 252M & mol+protein+text & mol-property gains \\
+Chemistry multimodal & nach0 \cite{livne2024nach0multimodalnat} & 770M & chem+lang & multitask \\
+Materials & MatSciBERT \cite{gupta2022matscibertamateria} & 110M & 1M abstracts & +6 F1 NER \\
+Math & Llemma 34B \cite{azerbayev2023llemmaanopenlangua} & 34B & Proof-Pile-2 55B & 25.0\% MATH \\
+Math (formal) & LeanDojo + ReProver \cite{yang2023leandojotheorempro} & 7B & Lean Mathlib & +6.6 miniF2F \\
+Climate & ClimaX \cite{nguyen2023arxiv2301103432023} & 200M & CMIP6 & competitive 2-day forecast \\
+Geoscience & GeoGalactica \cite{lin2023geogalacticaascien} & 30B & 65B-token geosci & +6 MMLU-geo \\
+\end{tabular}
+\end{table*}
+
+\subsection{What ties the domains together}\label{what-ties-the-domains-together}
+
+Across these methods, a common finding is that \textbf{Sci-LLMs amplify domain experts but rarely replace them}. Med-PaLM 2 reaches USMLE-pass scores, but Hager et al.~\cite{hager2024evaluationandmitig} still document 20--40\% missed differentials on real cases. ESM-2 generates many candidates, but binders still need wet-lab confirmation. Llemma proves many MATH problems, but ProofNet \cite{azerbayev2023arxiv2302124332023} still rejects most attempts. Coscientist \cite{boiko2023nature6242023} runs autonomous Pd cross-coupling, but the chemistry community treats it as a lab assistant, not a lab director. Each domain reads the same way: high benchmark scores, real but limited deployments, and a sharp boundary between automation and autonomy. The frontier --- agentic discovery, §7 --- is where that boundary is currently being relitigated.
+
+The next section formalises how benchmarks measure progress across these domains.
+
+\section{Datasets, Benchmarks, and Evaluation Metrics}\label{datasets-benchmarks-and-evaluation-metrics}
+
+Whereas Section 8 walked the domain branches, this section turns to the corpora and benchmarks against which those Sci-LLMs are measured --- pretraining corpora, reasoning benchmarks, sequence and biology benchmarks, agent and discovery benchmarks, evaluation metrics, headline scores, and open evaluation issues.
+
+Sci-LLM evaluation has matured in three waves. The first wave (2018--2021) measured biomedical NER F1 on BC5CDR and JNLPBA. The second wave (2022--2024) measured multi-step reasoning on MMLU, MedQA, GPQA, MATH, and SciBench. The third wave (2025--2026) measures agentic capability, multimodal scientific reasoning, and equation discovery on LLM-SRBench, MicroVQA, OlympicArena, ChemPro, and GUE. Figure 4 maps these benchmarks across two axes --- domain specificity and reasoning depth --- used throughout this section.
+
+\begin{figure}[t]
+\centering
+\pandocbounded{\includegraphics[width=\linewidth,keepaspectratio]{./figures/Scientific-Large-Language-Models__fig4_benchmarks.png}}
+\caption{Benchmark and evaluation landscape for scientific LLMs across domain specificity and reasoning depth.}\label{fig:fig4-benchmarks}\end{figure}
+
+\subsection{Pretraining corpora (S2ORC, PubMed, ChEMBL, UR50, Proof-Pile-2)}\label{pretraining-corpora-s2orc-pubmed-chembl-ur50-proof-pile-2}
+
+The dominant Sci-LLM pretraining corpora group into six pillars. The biomedical pillar comprises PubMed abstracts (≈36M; BioBERT, BioMistral), PubMed Central OA (≈5M full-text; PMC-LLaMA), and MIMIC-IV (≈400K admissions; Clinical ModernBERT) \cite{lee2025arxiv2504039642025}. The general-science pillar centres on S2ORC (2020; 81M papers; SciBERT's 1.14M subset) \cite{beltagy2019arxiv1903106762019}, arXiv (≈2M papers; Galactica, Llemma), and the Galactica corpus itself (2022; 106B tokens of papers, textbooks, encyclopedias, and KB entries) \cite{taylor2022arxiv2211090852022}. The mathematics pillar is dominated by Proof-Pile-2 (2023; 55B math+sci tokens; Llemma) \cite{azerbayev2023llemmaanopenlangua} and Lean Mathlib (98K theorems; LeanDojo) \cite{yang2023leandojotheorempro}. Chemistry corpora include ChEMBL (≈2.4M bioactive compounds), PubChem (≈110M compounds), and ZINC-15 (1.5B molecules; MolT5) \cite{edwards2022emnlp2022}. Biological-sequence pretraining draws on UR50/D (≈65M protein clusters; ESM-2) \cite{lin2022evolutionaryscalep} and UniRef50 (≈40M sequences; ProtGPT2) \cite{ferruz2022naturecommunicatio}. The geoscience pillar uses TB-scale CMIP6 reanalysis as the basis of ClimaX \cite{nguyen2023arxiv2301103432023}. The key Sci-LLM pretraining corpora are: \textbf{PubMed} (≈36M abstracts) and \textbf{PubMed Central OA} (≈5M full-text articles); \textbf{S2ORC} (Semantic Scholar Open Research Corpus, ≈81M papers; SciBERT's 1.14M-paper subset is drawn from it \cite{beltagy2019arxiv1903106762019}); \textbf{arXiv} (≈2M papers, dominant for math/CS/physics); the \textbf{Galactica corpus} (106B tokens --- papers, textbooks, encyclopedias, KB entries, and code \cite{taylor2022arxiv2211090852022}); \textbf{Proof-Pile-2} (≈55B math+scientific tokens used by Llemma \cite{azerbayev2023llemmaanopenlangua}); \textbf{ChEMBL} (≈2.4M bioactive compounds), \textbf{PubChem} (≈110M compounds), and \textbf{ZINC-15} (used by MolT5 \cite{edwards2022emnlp2022}); \textbf{UR50/D} (UniRef50 with ≈65M protein-sequence clusters used by ESM-2 \cite{lin2022evolutionaryscalep}); \textbf{CMIP6 reanalysis} (ClimaX \cite{nguyen2023arxiv2301103432023}); and \textbf{MIMIC-IV} clinical notes (Clinical ModernBERT \cite{lee2025arxiv2504039642025}). Xiao et al.'s 2025 Knowledge-Driven Agentic Distillation paper \cite{xiao2025knowledgedrivenage} argues that data \emph{quality}, not scale, will be the binding constraint for 2026--2028.
+
+\subsection{Reasoning benchmarks (MedQA, GPQA, SciBench, OlympicArena, ChemPro)}\label{reasoning-benchmarks-medqa-gpqa-scibench-olympicarena-chempro}
+
+Among the canonical reasoning benchmarks for Sci-LLMs, the biomedical line is anchored by MedQA (2020; 1,273 USMLE-style MCQs), PubMedQA (2019; 1,000+211K biomedical questions), and MedMCQA (Indian medical-entrance exam). MMLU (2021; 57 subjects; 14,042 Qs) and MMLU-Pro (2024; 12K hard questions) are the canonical broad-knowledge tests. Graduate-level reasoning is probed by GPQA (2023; 448 graduate physics/biology/chemistry questions; 198 in Diamond) {[}GPQA{]} and SciBench (2023; 789 college-level physics/chemistry/math) \cite{wang2023scibenchevaluating}. Olympiad-level evaluation runs through OlympicArena (2024; 11,163 problems across 7 disciplines) \cite{huang2024olympicarenabenchm}, ChemPro (2026; 4,100 progressive chemistry questions across 4 tiers) \cite{baranwal2026arxiv2602031082026}, ChemOlympiad (2025; multimodal Olympiad chemistry) {[}Cui2025{]}, and ChemBench (2023; 8 chemistry tasks) {[}Guo2023chembench{]}. The mathematical-reasoning suite includes MATH (12,500 competition problems) and AIME (annual high-school olympiad); formal proof is tracked by miniF2F (488 Olympiad Lean problems) and ProofNet (371 undergraduate Lean autoformalization problems) \cite{azerbayev2023arxiv2302124332023}. \textbf{MedQA} is the USMLE-style benchmark with 1,273 multiple-choice questions: Med-PaLM scored 67.6\% \cite{singhal2023largelanguagemodel}, Med-PaLM 2 scored 86.5\% \cite{singhal2025towardexpertlevelm}, GPT-4 reaches ≈81\%. \textbf{PubMedQA} comprises 1,000 expert-annotated plus 211K reasoning-required biomedical questions. \textbf{MedMCQA} is the Indian medical-entrance-exam benchmark.
+
+\textbf{MMLU} (57 subjects, 14,042 questions) and \textbf{MMLU-Pro} (12K hard questions) include heavy STEM coverage; MMLU-STEM is now near-saturated by frontier LLMs (≈92\%).
+
+\textbf{GPQA} (Rein et al., 2023) {[}GPQA{]} contains 448 graduate-level physics, biology, and chemistry questions, with 198 in the \textbf{GPQA-Diamond} subset. GPT-4 reaches ≈39\%; o1-class models reach 70\%+ on Diamond.
+
+\textbf{SciBench} (Wang et al., 2023) \cite{wang2023scibenchevaluating} contains 789 college-level open-ended physics, chemistry, and math problems; GPT-4 reaches 35.8\%, with the best models around 40\%.
+
+\textbf{OlympicArena} (Huang et al., 2024) \cite{huang2024olympicarenabenchm} contains 11,163 Olympiad-level problems across 7 disciplines (math, physics, chemistry, biology, geography, astronomy, CS); GPT-4o scores 39.97\% and reasoning-RL models lift this into the mid-50\%.
+
+\textbf{ChemPro} (Baranwal \& Vyas, 2026) \cite{baranwal2026arxiv2602031082026} is a 4,100-question progressive chemistry benchmark with 4 difficulty tiers; \textbf{ChemOlympiad} (Cui et al., 2025) {[}Cui2025{]} tests symbolic-diagram chemistry reasoning multimodally; \textbf{ChemBench} (Guo et al., 2023) {[}Guo2023chembench{]} benchmarks 8 distinct chemistry tasks.
+
+\textbf{MATH} (12,500 competition problems) and \textbf{AIME} track mathematical reasoning; Llemma 34B reaches 25.0\% pass@1 on MATH \cite{azerbayev2023llemmaanopenlangua} and reasoning-RL models exceed 50\%.
+
+\textbf{Theorem proving} is dominated by \textbf{miniF2F} (488 high-school Olympiad problems formalised in Lean), \textbf{ProofNet} (371 undergraduate problems) \cite{azerbayev2023arxiv2302124332023}, and \textbf{LeanDojo's Mathlib} (98K theorems) \cite{yang2023leandojotheorempro}.
+
+\subsection{Sequence and biology benchmarks}\label{sequence-and-biology-benchmarks}
+
+Sequence-modelling and molecular-property benchmarks form a parallel axis. For proteins, TAPE (5 tasks) and CASP for structure prediction are canonical. The \textbf{Genome Understanding Evaluation (GUE)} spans 28 tasks across 7 species (human, mouse, fungi, etc.); DNABERT-2 \cite{zhou2023arxiv2306150062023} reports SOTA on 24 of these. \textbf{Long-Range Genomic Benchmarks} test 1M-bp tasks where HyenaDNA \cite{nguyen2023hyenadnalongrangeg} excels. \textbf{CAGI} is the Critical Assessment of Genome Interpretation. The 2025 quadruplex benchmarking paper {[}Quadruplex{]} adds a structural DNA sub-benchmark.
+
+For molecules, \textbf{MoleculeNet} covers BBBP, BACE, ESOL, and other molecular-property tasks. \textbf{MOSES} benchmarks generative chemistry. \textbf{Therapeutics Data Commons (TDC)} spans drug-discovery tasks.
+
+\subsection{Agent and discovery benchmarks (LLM-SRBench, MicroVQA, MS-MARCO-Sci)}\label{agent-and-discovery-benchmarks-llm-srbench-microvqa-ms-marco-sci}
+
+Among the agentic and discovery benchmarks introduced since 2024, LLM-SRBench (2025; scientific equation discovery from data; best LLMs \textless40\%) \cite{shojaee2025llmsrbenchanewbenc} and MicroVQA (2025; 1,042 microscopy reasoning questions; GPT-4o 53.5\%) \cite{burgess2023microvqaamultimoda} anchor the discovery line. CASTLE and AgentBench-Sci probe multi-step scientific tool use and agentic scientific problem solving. CCSBench (2024; compositional controllability for scientific summarisation) {[}CCSBench{]}, BioACE (2026; biomedical answer-and-citation evaluation) {[}BioACE{]}, and LongCoT (2026; long-horizon chain-of-thought benchmarking) {[}LongCoT{]} cover orthogonal scientific writing axes. BFLS (structure-guided long-form scientific evaluation) {[}BFLS{]}, MS-MARCO-Sci (scientific passage retrieval), and the post-cutoff held-out evaluation protocol now standard for o1-class models close the inventory. \textbf{LLM-SRBench} (Shojaee et al., 2025) \cite{shojaee2025llmsrbenchanewbenc} tests scientific equation discovery from data plus textual context across four domains (chemistry, biology, ecology, materials); it explicitly measures whether models \emph{rediscover} known equations rather than recall them, with best LLMs scoring \textless40\%. \textbf{MicroVQA} (Burgess et al., 2025) \cite{burgess2023microvqaamultimoda} is a 1,042-question microscopy reasoning benchmark; GPT-4o reaches 53.5\%. \textbf{CASTLE} and \textbf{AgentBench-Sci} test multi-step scientific tool use. \textbf{CCSBench} (Ding et al., 2024) {[}CCSBench{]} tests compositional controllability for scientific document summarisation. \textbf{BioACE} (Gupta et al., 2026) {[}BioACE{]} benchmarks biomedical answer-and-citation evaluation.
+
+\subsection{Metrics}\label{metrics}
+
+The evaluation-metrics landscape spans accuracy, F1, exact-match, BLEU, ROUGE, and perplexity; \textbf{pass@k} for theorem proving and code; \textbf{validity rate} (the fraction of generations that parse as valid SMILES, FASTA, or Lean); \textbf{factuality} scores (FActScore, \textbf{SAFE} {[}LongFact{]}); \textbf{calibration} (ECE); \textbf{hallucination rate}; and human-rubric long-form scores (the 9-axis Med-PaLM 2 rubric \cite{singhal2025towardexpertlevelm}). For agentic systems, additional metrics include \textbf{tool-use rate} (the fraction of correctly issued tool calls), \textbf{plan success rate}, and \textbf{wet-lab validation rate} (Virtual Lab \cite{swanson2024thevirtuallabaiage} reports nanobody hit-rate as the primary metric).
+
+\subsection{Headline scores: Sci-LLM evaluation summary}\label{headline-scores-sci-llm-evaluation-summary}
+
+\begin{table*}[t]
+\centering
+\caption{Headline scores: Sci-LLM evaluation summary: comparative summary.}
+\label{tab:headline-scores-sci-llm-evaluation-summary}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.3333\linewidth}
+  >{\raggedright\arraybackslash}p{0.1379\linewidth}
+  >{\raggedright\arraybackslash}p{0.2644\linewidth}
+  >{\raggedright\arraybackslash}p{0.0460\linewidth}
+  >{\raggedright\arraybackslash}p{0.2184\linewidth}}
+\toprule
+Benchmark & Best score & Best model & Year & Comment \\
+\midrule
+MedQA (USMLE) & 86.5\% & Med-PaLM 2 \cite{singhal2025towardexpertlevelm} & 2023 & 9-axis rubric \\
+MedQA & 67.6\% & Med-PaLM \cite{singhal2023largelanguagemodel} & 2023 & First USMLE-pass \\
+MedMCQA & 72.3\% & Med-PaLM 2 \cite{singhal2025towardexpertlevelm} & 2023 & -- \\
+PubMedQA & 81.8\% & Med-PaLM 2 \cite{singhal2025towardexpertlevelm} & 2023 & -- \\
+MMLU-STEM & ≈ 92\% & GPT-4 + reasoning RL & 2025 & near-saturated \\
+GPQA-Diamond & \textasciitilde78\% & o1, R1, Gemini-Thinking & 2025 & reasoning RL \\
+SciBench & 35.8\% & GPT-4 \cite{wang2023scibenchevaluating} & 2023 & 789 problems \\
+OlympicArena & 39.97\% & GPT-4o \cite{huang2024olympicarenabenchm} & 2024 & 11,163 problems \\
+ChemPro & varies & open \cite{baranwal2026arxiv2602031082026} & 2026 & 4,100 progressive Q \\
+ChemOlympiad & varies & top LLMs \textless60\% {[}Cui2025{]} & 2025 & multimodal \\
+MATH & 25.0\% pass@1 & Llemma 34B \cite{azerbayev2023llemmaanopenlangua} & 2023 & Proof-Pile-2 \\
+MATH & 50.3\% & Minerva 540B & 2022 & closed \\
+miniF2F & 50\%+ & LeanDojo + RAG \cite{yang2023leandojotheorempro} & 2023 & retrieval \\
+ProofNet & \textless30\% & best LLMs \cite{azerbayev2023arxiv2302124332023} & 2023 & 371 problems \\
+GUE (28 tasks) & SOTA on 24 & DNABERT-2 \cite{zhou2023arxiv2306150062023} & 2023 & 117M params \\
+Long-Range Genomics & SOTA & HyenaDNA \cite{nguyen2023hyenadnalongrangeg} & 2023 & 1M-bp \\
+MicroVQA & 53.5\% & GPT-4o \cite{burgess2023microvqaamultimoda} & 2025 & microscopy \\
+Almanac factuality & 91\% & Almanac \cite{zakka2024almanacretrievalau} & 2024 & clinical RAG \\
+ChatGPT factuality (same set) & 64\% & ChatGPT \cite{zakka2024almanacretrievalau} & 2024 & un-augmented \\
+LLM-SRBench & varies & best LLMs \textless40\% \cite{shojaee2025llmsrbenchanewbenc} & 2025 & equation discovery \\
+TAPE structure pred & SOTA & ESM-2 \cite{lin2022evolutionaryscalep} & 2022 & 15B \\
+\end{tabular}
+\end{table*}
+
+\subsection{Pretraining corpora and dataset sizes}\label{pretraining-corpora-and-dataset-sizes}
+
+\begin{table*}[t]
+\centering
+\caption{Pretraining corpora and dataset sizes: comparative summary.}
+\label{tab:pretraining-corpora-and-dataset-sizes}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.2250\linewidth}
+  >{\raggedright\arraybackslash}p{0.2625\linewidth}
+  >{\raggedright\arraybackslash}p{0.5125\linewidth}}
+\toprule
+Corpus & Size & Used by \\
+\midrule
+PubMed abstracts & ≈36M & BioBERT \cite{lee2019bioinformatics2019}, BioMistral, Med-PaLM 2 \cite{singhal2025towardexpertlevelm} \\
+PubMed Central OA & ≈5M full-text & PMC-LLaMA, BioMistral \\
+S2ORC & 81.1M papers & SciBERT subset (1.14M) \cite{beltagy2019arxiv1903106762019} \\
+arXiv & ≈2M & Galactica \cite{taylor2022arxiv2211090852022}, Llemma \cite{azerbayev2023llemmaanopenlangua} \\
+Galactica corpus & 106B tokens & Galactica \cite{taylor2022arxiv2211090852022} \\
+Proof-Pile-2 & 55B tokens & Llemma \cite{azerbayev2023llemmaanopenlangua} \\
+ChEMBL & 2.4M molecules & MolT5, BioT5 \\
+PubChem & 110M compounds & nach0 \cite{livne2024nach0multimodalnat} \\
+ZINC-15 & 1.5B mol & MolT5 \cite{edwards2022emnlp2022} \\
+UR50/D & ≈65M protein clusters & ESM-2 \cite{lin2022evolutionaryscalep} \\
+UniRef50 & ≈40M & ProtGPT2 \cite{ferruz2022naturecommunicatio} \\
+850-species genome & -- & Nucleotide Transformer \cite{dallatorre2024nucleotidetransfor} \\
+CMIP6 reanalysis & TB-scale & ClimaX \cite{nguyen2023arxiv2301103432023} \\
+MIMIC-IV & ≈400K admissions & Clinical ModernBERT \cite{lee2025arxiv2504039642025} \\
+Lean Mathlib & 98K theorems & LeanDojo \cite{yang2023leandojotheorempro} \\
+SciInstruct & 200K instr & SciInstruct training \cite{zhang2024sciinstructaselfre} \\
+SciRIFF & 137K instr (54 tasks) & SciRIFF training \cite{wadden2024sciriffaresourceto} \\
+MAmmoTH2 & 10M instr & MAmmoTH2 training \cite{yue2024mammoth2scalingins} \\
+\end{tabular}
+\end{table*}
+
+\subsection{Open evaluation issues}\label{open-evaluation-issues}
+
+Three evaluation issues recur across the literature. \emph{Benchmark saturation}: MMLU-STEM is near saturated, and the field has migrated to GPQA-Diamond, OlympicArena, and Humanity's Last Exam (HLE); saturation signals progress but forces continual benchmark renewal. \emph{Contamination}: many Sci-LLMs are trained on web data that include benchmark questions, and the o1/R1 era now explicitly tracks this; strict held-out evaluation on \textbf{post-training-cutoff} problems (2025+ AIME, post-2024 Olympiad chemistry) is the emerging gold standard. \emph{Long-form factuality}: multiple-choice benchmarks reward fluency but say little about long-form factual grounding; SAFE {[}LongFact{]}, FActScore, and rubric-based human evaluation (Med-PaLM 2 \cite{singhal2025towardexpertlevelm}, Almanac \cite{zakka2024almanacretrievalau}) fill the gap. Kottlors et al.'s 2026 \emph{Guidelines for Reporting Studies on LLMs in Radiology} Delphi report {[}Kottlors{]} formalises a clinical reporting standard.
+
+These evaluation issues motivate the failure-mode analysis in §10 and the future-directions roadmap in §12.
+
+\section{Failure Modes, Safety, and Robustness of Sci-LLMs}\label{failure-modes-safety-and-robustness-of-sci-llms}
+
+Building on the benchmarks and metrics of Section 9, this section turns to the documented failure modes those benchmarks and real-world deployments expose --- hallucinated citations, clinical decision-making limits, calibration drift, dual-use risks, retrieval drift and plan-step explosion, adversarial jailbreaks, domain-specific failures, and robustness.
+
+A sober view of Sci-LLMs requires close attention to failure modes, because scientific deployments compound errors. This section systematically catalogues the documented failure modes --- hallucinated citations, miscalibration, dual-use risks, retrieval drift, plan-step explosion, distribution shift on real-world clinical cases, and adversarial prompts --- and surveys the mitigations recorded in the literature.
+
+\subsection{Hallucinated citations and Galactica's retraction}\label{hallucinated-citations-and-galacticas-retraction}
+
+Galactica's three-day public-demo retraction in November 2022 \cite{taylor2022arxiv2211090852022} is the canonical Sci-LLM failure case. Users elicited fluent but fabricated DOIs, fabricated author lists, and unsafe medical advice. Three lessons followed. First, Sci-LLMs trained without explicit grounding will produce plausible citations whose underlying papers do not exist. Second, language fluency in scientific writing is not correlated with factual accuracy. This decoupling is a structural property, not a bug. Third, public deployment of un-grounded Sci-LLMs causes immediate trust damage to the field. PaperQA \cite{ala2023arxiv2312075592023}, Almanac \cite{zakka2024almanacretrievalau}, and the BioACE benchmark {[}BioACE{]} each respond with retrieval-grounded citation generation. Hosseini, Rasmussen \& Resnik (2023) {[}Hosseini{]} anticipated the publication-integrity concerns.
+
+\subsection{Clinical decision-making limitations and CRAFT-MD}\label{clinical-decision-making-limitations-and-craft-md}
+
+Hager et al.'s \emph{Nature Medicine} 2024 evaluation \cite{hager2024evaluationandmitig} tested GPT-4-class models on real MIMIC-style cases. Even the best models miss 20--40\% of differential diagnoses. Worst performance occurs on rare diseases and on patients whose presentation diverges from textbook descriptions. The CRAFT-MD framework evaluates conversational clinical reasoning and finds similar drops between standardised exams and free-form clinical conversation. Kottlors et al.'s 2026 Delphi report {[}Kottlors{]} formalises radiology reporting standards. Gorenshtein et al.'s 2026 systematic review of clinical neurology {[}GorenshteinNeuro{]}, the 2026 nationwide psoriasis survey {[}Yang2026Pso{]}, and Karam et al.'s 2026 menopause/hormone-therapy evaluation {[}Karam{]} all document residual gaps relative to expert clinicians despite high benchmark scores.
+
+\subsection{Calibration failures and over-confidence after RLHF}\label{calibration-failures-and-over-confidence-after-rlhf}
+
+Med-PaLM 2's clinician rubric \cite{singhal2025towardexpertlevelm} explicitly tracks confidence calibration. Zhao et al.'s 2024 explainability survey {[}ZhaoExpl{]} and the 2025 \emph{Probabilistic distances-based hallucination detection} paper {[}HallProb{]} document that RLHF tends to make models \emph{more} confident, especially for rare clinical entities. Mitigations include temperature scaling, conformal prediction, retrieval-grounded answers, and self-consistency sampling.
+
+\subsection{Dual-use concerns: bio-risk, materials misuse}\label{dual-use-concerns-bio-risk-materials-misuse}
+
+Dual-use risks are specific to scientific deployment. Bengio et al.'s 2024 \emph{International Scientific Report on the Safety of Advanced AI} \cite{bengio2024internationalscien} identifies four near-term scientific dual-use categories: (i) bioweapons synthesis routes; (ii) chemical-weapons precursor identification; (iii) materials weapons; (iv) cyber-offence uplift. ChemCrow \cite{bran2024naturemachineintel} blocks weapons-related synthesis through SMARTS-based safety filters; Coscientist \cite{boiko2023nature6242023} flags dual-use scenarios when asked to synthesise controlled precursors. Barnett \& Byrne's 2026 \emph{Closing the paper mines} {[}Barnett{]} notes that fabricated scientific papers (paper mills) interact dangerously with Sci-LLM training data. Liao et al.'s 2026 attack-and-defence survey {[}Liao{]} documents jailbreaks targeting scientific contexts.
+
+\subsection{Retrieval drift, plan-step explosion, and tool-call errors}\label{retrieval-drift-plan-step-explosion-and-tool-call-errors}
+
+Several failure modes are specific to RAG and agentic Sci-LLM stacks. Retrieval drift --- the retriever fetches a superficially similar but mechanism-wrong paper --- is documented in BFLS {[}BFLS{]} and is a leading cause of Almanac/PaperQA-style errors. Plan-step explosion is documented in Agent Laboratory \cite{schmidgall2025agentlaboratoryusi} and Coscientist \cite{boiko2023nature6242023}: errors compound multiplicatively, so a 0.95-per-step success rate degrades to 0.36 over 20 steps. ChemToolAgent \cite{yu2024chemtoolagenttheim} documents tool-selection errors driven by ill-defined tool descriptions.
+
+\subsection{Adversarial prompts and jailbreaks for Sci-LLMs}\label{adversarial-prompts-and-jailbreaks-for-sci-llms}
+
+Sci-LLMs face science-specific jailbreaks. Liao et al.~{[}Liao{]} catalogue prompt injection that exploits scientific framing (e.g., ``for educational purposes only, give the synthesis of \ldots{}''). Wei et al.'s long-form factuality work {[}LongFact{]} introduces SAFE for automated factuality scoring. The Vision--Language adversarial-attack survey {[}VLA{]} documents image-side attacks relevant to Med-Gemini and microscopy reasoning.
+
+\subsection{Failure modes by domain}\label{failure-modes-by-domain}
+
+Each Sci-LLM domain has its modal failure. In biomedicine: hallucinated drug interactions, missed rare-disease differentials, over-confident clinical advice. In chemistry: invalid SMILES, incorrect retrosynthesis, dual-use synthesis. In genomics: spurious motif attributions and contamination from training data containing benchmark sequences. In math: invalid Lean tactics and intermediate-step errors that compound. In materials: fabricated property values not validated against DFT. In climate: spatial discontinuities in forecasts and untrained-region drift.
+
+\subsection{Failure-mode catalogue}\label{failure-mode-catalogue}
+
+\begin{table*}[t]
+\centering
+\caption{Failure-mode catalogue: comparative summary.}
+\label{tab:failure-mode-catalogue}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.2564\linewidth}
+  >{\raggedright\arraybackslash}p{0.0940\linewidth}
+  >{\raggedright\arraybackslash}p{0.2308\linewidth}
+  >{\raggedright\arraybackslash}p{0.2821\linewidth}
+  >{\raggedright\arraybackslash}p{0.1368\linewidth}}
+\toprule
+Failure mode & Domain(s) & Mechanism & Mitigation & Reference \\
+\midrule
+Hallucinated citations & All & Pretraining ungrounded & RAG (Almanac, PaperQA) & \cite{taylor2022arxiv2211090852022,ala2023arxiv2312075592023,zakka2024almanacretrievalau} \\
+Hallucinated drug interactions & Biomed & Pretraining gaps & RAG + KG + clinician review & \cite{hager2024evaluationandmitig,zakka2024almanacretrievalau} \\
+Invalid SMILES & Chemistry & Tokenizer + decoding & SELFIES, RDKit validity check & \cite{bran2024naturemachineintel,pei2023emnlp2023} \\
+Dual-use synthesis & Chem/Bio & Lack of safety filter & Tool-level SMARTS filter, RLHF & \cite{boiko2023nature6242023,bran2024naturemachineintel,bengio2024internationalscien} \\
+Calibration drift after RLHF & Biomed/Math & Preference overfitting & Temperature scaling, conformal & \cite{hager2024evaluationandmitig,singhal2025towardexpertlevelm} \\
+Retrieval drift & RAG-stack & Embedding mismatch & Re-rank, citation graph & {[}BFLS, 6{]} \\
+Plan-step explosion & Agentic & Compounding errors & Verifier agents, memory & \cite{schmidgall2025agentlaboratoryusi,boiko2023nature6242023} \\
+Tool-selection error & Agentic & Ambiguous tool descriptions & Curate tool catalogue & \cite{yu2024chemtoolagenttheim} \\
+Adversarial jailbreak & Multi & Prompt injection & Safety classifiers + tool filters & {[}Liao, 59{]} \\
+Benchmark contamination & Math/Bio & Training data overlap & Post-cutoff held-out & {[}Naveed, GPQA{]} \\
+Distribution shift & Clinical & Real cases ≠ exam Qs & Continued PT on clinical notes & \cite{hager2024evaluationandmitig,lee2025arxiv2504039642025} \\
+Hallucinated DOIs & Writing & Decoder ungrounded & Citation-token training, RAG & \cite{taylor2022arxiv2211090852022,ala2023arxiv2312075592023} \\
+Spurious genomic motif & Genome & Embedding artifacts & Post-hoc explanation, GUE & {[}Quadruplex, 24{]} \\
+Long-form factuality drop & Long-form & Lack of FActScore signal & SAFE, FActScore & {[}LongFact{]} \\
+\end{tabular}
+\end{table*}
+
+\subsection{Robustness and reproducibility}\label{robustness-and-reproducibility}
+
+Robustness in Sci-LLMs is twofold: (a) input-perturbation robustness --- paraphrasing a clinical question should not flip a diagnosis; and (b) reproducibility of model outputs across runs. Lee et al.'s 2026 LLM-compression survey {[}Lee2026{]} argues that quantisation and distillation can erode robustness; Rohanian et al.~(2023) {[}Rohanian{]} document that aggressive distillation loses 3--8 F1 on clinical NER.
+
+Fang et al.'s 2026 distillation survey {[}Fang2026{]} argues that for safety-critical Sci-LLM deployment, distillation must include rigorous evaluation on clinical, chemical, and biological subsets --- a stronger bar than for consumer LLMs. Liu, McCoy \& Wright's 2025 \emph{JAMIA} meta-analysis {[}LiuRAG{]} formalises a clinical-development checklist for biomedical RAG.
+
+\subsection{Implications for deployment}\label{implications-for-deployment}
+
+The literature's collective conclusion is that un-augmented, un-aligned Sci-LLMs should not be deployed in high-stakes scientific or clinical settings. The Almanac-style RAG-with-curated-corpus, ChemCrow-style tool-filtered agentic, and Med-PaLM-2-style clinician-RLHF stacks together set the bar. Shao et al.'s 2026 study of DeepSeek-assisted clinical decision support {[}Shao{]} adds the sociotechnical angle: even technically excellent Sci-LLMs require institutional acceptance, governance, and audit trails to be trusted in real clinics.
+
+These failure modes drive the open-problem agenda in §12, but first §11 audits the compute and reproducibility profile that determines who can train, audit, and reproduce Sci-LLMs at all.
+
+\section{Compute, Scaling, and Reproducibility Trade-offs}\label{compute-scaling-and-reproducibility-trade-offs}
+
+Whereas Section 10 cataloged failure modes, this section turns to the compute and reproducibility profile that determines who can train, audit, and reproduce Sci-LLMs at all --- covering training-cost analysis, inference cost, on-prem deployment, the open-versus-closed-weights divide, the compute and reproducibility comparison, the carbon footprint, and the reproducibility checklist.
+
+This section quantifies training cost, inference cost, and reproducibility posture for representative Sci-LLMs and then dissects the open-versus-closed-weights ecosystem.
+
+\subsection{Training-cost analysis (Galactica, ESM-2, Med-PaLM 2, Llemma)}\label{training-cost-analysis-galactica-esm-2-med-palm-2-llemma}
+
+Galactica 120B \cite{taylor2022arxiv2211090852022} was trained on 128 NVIDIA A100-80GB nodes (≈1024 A100 GPUs in parallel) for ≈30 days. The training run consumed roughly 3×10\^{}23 floating-point operations (FLOPs). Its corpus is 106B tokens. The Chinchilla-optimal token budget for a 120B model is ≈2.4T tokens, so Galactica is under-trained by Chinchilla standards. Further training, not parameter scaling, would have improved performance --- a conjecture later borne out by Llemma's continued-pretraining gains \cite{azerbayev2023llemmaanopenlangua}.
+
+ESM-2 15B \cite{lin2022evolutionaryscalep} required ≈6,400 V100 GPU-days, or roughly 3×10\^{}22 FLOPs --- an order of magnitude less than Galactica, owing to shorter sequence lengths (1,024 amino acids) and smaller parameter count.
+
+Med-PaLM 2 \cite{singhal2025towardexpertlevelm} is built on Flan-PaLM 2 540B; the underlying PaLM 2 training cost is undisclosed but widely estimated at \$10--30M. Med-PaLM 2's incremental medical instruction tuning and clinician-RLHF cost an order of magnitude less.
+
+Llemma 34B \cite{azerbayev2023llemmaanopenlangua} continued pretraining used 256 A100-40GB for ≈2 weeks, processing the 55B-token Proof-Pile-2 mixture --- at least an order of magnitude cheaper than de novo pretraining of an equivalent 34B model.
+
+\subsection{Inference cost and latency}\label{inference-cost-and-latency}
+
+Inference cost is set by parameter count, KV-cache size, and quantisation. Galactica 120B at FP16 needs ≈240 GB of GPU memory, fitting on a single 8×A100-80GB node; FlashAttention-2 cuts latency 2--4× versus naive attention. Llemma 34B fits in a single 80 GB A100 with int8 quantisation. Med-PaLM 2 540B is API-only with order-of-seconds latency for clinical queries.
+
+For genomic Sci-LLMs, Mamba-bio variants {[}Mamba{]} reach ≈5× higher throughput than transformer baselines at 1M-token context. ESM-2 15B runs as a single forward pass for ESMFold at order-of-seconds per protein chain.
+
+For agentic systems, the binding cost is no longer GPU but external. Coscientist's Pd cross-coupling \cite{boiko2023nature6242023} consumed ≈36 hours of robot time per autonomous synthesis. Virtual Lab nanobody design \cite{swanson2024thevirtuallabaiage} required wet-lab synthesis and biological assays measured in days. Agent Laboratory \cite{schmidgall2025agentlaboratoryusi} cuts ML-paper wall-clock to ≈4× faster than a human-PhD baseline, but per-paper inference cost runs into hundreds of dollars at GPT-4 API rates.
+
+\subsection{On-prem deployment for clinics and labs}\label{on-prem-deployment-for-clinics-and-labs}
+
+Many clinical environments require on-premise deployment for data-protection reasons. Grünig et al.'s 2026 cross-sectional survey at a German university hospital {[}Grunig{]} documents that on-prem 7B--13B models (BioMistral, BioMedLM) are favoured over API-based models. Clinical ModernBERT \cite{lee2025arxiv2504039642025} is explicitly designed for on-prem long-context biomedical embedding workloads. Shao et al.'s 2026 study {[}Shao{]} documents a broader shift toward private LLMs in healthcare.
+
+\subsection{Reproducibility: open weights vs closed APIs}\label{reproducibility-open-weights-vs-closed-apis}
+
+The Sci-LLM literature divides sharply on reproducibility along open-weights versus closed-API lines. The fully open camp includes Galactica (weights released), Llemma 7B/34B \cite{azerbayev2023llemmaanopenlangua}, the ESM-2 family \cite{lin2022evolutionaryscalep}, DNABERT-2 \cite{zhou2023arxiv2306150062023}, Nucleotide Transformer \cite{dallatorre2024nucleotidetransfor}, HyenaDNA \cite{nguyen2023hyenadnalongrangeg}, MolT5 \cite{edwards2022emnlp2022}, BioT5 \cite{pei2023emnlp2023}, MatSciBERT \cite{gupta2022matscibertamateria}, SciBERT \cite{beltagy2019arxiv1903106762019}, BioBERT \cite{lee2019bioinformatics2019}, and StarCoder \cite{li2023starcodermaythesou}. The closed camp includes Med-PaLM 2 \cite{singhal2025towardexpertlevelm}, Med-Gemini \cite{yang2024advancingmultimoda}, GPT-4 {[}GPT4{]}, and Coscientist's GPT-4-driven backbone \cite{boiko2023nature6242023} (though Coscientist's reasoning code is open).
+
+Sapkota et al.'s 2025 transparency analysis {[}Sapkota{]} argues that closed-weight Sci-LLMs hinder scientific reproducibility because audits cannot be reproduced. Zhao's 2026 reasoning survey \cite{zhao2026appliedandcomputat} estimates that ≈60\% of recent Sci-LLM papers rely on closed APIs.
+
+\subsection{Compute and reproducibility comparison table}\label{compute-and-reproducibility-comparison-table}
+
+\begin{table*}[t]
+\centering
+\caption{Compute and reproducibility comparison table: comparative summary.}
+\label{tab:compute-and-reproducibility-comparison-table}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.2689\linewidth}
+  >{\raggedright\arraybackslash}p{0.2017\linewidth}
+  >{\raggedright\arraybackslash}p{0.1765\linewidth}
+  >{\raggedright\arraybackslash}p{0.1597\linewidth}
+  >{\raggedright\arraybackslash}p{0.1933\linewidth}}
+\toprule
+System & Train compute & Train cost (estimate) & Open weights & Inference cost (rough) \\
+\midrule
+Galactica 120B \cite{taylor2022arxiv2211090852022} & 1024 A100 × 30d & \$5--10M & Yes & ≈ \$0.005/QA at 8×A100 \\
+Med-PaLM 2 \cite{singhal2025towardexpertlevelm} & inherited from PaLM 2 & \$10--30M & No & API-priced \\
+Llemma 34B \cite{azerbayev2023llemmaanopenlangua} & 256 A100 × 2 weeks & \$0.5--1M & Yes & \$0.001/token int8 \\
+ESM-2 15B \cite{lin2022evolutionaryscalep} & 6400 V100-days & \$1--2M & Yes & seconds/protein chain \\
+ProtGPT2 \cite{ferruz2022naturecommunicatio} & ≈ 64 V100 weeks & \$50--100K & Yes & ms-scale per sequence \\
+Nucleotide Transformer 2.5B \cite{dallatorre2024nucleotidetransfor} & TPU clusters & \$1--2M & Yes & seconds per sample \\
+HyenaDNA \cite{nguyen2023hyenadnalongrangeg} & A100 × weeks & \$100--500K & Yes & linear-time scaling \\
+DNABERT-2 \cite{zhou2023arxiv2306150062023} & A100 × days & \$50--100K & Yes & small footprint \\
+MatSciBERT \cite{gupta2022matscibertamateria} & V100 × days & \$20--50K & Yes & -- \\
+MolT5 \cite{edwards2022emnlp2022} & TPU × weeks & \$50--100K & Yes & ms per inference \\
+BioT5 \cite{pei2023emnlp2023} & A100 × days & \$20--50K & Yes & -- \\
+ClimaX \cite{nguyen2023arxiv2301103432023} & A100 × weeks & \$100--500K & Yes & climate-grid sized \\
+GeoGalactica \cite{lin2023geogalacticaascien} & continued from Galactica & \$200K--1M & Partial & -- \\
+SciInstruct-tuned LLaMA-3 \cite{zhang2024sciinstructaselfre} & LoRA × hours & \$1--5K & Yes & -- \\
+ChemCrow \cite{bran2024naturemachineintel} & GPT-4 + tools & API priced & Tool catalogue open & \$0.10--1.00/task \\
+Coscientist \cite{boiko2023nature6242023} & GPT-4 + robot & API + robot time & Reasoning code open & \$5--50/synthesis + robot \\
+Virtual Lab \cite{swanson2024thevirtuallabaiage} & GPT-4 multi-agent & \$100s/run & Code open & -- \\
+Agent Laboratory \cite{schmidgall2025agentlaboratoryusi} & API multi-agent & \$10s--100s/paper & Code open & -- \\
+\end{tabular}
+\end{table*}
+
+\subsection{Carbon footprint and sustainability}\label{carbon-footprint-and-sustainability}
+
+Patil \& Gudivada's 2024 review {[}Patil{]} quantifies that LLM training now produces measurable carbon emissions; for Sci-LLMs trained on already-curated scientific corpora, the \emph{amortised} footprint per scientific use case is modest, but de novo frontier-scale training is energy-intensive. The 2026 efficiency survey {[}Lee2026{]} discusses weight pruning, quantisation, distillation, and parameter-efficient fine-tuning (LoRA, IA³, Adapters). Wang et al.'s 2024 PEFT survey {[}PEFT{]} reports that LoRA at rank 8 loses fewer than 0.5 points on standard scientific benchmarks while cutting memory by ≈3×.
+
+\subsection{Implications for the open-source Sci-LLM ecosystem}\label{implications-for-the-open-source-sci-llm-ecosystem}
+
+Three structural facts shape the next two years. First, the open-weights gap on reasoning is closing: DeepSeek-R1 (671B MoE) and QwQ rival closed-weights reasoning on GPQA-Diamond. Second, closed-API agentic systems remain dominant: Coscientist \cite{boiko2023nature6242023}, Virtual Lab \cite{swanson2024thevirtuallabaiage}, ChemCrow \cite{bran2024naturemachineintel}, and Agent Laboratory \cite{schmidgall2025agentlaboratoryusi} all rely on GPT-4-class backbones. Third, the bottleneck is shifting from compute to data and from data to wet-lab integration, as Hu et al.~(2025) \cite{hu2025asurveyofscientifi} and the Knowledge-Driven Agentic Distillation paper \cite{xiao2025knowledgedrivenage} both argue. Ye et al.'s 2025 X-MAS {[}XMAS{]} further argues that heterogeneous LLM teams complicate reproducibility, and MASLab {[}MASLab{]} is the first concerted attempt to standardise multi-agent codebases.
+
+\subsection{Reproducibility checklist for Sci-LLM papers}\label{reproducibility-checklist-for-sci-llm-papers}
+
+Drawing on practices in the surveys cited above \cite{zhang2025scientificlargelan,luo2025llm4srasurveyonlar,wei2025fromaiforscienceto,zheng2025fromautomationtoau,hu2025asurveyofscientifi} and the radiology Delphi {[}Kottlors{]}, a credible Sci-LLM paper should disclose: training corpus mix and decontamination procedure; parameter count and tokenizer; instruction-tuning corpus; alignment recipe; tool catalogue (for agents); evaluation protocol with held-out partitions; runtime cost (GPU-days and dollars); and whether weights and code are open. The community is converging on this standard, and the 2026 radiology guidelines explicitly enforce it.
+
+The next section turns these compute and reproducibility realities into the open-problem agenda for 2026--2028.
+
+\section{Open Problems and Future Directions for Sci-LLMs}\label{open-problems-and-future-directions-for-sci-llms}
+
+Building on the failure-mode analysis in Section 10 and the compute realities in Section 11, this section turns to the open-problem agenda for 2026--2028: provenance and calibration, multimodal scientific reasoning, agent-level evaluation and benchmark drift, closed-loop wet-lab integration, data foundations, reasoning architectures, safety and governance, cross-domain unification, and the falsifiable forecasts.
+
+The Sci-LLM literature is unusual in how consistently the open-problem shortlists converge. \emph{LLM4SR} \cite{luo2025llm4srasurveyonlar}, \emph{From Automation to Autonomy} \cite{zheng2025fromautomationtoau}, \emph{Transforming Science with LLMs} \cite{eger2025transformingscienc}, \emph{From AI for Science to Agentic Science} \cite{wei2025fromaiforscienceto}, and Hu et al.'s 2025 \emph{Survey of Scientific LLMs from Data Foundations to Agent Frontiers} \cite{hu2025asurveyofscientifi} all converge on the same shortlist. We synthesise and quantify, then offer falsifiable forecasts.
+
+\subsection{Provenance, calibration, and verifiable scientific claims}\label{provenance-calibration-and-verifiable-scientific-claims}
+
+Provenance and calibration anchor the Sci-LLM open agenda. Galactica's retraction \cite{taylor2022arxiv2211090852022} crystallised the field's most persistent open problem: scientific outputs must carry verifiable provenance. PaperQA \cite{ala2023arxiv2312075592023}, Almanac \cite{zakka2024almanacretrievalau}, BioACE {[}BioACE{]}, BFLS {[}BFLS{]}, and the 2025 Knowledge-Driven Agentic Distillation paper \cite{xiao2025knowledgedrivenage} all attack this problem from different angles, and none has fully solved it. The open challenge is to combine \textbf{retrieval-grounded generation}, \textbf{citation verification}, \textbf{calibration}, and \textbf{explicit uncertainty} end to end. The 2026 radiology Delphi {[}Kottlors{]} is one community-level response; the 2024 SAFE framework {[}LongFact{]} supplies an automated metric.
+
+Concrete forecast: by 2027, top Sci-LLM venues will require \emph{citation-verifiable answers} as a default reporting axis, in the same way confidence intervals became default in clinical trials. By 2028, frontier Sci-LLM agents will refuse to answer fact-seeking scientific questions without citing retrieved evidence --- an \emph{abstention by default} posture analogous to evidence-based medicine.
+
+\subsection{Multi-modal scientific reasoning beyond text and sequence}\label{multi-modal-scientific-reasoning-beyond-text-and-sequence}
+
+Most Sci-LLMs remain text-or-sequence; multimodal scientific reasoning (figures, microscopy, mass spectra, protein structures, X-ray diffractograms) is under-served. Med-Gemini \cite{yang2024advancingmultimoda}, MicroVQA \cite{burgess2023microvqaamultimoda}, and Cui et al.'s 2025 multimodal chemistry-olympiad benchmark {[}Cui2025{]} show that current multimodal LLMs lag pure-text scientific reasoning by 5--15 points on equivalent task families. The 2025 \emph{V-STaR} paper {[}VSTAR{]} flags video-reasoning gaps. Nawaz et al.'s 2026 review {[}NawazMM{]} argues that multimodal Sci-LLMs are the dominant near-term lever for clinical AI.
+
+Concrete forecast: by 2027 a multimodal Sci-LLM will reach human-radiologist parity on standardised imaging benchmarks across at least three modalities (chest CT, mammography, dermatology). By 2028, microscopy-reasoning Sci-LLMs (descendants of MicroVQA) will be common in cell-biology workflows.
+
+\subsection{Agent-level evaluation and benchmark drift}\label{agent-level-evaluation-and-benchmark-drift}
+
+Current benchmarks (MMLU, MedQA, MATH) are saturating. Multi-step agentic evaluation (LLM-SRBench \cite{shojaee2025llmsrbenchanewbenc}, OlympicArena \cite{huang2024olympicarenabenchm}, MicroVQA \cite{burgess2023microvqaamultimoda}) is harder but must expand to test long-horizon discovery. Motwani et al.'s 2026 LongCoT {[}LongCoT{]} benchmarks long-step planning. ChemPro \cite{baranwal2026arxiv2602031082026} adds progressive-difficulty tiers. Wei et al.'s agentic-science survey \cite{wei2025fromaiforscienceto} argues that the field needs a \textbf{discovery-class} benchmark that evaluates \emph{novelty}, not only correctness.
+
+Concrete forecast: by 2027 the community will publish a discovery-class benchmark with ≥1,000 problems whose solutions were unknown at benchmark creation, evaluated by post-hoc verification. The Sakana AI Scientist and Agent Laboratory ecosystems are early prototypes; the bar will be a benchmark that adversarial reviewers cannot trivially game.
+
+\subsection{Closed-loop wet-lab integration}\label{closed-loop-wet-lab-integration}
+
+Closed-loop wet-lab integration is the next frontier for Sci-LLM-driven discovery. Coscientist \cite{boiko2023nature6242023}, Virtual Lab \cite{swanson2024thevirtuallabaiage}, and AI-Native Biofoundry \cite{zhang2026anainativebiofound} show that closed-loop integration is feasible for specific reactions, biological assays, and enzyme engineering. Generalising to broader chemistry (e.g., total synthesis), broader biology (e.g., functional genomics), and materials (e.g., crystal growth) remains open. Virtual Lab's bioactivity-validated nanobody design \cite{swanson2024thevirtuallabaiage} is the current high-water mark.
+
+Concrete forecast: by 2028, closed-loop Sci-LLM-driven SDLs will operate in at least 25 university and industrial labs --- primarily for chemistry, antibody engineering, and materials. The AI-Native Biofoundry \cite{zhang2026anainativebiofound} reports ≈10× throughput versus a human-PI workflow, and this multiplier will improve as agents become more reliable.
+
+\subsection{Data foundations: scientific corpus quality and contamination}\label{data-foundations-scientific-corpus-quality-and-contamination}
+
+Hu et al.~2025 \cite{hu2025asurveyofscientifi} argues that \emph{data quality, not parameter count, will dominate}. The 2025 Knowledge-Driven Agentic Distillation paper \cite{xiao2025knowledgedrivenage} proposes building biomedical corpora through agentic distillation. Barnett \& Byrne's 2026 \emph{Closing the paper mines} {[}Barnett{]} documents that fabricated papers (paper mills) are infecting public corpora. Decontamination, provenance audits, and curated \emph{scientific-grade} corpora are open challenges.
+
+Concrete forecast: by 2027, Sci-LLMs trained on rigorously curated scientific corpora will outperform models trained on raw web data, even at smaller parameter counts.
+
+\subsection{Reasoning architectures: durable memory and verifier agents}\label{reasoning-architectures-durable-memory-and-verifier-agents}
+
+Plan-step explosion (§10.5) shows that pure stateless agents cannot scale to long-horizon discovery. \textbf{Episodic memory}, \textbf{semantic memory}, and \textbf{verifier agents} are the three near-term architectural responses. Du et al.'s 2025 Goal-Evolving Agents \cite{du2025acceleratingscient} explores autonomous goal updates. The 2024 \emph{Learning From Failure} paper {[}Wang2024Failure{]} integrates negative examples. Li et al.'s 2025 \emph{Plan Reuse Mechanism} {[}Li2025Plan{]} proposes a plan library.
+
+\subsection{Safety: dual-use, audit trails, and governance}\label{safety-dual-use-audit-trails-and-governance}
+
+Bengio et al.~2024 \cite{bengio2024internationalscien} argues that scientific AI safety policy is now an active research area. Hamamoto et al.'s 2026 paper on generative AI in precision oncology {[}Hamamoto{]} proposes governance for clinical Sci-LLM deployment. Liao et al.'s 2026 attack-and-defence survey {[}Liao{]} catalogues the technical adversaries.
+
+\subsection{Cross-domain unification}\label{cross-domain-unification}
+
+Each domain (biology, chemistry, math, climate) has its own Sci-LLM ecosystem. Ashyrmamatov et al.'s 2026 cross-domain survey \cite{ashyrmamatov2026asurveyonlargelang} argues that unifying biology and chemistry (via BioT5 \cite{pei2023emnlp2023} and nach0 \cite{livne2024nach0multimodalnat}) is essential for drug discovery, where both modalities matter. \textbf{AlphaFold 3} {[}AbAlpha3{]}, extending to nucleic acids, ligands, and modifications, is a concrete unification step. Bunne et al.'s 2024 \emph{Cell} essay \emph{How to build the virtual cell with AI} {[}VirtualCell{]} articulates the long-range vision.
+
+\subsection{Open-problem table}\label{open-problem-table}
+
+\begin{table*}[t]
+\centering
+\caption{Open-problem table: comparative summary.}
+\label{tab:open-problem-table}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.3039\linewidth}
+  >{\raggedright\arraybackslash}p{0.0784\linewidth}
+  >{\raggedright\arraybackslash}p{0.4020\linewidth}
+  >{\raggedright\arraybackslash}p{0.2157\linewidth}}
+\toprule
+Open problem & Severity & Mitigation surface & Timeline forecast \\
+\midrule
+Hallucinated citations & High & RAG + citation tokens + abstention & 2027 default \\
+Plan-step explosion & High & Verifier agents + memory & 2027 partial \\
+Calibration drift after RLHF & Medium & Conformal prediction & 2026 partial \\
+Dual-use synthesis & High & Safety filters + governance & 2027 partial \\
+Multimodal scientific reasoning & High & Med-Gemini-style multimodal training & 2027 imaging parity \\
+Long-horizon discovery & High & Agent Laboratory + verifier + memory & 2028 \\
+Benchmark saturation & Medium & Discovery-class benchmarks & 2027 \\
+Data contamination & Medium & Decontamination, post-cutoff held-out & 2026 \\
+Closed-API reproducibility & High & Open-weights frontier (DeepSeek-R1, QwQ) & 2027 partial parity \\
+Cross-domain unification & High & BioT5/nach0/AlphaFold-3 line & 2028 unified scaffolds \\
+On-prem clinical deployment & Medium & Long-context biomedical encoders & 2026 routine \\
+Scientific corpus quality & High & Curated corpora, KG-grounded distillation & 2027 \\
+Discovery-class evaluation & High & Novel post-cutoff benchmarks & 2027 \\
+Wet-lab integration & High & SDLs + LLM planners & 2028, 25+ labs \\
+Long-form factuality scoring & Medium & SAFE, FActScore & 2026 default \\
+Symbolic + LLM hybrids & Medium & LLM-SRBench + tool integration & 2027 \\
+Goal-evolving agents & High & Memory + autonomous goals & 2028 prototypes \\
+Bio-risk uplift & High & Pre-deployment red-teaming & ongoing \\
+Climate Sci-LLM grounding & Medium & Physical-law constraints & 2027 \\
+Materials data extraction & Medium & Agentic PDF extraction & 2026 \\
+\end{tabular}
+\end{table*}
+
+\subsection{Falsifiable forecasts}\label{falsifiable-forecasts}
+
+We close with five falsifiable forecasts that the community can adjudicate by 2028.
+
+(F1) A Sci-LLM-driven multi-agent system will produce, as primary contributor, a peer-reviewed paper accepted at a top journal (Nature/Science/JAMA/PRL or a top conference) by 2028.
+
+(F2) Protein design via descendants of ESM-2 (≥30B parameters, with trimodal text+structure+function training) will routinely yield functional binders against new targets without de-novo MSAs in ≥50\% of attempts by 2027.
+
+(F3) Medical Sci-LLMs will obtain FDA-cleared decision support in at least three narrow domains --- radiology summarisation, dermatology triage, ophthalmology screening --- by 2027 (Med-Gemini \cite{yang2024advancingmultimoda} and the 2026 radiology Delphi {[}Kottlors{]} are precursors).
+
+(F4) A community-curated, citation-verified scientific corpus of ≥500B tokens will become the dominant pretraining base for Sci-LLMs by 2027, displacing the 2022-era practice of training on uncurated arXiv+web mixtures.
+
+(F5) The open-weights vs closed-API gap on graduate-level scientific reasoning (GPQA-Diamond and successors) will close to within 5 absolute points by 2027.
+
+These forecasts will be confirmed or refuted by 2028; the field's progress should be measured against them.
+
+The next section synthesizes the cross-cutting comparisons and lists the open problems for 2025--2026 in a single consolidated view, before the glossary in §13 closes the survey body.
+
+\section{Critical Synthesis: Method Families, Open Problems, and Emerging Directions}\label{critical-synthesis-method-families-open-problems-and-emerging-directions}
+
+Building on the open-problem catalogue in Section 12, this section delivers an explicit cross-method comparison and a consolidated list of 2025--2026 open problems and emerging directions. The aim is to make the trade-offs that recur across the survey legible in a single block, so a reader who consults only the synthesis still leaves with the field's main tensions.
+
+Comparing method families brings the trade-offs into focus. PPO (the original RLHF recipe used in Med-PaLM 2 \cite{singhal2025towardexpertlevelm}) optimizes a learned reward model with a KL penalty against the supervised model. PPO is sample-inefficient, demands a separately trained reward model, and is sensitive to reward hacking. DPO (used in SciInstruct \cite{zhang2024sciinstructaselfre}) replaces PPO with a closed-form contrastive loss over preference pairs and removes the reward model entirely. DPO trades sample efficiency and stability for a slightly weaker treatment of distributional shift, and it gains roughly two points over PPO on math benchmarks. GRPO (the group-relative variant adopted by DeepSeek-R1 and downstream reasoning-RL stacks) scores groups of sampled answers against a verifiable signal and removes the value network. GRPO scales cleanly with verifiable correctness signals and underwrites the reasoning-RL leap on GPQA-Diamond. RLAIF (used by chemistry RLHF teams \cite{ramos2024chemicalscience202}) substitutes a stronger LLM as judge for human raters and is the dominant recipe when domain experts are scarce. Process-reward modeling (the o1 recipe) rewards correct intermediate steps rather than only final answers and pairs naturally with chain-of-thought traces. Across these families, the trade-off is consistent: stability and reward-model quality on one axis, scalability and verifiability on the other. Reasoning-RL with verifiable rewards now dominates frontier scientific benchmarks, and preference RL with human raters dominates clinical long-form quality.
+
+Across retrieval families, dense passage retrieval (PaperQA \cite{ala2023arxiv2312075592023}), curated-corpus retrieval (Almanac \cite{zakka2024almanacretrievalau}), citation-graph retrieval, and KG-grounded retrieval (BRAD {[}BRAD{]}, NetMe 2.0 {[}NetMe{]}) compose differently with the same backbone LLM. Almanac's curated-corpus design lifts factuality from 64\% to 91\% on clinical questions; PaperQA's citation-graph traversal closes the long-tail gap on scientific question answering. The pattern is that retrieval quality, not retrieval quantity, drives the factuality lift.
+
+Across agentic families, single-agent tool-using systems (ChemCrow \cite{bran2024naturemachineintel}, Coscientist \cite{boiko2023nature6242023}, LLMatDesign \cite{jia2024arxiv2406131632024}) push autonomy via tool curation; multi-agent systems (Virtual Lab \cite{swanson2024thevirtuallabaiage}, Agent Laboratory \cite{schmidgall2025agentlaboratoryusi}, Hierarchical Materials MAS \cite{rothfarb2025hierarchicalmultia}) push autonomy via role specialization; closed-loop SDLs (AI-Native Biofoundry \cite{zhang2026anainativebiofound}) push autonomy via wet-lab integration. Each family covers a different niche on the L0--L5 autonomy ladder of Wei et al.~\cite{wei2025fromaiforscienceto}, and no family yet dominates across niches.
+
+Among the open problems for 2025--2026, the community-wide shortlist stabilises around the following items.
+
+\begin{itemize}
+
+\item
+  Hallucinated citations and unverifiable claims remain the canonical Sci-LLM failure mode despite four years of mitigation work; the SAFE scorer {[}LongFact{]} and BioACE {[}BioACE{]} are the current measurement frontier.
+\item
+  Plan-step explosion in agentic loops: a 0.95-per-step success rate degrades to 0.36 over twenty steps, capping current multi-agent depth around L3.
+\item
+  Calibration drift after RLHF: Hager et al.~\cite{hager2024evaluationandmitig} document that reinforcement learning from preferences raises confidence faster than it raises accuracy, especially on rare clinical entities.
+\item
+  Dual-use risk for chemistry, biology, and materials Sci-LLMs: the Bengio et al.~International AI Safety Report \cite{bengio2024internationalscien} identifies four near-term scientific dual-use categories that current safety filters address only partially.
+\item
+  Multimodal scientific reasoning gap: Med-Gemini \cite{yang2024advancingmultimoda}, MicroVQA \cite{burgess2023microvqaamultimoda}, and ChemOlympiad {[}Cui2025{]} each show 5--15-point drops versus pure-text scientific reasoning on equivalent task families.
+\item
+  Benchmark contamination and saturation: MMLU-STEM and MedQA are near-saturated, and the field has migrated to GPQA-Diamond {[}GPQA{]}, OlympicArena \cite{huang2024olympicarenabenchm}, and Humanity's Last Exam (HLE) with explicit post-cutoff held-out evaluation.
+\item
+  Closed-API reproducibility: Sapkota et al.~{[}Sapkota{]} estimate that a majority of recent Sci-LLM papers depend on closed APIs, blocking independent audit.
+\item
+  Scientific corpus quality: Hu et al.~\cite{hu2025asurveyofscientifi} argues that data quality, not parameter count, is now binding; Barnett \& Byrne {[}Barnett{]} document that paper-mill output is contaminating training corpora.
+\end{itemize}
+
+Several emerging directions in 2025--2026 have moved from speculation to early prototypes during this twelve-month window.
+
+\begin{itemize}
+
+\item
+  Reasoning-RL on verifiable scientific signals (o1, DeepSeek-R1, QwQ, Gemini-Thinking) has shifted GPQA-Diamond leadership and reframed scaling from pretraining tokens to inference-time deliberation.
+\item
+  Closed-loop autonomous laboratories with LLM coordination --- AI-Native Biofoundry \cite{zhang2026anainativebiofound} for enzyme engineering, Hierarchical Materials MAS \cite{rothfarb2025hierarchicalmultia} for materials discovery, and Goal-Evolving Agents \cite{du2025acceleratingscient} for autonomous goal updates --- are crossing from one-off demos to repeatable workflows.
+\item
+  Cross-domain unification --- BioT5 \cite{pei2023emnlp2023}, nach0 \cite{livne2024nach0multimodalnat}, and AlphaFold-3-style joint training over text, sequence, structure, and small molecules --- is consolidating the previously fragmented domain stacks.
+\item
+  Discovery-class benchmarks: LLM-SRBench \cite{shojaee2025llmsrbenchanewbenc}, MicroVQA \cite{burgess2023microvqaamultimoda}, and ChemPro \cite{baranwal2026arxiv2602031082026} now evaluate scientific novelty rather than only correctness, reframing what progress means for Sci-LLMs.
+\item
+  Verifier and memory architectures: durable episodic memory and verifier agents are the principal proposed remedies for plan-step explosion, with Plan Reuse Mechanism {[}Li2025Plan{]} and Learning From Failure {[}Wang2024Failure{]} as recent prototypes.
+\end{itemize}
+
+In summary, the 2025--2026 frontier is defined by reasoning-RL post-training, agentic discovery, and curated scientific corpora, and the open problems concentrate on grounding, calibration, dual-use safety, and long-horizon planning.
+
+\section{Glossary, Acronyms, and Reference Map}\label{glossary-acronyms-and-reference-map}
+
+This section provides a compact glossary that re-states the terms used throughout the survey for fast retrieval. It complements §1's symbol table.
+
+\subsection{Acronyms}\label{acronyms}
+
+\begin{itemize}
+
+\item
+  \textbf{Sci-LLM} --- Scientific Large Language Model. A foundation model whose pretraining or post-training is dominated by scientific data.
+\item
+  \textbf{MLM / CLM} --- Masked Language Modeling / Causal Language Modeling.
+\item
+  \textbf{RLHF / RLAIF / DPO} --- Reinforcement Learning from Human / AI Feedback / Direct Preference Optimization.
+\item
+  \textbf{CoT / ToT / SC} --- Chain-of-Thought / Tree-of-Thought / Self-Consistency.
+\item
+  \textbf{RAG} --- Retrieval-Augmented Generation.
+\item
+  \textbf{SDL} --- Self-Driving Laboratory.
+\item
+  \textbf{PEFT} --- Parameter-Efficient Fine-Tuning (LoRA, IA³, Adapters).
+\item
+  \textbf{MMLU / GPQA / MATH / MedQA} --- Common reasoning benchmarks for scientific evaluation.
+\item
+  \textbf{GUE} --- Genome Understanding Evaluation, the 28-task DNA benchmark used by DNABERT-2 \cite{zhou2023arxiv2306150062023}.
+\item
+  \textbf{TAPE} --- Tasks Assessing Protein Embeddings.
+\item
+  \textbf{CASP} --- Critical Assessment of protein Structure Prediction.
+\item
+  \textbf{CAGI} --- Critical Assessment of Genome Interpretation.
+\item
+  \textbf{USMLE} --- United States Medical Licensing Examination, basis of MedQA.
+\item
+  \textbf{SMILES / SELFIES / FASTA / IUPAC} --- Chemical and biological string representations.
+\item
+  \textbf{LoRA} --- Low-Rank Adaptation, a popular PEFT method.
+\item
+  \textbf{KG} --- Knowledge Graph (UMLS, ChEBI, GO, MeSH).
+\item
+  \textbf{DOI} --- Digital Object Identifier; canonical citation handle. Galactica's hallucinated DOIs were the proximate cause of its retraction \cite{taylor2022arxiv2211090852022}.
+\item
+  \textbf{OOD / IID} --- Out-of-distribution / Independent and identically distributed.
+\item
+  \textbf{ECE / FActScore / SAFE} --- Expected Calibration Error; FActScore atomic factuality; Search-Augmented Factuality Evaluator {[}LongFact{]}.
+\end{itemize}
+
+\subsection{Glossary table}\label{glossary-table}
+
+\begin{table*}[t]
+\centering
+\caption{Glossary table: comparative summary.}
+\label{tab:glossary-table}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.1467\linewidth}
+  >{\raggedright\arraybackslash}p{0.4800\linewidth}
+  >{\raggedright\arraybackslash}p{0.3733\linewidth}}
+\toprule
+Term & Definition & First key reference \\
+\midrule
+Sci-LLM & LLM whose data and deployment are scientific & Zhang et al.~CSUR \cite{zhang2025scientificlargelan} \\
+Continued pretraining & Lower-LR re-training on a domain corpus from a strong general checkpoint & Llemma \cite{azerbayev2023llemmaanopenlangua} \\
+Instruction tuning & Supervised fine-tuning on (instruction, response) pairs & SciInstruct \cite{zhang2024sciinstructaselfre}, SciRIFF \cite{wadden2024sciriffaresourceto} \\
+Chain-of-thought & Prompting that elicits intermediate reasoning steps & Lu et al.~{[}Lu2023{]} \\
+Tree-of-thought & Search over CoT branches with a value function & Reasoning surveys \cite{zhao2026appliedandcomputat} \\
+ReAct & Thought--Action--Observation loop for tool-augmented LLMs & ChemCrow \cite{bran2024naturemachineintel}, Coscientist \cite{boiko2023nature6242023} \\
+RAG & Retrieve relevant documents, condition generation on them & PaperQA \cite{ala2023arxiv2312075592023}, Almanac \cite{zakka2024almanacretrievalau}, Gao 2023 {[}RAGsurvey{]} \\
+Tool use & LLM calls external deterministic tools & ChemCrow \cite{bran2024naturemachineintel}, LeanDojo \cite{yang2023leandojotheorempro} \\
+Process reward model & Reward model on intermediate reasoning steps & o1 / R1 reasoning RL \\
+Multi-agent system & Several LLM personas coordinated via shared scratchpad & Virtual Lab \cite{swanson2024thevirtuallabaiage}, Agent Laboratory \cite{schmidgall2025agentlaboratoryusi}, MASLab {[}MASLab{]} \\
+Closed-loop SDL & Robotic + LLM-planned experimentation & Coscientist \cite{boiko2023nature6242023}, AI-Native Biofoundry \cite{zhang2026anainativebiofound} \\
+Working-memory token & Galactica's \texttt{\textless{}work\textgreater{}} reasoning marker & Galactica \cite{taylor2022arxiv2211090852022} \\
+Citation token & Galactica's \texttt{{[}START\_REF{]}}/\texttt{{[}END\_REF{]}} & Galactica \cite{taylor2022arxiv2211090852022} \\
+SciVocab & SciBERT's 30K-token domain vocabulary & SciBERT \cite{beltagy2019arxiv1903106762019} \\
+SELFIES & Validity-by-construction molecule string & BioT5 \cite{pei2023emnlp2023} \\
+Hyena mixer & Long-convolution + gating SSM & HyenaDNA \cite{nguyen2023hyenadnalongrangeg} \\
+Selective SSM & Mamba's input-dependent state-space mixing & Mamba {[}Mamba{]} \\
+ESMFold & Protein-structure decoder over ESM-2 embeddings & Lin et al.~\cite{lin2022evolutionaryscalep} \\
+Med-PaLM rubric & 9-axis long-form medical evaluation & Med-PaLM 2 \cite{singhal2025towardexpertlevelm} \\
+BioT5 & Trimodal text+SELFIES+FASTA model & Pei et al.~\cite{pei2023emnlp2023} \\
+nach0 & Multimodal natural+chemical foundation & Livne et al.~\cite{livne2024nach0multimodalnat} \\
+MolT5 & Bidirectional text↔SMILES T5 & Edwards et al.~\cite{edwards2022emnlp2022} \\
+Llemma & Math LM continued from Code Llama & Azerbayev et al.~\cite{azerbayev2023llemmaanopenlangua} \\
+LeanDojo & Retrieval-augmented Lean proof environment & Yang et al.~\cite{yang2023leandojotheorempro} \\
+ProofNet & 371-problem Lean autoformalization benchmark & Azerbayev et al.~\cite{azerbayev2023arxiv2302124332023} \\
+ClimaX & Foundation for weather/climate & Nguyen et al.~\cite{nguyen2023arxiv2301103432023} \\
+GeoGalactica & Galactica continued on geosciences & Lin et al.~\cite{lin2023geogalacticaascien} \\
+Almanac & Clinical RAG & Zakka et al.~\cite{zakka2024almanacretrievalau} \\
+PaperQA & Scientific RAG over papers & L\textquotesingle ala et al.~\cite{ala2023arxiv2312075592023} \\
+ChemCrow & 18-tool chemistry agent & M. Bran et al.~\cite{bran2024naturemachineintel} \\
+Coscientist & GPT-4 + robot autonomous chemistry & Boiko et al.~\cite{boiko2023nature6242023} \\
+Virtual Lab & Multi-agent biology lab & Swanson et al.~\cite{swanson2024thevirtuallabaiage} \\
+Agent Laboratory & Multi-agent ML research & Schmidgall et al.~\cite{schmidgall2025agentlaboratoryusi} \\
+LLMatDesign & Materials autonomous discovery & Jia et al.~\cite{jia2024arxiv2406131632024} \\
+GPN & Genome-wide variant-effect DNA LM & Benegas et al.~{[}GPN{]} \\
+Enformer & Long-range gene-expression predictor & Avsec et al.~\cite{avsec2021effectivegeneexpre} \\
+ESM-2 & 15B protein LM & Lin et al.~\cite{lin2022evolutionaryscalep} \\
+ProtGPT2 & Generative protein LM & Ferruz et al.~\cite{ferruz2022naturecommunicatio} \\
+Nucleotide Transformer & 850-species DNA LM & Dalla-Torre et al.~\cite{dallatorre2024nucleotidetransfor} \\
+HyenaDNA & 1M-bp DNA LM & Nguyen et al.~\cite{nguyen2023hyenadnalongrangeg} \\
+DNABERT-2 & BPE multispecies DNA LM & Zhou et al.~\cite{zhou2023arxiv2306150062023} \\
+MatSciBERT & Materials NER encoder & Gupta et al.~\cite{gupta2022matscibertamateria} \\
+Clinical ModernBERT & 8K biomedical encoder & Lee et al.~\cite{lee2025arxiv2504039642025} \\
+\end{tabular}
+\end{table*}
+
+\subsection{Reference map by reader role}\label{reference-map-by-reader-role}
+
+For a \emph{biomedical clinician}, the path of essential reading is: SciBERT \cite{beltagy2019arxiv1903106762019} → BioBERT \cite{lee2019bioinformatics2019} → Med-PaLM \cite{singhal2023largelanguagemodel} → Med-PaLM 2 \cite{singhal2025towardexpertlevelm} → Med-Gemini \cite{yang2024advancingmultimoda} → Almanac \cite{zakka2024almanacretrievalau} → Hager et al.~clinical limits \cite{hager2024evaluationandmitig} → Delphi reporting guidelines {[}Kottlors{]}.
+
+For a \emph{protein engineer}, the path is: ESM-2 \cite{lin2022evolutionaryscalep} → ProtGPT2 \cite{ferruz2022naturecommunicatio} → ESM All-Atom {[}ESMAll{]} → Virtual Lab \cite{swanson2024thevirtuallabaiage} → ESM downstream applications survey {[}Yang2026ESM{]}.
+
+For a \emph{chemist}, the path is: MolT5 \cite{edwards2022emnlp2022} → BioT5 \cite{pei2023emnlp2023} → nach0 \cite{livne2024nach0multimodalnat} → ChemCrow \cite{bran2024naturemachineintel} → Coscientist \cite{boiko2023nature6242023} → ChemPro benchmark \cite{baranwal2026arxiv2602031082026} → ChemToolAgent \cite{yu2024chemtoolagenttheim}.
+
+For a \emph{genomicist}, the path is: DNABERT \cite{ji2020biorxiv2020} → DNABERT-2 \cite{zhou2023arxiv2306150062023} → Nucleotide Transformer \cite{dallatorre2024nucleotidetransfor} → HyenaDNA \cite{nguyen2023hyenadnalongrangeg} → Enformer \cite{avsec2021effectivegeneexpre} → GPN {[}GPN{]} → 2026 genome-LM survey \cite{shu2026acomprehensivesurv}.
+
+For a \emph{mathematician}, the path is: Frieder et al.~ChatGPT-math {[}Frieder{]} → Llemma \cite{azerbayev2023llemmaanopenlangua} → LeanDojo \cite{yang2023leandojotheorempro} → ProofNet \cite{azerbayev2023arxiv2302124332023} → reasoning-RL surveys \cite{zhao2026appliedandcomputat} → Lu et al.~{[}Lu2023{]}.
+
+For a \emph{climate scientist}, the path is: ClimaX \cite{nguyen2023arxiv2301103432023} → GeoGalactica \cite{lin2023geogalacticaascien} → Zhao et al.~Geoscience-AI review \cite{zhao2024artificialintellig}.
+
+For a \emph{materials scientist}, the path is: MatSciBERT \cite{gupta2022matscibertamateria} → LLMatDesign \cite{jia2024arxiv2406131632024} → high-Tc world model \cite{guo2026expertevaluationof} → 2025 Wang et al.~material-LLM review \cite{wang2025knowledgeguidedlar} → Hierarchical Materials Multi-Agent \cite{rothfarb2025hierarchicalmultia}.
+
+For an \emph{AI safety / governance researcher}, the path is: Galactica retraction account \cite{taylor2022arxiv2211090852022} → Bengio et al.~2024 International Report \cite{bengio2024internationalscien} → Hager et al.~\cite{hager2024evaluationandmitig} → Liao et al.~attack-defense survey {[}Liao{]} → Closing the paper mines {[}Barnett{]}.
+
+For a \emph{systems / agentic researcher}, the path is: ChemCrow \cite{bran2024naturemachineintel} → Coscientist \cite{boiko2023nature6242023} → Virtual Lab \cite{swanson2024thevirtuallabaiage} → Agent Laboratory \cite{schmidgall2025agentlaboratoryusi} → Wei et al.~Agentic Science survey \cite{wei2025fromaiforscienceto} → MASLab {[}MASLab{]} → Goal-Evolving Agents \cite{du2025acceleratingscient}.
+
+This reference map closes the survey body. Numbered references appear in §References below.
+
+\section{Conclusion}\label{conclusion}
+
+This survey traced Scientific Large Language Models from the encoder era of SciBERT (2019) and BioBERT (2019), through the decoder era opened by Galactica (2022), Med-PaLM (2023), and ESM-2 (2022), to the agentic and reasoning-tuned generation of 2025--2026 anchored by o1, DeepSeek-R1, Coscientist, ChemCrow, Virtual Lab, and Agent Laboratory. The taxonomy in Section 3 organises 250+ documented Sci-LLMs along four axes --- Domain, Architecture, Training stage, and Modality/Autonomy --- and the algorithmic mechanisms in Sections 4--5 explain why domain tokenization, citation tokens, continued pretraining, instruction tuning, and reasoning-RL each move specific scientific benchmarks. Sections 6--7 catalogue the augmentation and multi-agent stacks now standard in production, and Section 8 walks each domain branch with measured performance.
+
+Three key tensions structure the field. First, fluency without grounding is unsafe; Galactica's three-day retraction crystallised this lesson, and PaperQA, Almanac, and BioACE are the field's response. Second, alignment is now a larger lever than scale; Med-PaLM 2's gain over Med-PaLM came from clinician-RLHF, and o1's gain over GPT-4 came from reasoning-RL. Third, the boundary between automation and autonomy is being relitigated; closed-loop SDLs and multi-agent labs reach L3--L4 in narrow chemistry and biology niches, but not yet in fundamental physics or pure mathematics.
+
+Five future directions stand out for 2026--2028.
+
+\begin{itemize}
+
+\item
+  Citation-verifiable, abstention-by-default Sci-LLMs as the standard for fact-seeking scientific questions.
+\item
+  Closed-loop autonomous laboratories operating in 25+ university and industrial labs for chemistry, antibody engineering, and materials.
+\item
+  Discovery-class benchmarks that evaluate scientific novelty rather than only correctness, with post-cutoff held-out problems.
+\item
+  Curated, citation-verified scientific corpora at the ≥500B-token scale displacing uncurated arXiv+web mixtures as the default pretraining base.
+\item
+  Open-weights frontier reasoning models closing the gap to closed APIs to within five absolute points on GPQA-Diamond and successors.
+\end{itemize}
+
+Across these directions, the binding constraint is migrating from compute to data, from data to wet-lab integration, and from wet-lab integration to verification. A Sci-LLM that can ground every claim, plan a long-horizon experiment, and verify its own outputs against deterministic tools is the explicit target of the 2025--2026 research frontier. The five falsifiable forecasts in Section 12.10 will be confirmed or refuted by 2028, and the field's progress should be measured against them.
+
+\bibliographystyle{icml2025}
+\bibliography{refs}
+
+\end{document}
